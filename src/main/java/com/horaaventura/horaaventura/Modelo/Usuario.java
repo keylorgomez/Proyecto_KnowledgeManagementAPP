@@ -28,5 +28,9 @@ public class Usuario {
         this.usuarioId = usuarioId;
     }
 
+    //Constructor por defecto
+    public Usuario(){
+
+    }
 
 }
