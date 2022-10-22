@@ -124,4 +124,19 @@ public class Usuario {
         return Objects.hash(nombre, apellido, edad, fechaNacimiento, email, password, foto, rolLider, usuarioId);
     }
 
+    //ToString
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", edad=" + edad +
+                ", fechaNacimiento=" + fechaNacimiento +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", foto='" + foto + '\'' +
+                ", rolLider=" + rolLider +
+                ", usuarioId=" + usuarioId +
+                '}';
+    }
 }
