@@ -109,5 +109,18 @@ public class Investigacion {
         return Objects.hash(InvestigacionId, nombreAutor, fechaInicio, fechaModificacion, titulo, subtitulos, textos, maedia);
     }
 
-
+    //toString
+    @Override
+    public String toString() {
+        return "Investigacion{" +
+                "InvestigacionId=" + InvestigacionId +
+                ", nombreAutor='" + nombreAutor + '\'' +
+                ", fechaInicio=" + fechaInicio +
+                ", fechaModificacion=" + fechaModificacion +
+                ", titulo='" + titulo + '\'' +
+                ", subtitulos=" + subtitulos +
+                ", textos=" + textos +
+                ", maedia=" + maedia +
+                '}';
+    }
 }
