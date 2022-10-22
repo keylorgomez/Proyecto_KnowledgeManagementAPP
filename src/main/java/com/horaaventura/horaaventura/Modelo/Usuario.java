@@ -1,6 +1,7 @@
 package com.horaaventura.horaaventura.Modelo;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Usuario {
     private String nombre;
@@ -108,5 +109,19 @@ public class Usuario {
         this.usuarioId = usuarioId;
     }
 
+    //Método equals
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Usuario usuario = (Usuario) o;
+        return edad == usuario.edad && rolLider == usuario.rolLider && usuarioId == usuario.usuarioId && Objects.equals(nombre, usuario.nombre) && Objects.equals(apellido, usuario.apellido) && Objects.equals(fechaNacimiento, usuario.fechaNacimiento) && Objects.equals(email, usuario.email) && Objects.equals(password, usuario.password) && Objects.equals(foto, usuario.foto);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nombre, apellido, edad, fechaNacimiento, email, password, foto, rolLider, usuarioId);
+    }
 
 }
