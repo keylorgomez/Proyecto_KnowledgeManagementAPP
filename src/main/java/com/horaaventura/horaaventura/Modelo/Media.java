@@ -15,4 +15,40 @@ public class Media {
         this.fechaCreacion = fechaCreacion;
         this.mediaId = mediaId;
     }
+
+    //getters and setters
+
+    public String getNombreArchivo() {
+        return nombreArchivo;
+    }
+
+    public void setNombreArchivo(String nombreArchivo) {
+        this.nombreArchivo = nombreArchivo;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
+    }
+
+    public LocalDate getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(LocalDate fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    public int getMediaId() {
+        return mediaId;
+    }
+
+    public void setMediaId(int mediaId) {
+        this.mediaId = mediaId;
+    }
+
+
 }
