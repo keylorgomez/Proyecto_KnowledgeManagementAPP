@@ -65,5 +65,16 @@ public class Media {
         return Objects.hash(nombreArchivo, autor, fechaCreacion, mediaId);
     }
 
+    //Método toString
 
+
+    @Override
+    public String toString() {
+        return "Media{" +
+                "nombreArchivo='" + nombreArchivo + '\'' +
+                ", autor='" + autor + '\'' +
+                ", fechaCreacion=" + fechaCreacion +
+                ", mediaId=" + mediaId +
+                '}';
+    }
 }
