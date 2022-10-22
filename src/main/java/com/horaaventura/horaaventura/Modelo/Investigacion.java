@@ -30,5 +30,70 @@ public class Investigacion {
 
     }
 
+    //getters and setters
+    public int getInvestigacionId() {
+        return InvestigacionId;
+    }
+
+    public void setInvestigacionId(int investigacionId) {
+        InvestigacionId = investigacionId;
+    }
+
+    public String getNombreAutor() {
+        return nombreAutor;
+    }
+
+    public void setNombreAutor(String nombreAutor) {
+        this.nombreAutor = nombreAutor;
+    }
+
+    public LocalDate getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public void setFechaInicio(LocalDate fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public LocalDate getFechaModificacion() {
+        return fechaModificacion;
+    }
+
+    public void setFechaModificacion(LocalDate fechaModificacion) {
+        this.fechaModificacion = fechaModificacion;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public ArrayList<String> getSubtitulos() {
+        return subtitulos;
+    }
+
+    public void setSubtitulos(ArrayList<String> subtitulos) {
+        this.subtitulos = subtitulos;
+    }
+
+    public ArrayList<String> getTextos() {
+        return textos;
+    }
+
+    public void setTextos(ArrayList<String> textos) {
+        this.textos = textos;
+    }
+
+    public ArrayList<Media> getMaedia() {
+        return maedia;
+    }
+
+    public void setMaedia(ArrayList<Media> maedia) {
+        this.maedia = maedia;
+    }
+
 
 }
