@@ -13,6 +13,20 @@ public class Usuario {
     private boolean rolLider;
     private  int usuarioId;
 
+    //Constructor que recibe todos los parametros
+
+
+    public Usuario(String nombre, String apellido, int edad, LocalDate fechaNacimiento, String email, String password, String foto, boolean rolLider, int usuarioId) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.edad = edad;
+        this.fechaNacimiento = fechaNacimiento;
+        this.email = email;
+        this.password = password;
+        this.foto = foto;
+        this.rolLider = rolLider;
+        this.usuarioId = usuarioId;
+    }
 
 
 }
