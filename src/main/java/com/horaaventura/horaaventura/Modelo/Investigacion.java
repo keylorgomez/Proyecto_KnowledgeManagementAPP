@@ -2,6 +2,7 @@ package com.horaaventura.horaaventura.Modelo;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Investigacion {
     private int InvestigacionId;
@@ -93,6 +94,19 @@ public class Investigacion {
 
     public void setMaedia(ArrayList<Media> maedia) {
         this.maedia = maedia;
+    }
+
+    //equals
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Investigacion that = (Investigacion) o;
+        return InvestigacionId == that.InvestigacionId && Objects.equals(nombreAutor, that.nombreAutor) && Objects.equals(fechaInicio, that.fechaInicio) && Objects.equals(fechaModificacion, that.fechaModificacion) && Objects.equals(titulo, that.titulo) && Objects.equals(subtitulos, that.subtitulos) && Objects.equals(textos, that.textos) && Objects.equals(maedia, that.maedia);
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(InvestigacionId, nombreAutor, fechaInicio, fechaModificacion, titulo, subtitulos, textos, maedia);
     }
 
 
