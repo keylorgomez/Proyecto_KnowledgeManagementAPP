@@ -10,11 +10,25 @@ public class Investigacion {
     private LocalDate fechaModificacion;
     private String titulo;
     private ArrayList<String> subtitulos;
-    public ArrayList<String> textos;
-    public ArrayList<Media> maedia;
+    private ArrayList<String> textos;
+    private ArrayList<Media> maedia;
 
 
+    //contructor con todos los parametros
+    public Investigacion(int investigacionId, String nombreAutor, LocalDate fechaInicio, LocalDate fechaModificacion, String titulo, ArrayList<String> subtitulos, ArrayList<String> textos, ArrayList<Media> maedia) {
+        InvestigacionId = investigacionId;
+        this.nombreAutor = nombreAutor;
+        this.fechaInicio = fechaInicio;
+        this.fechaModificacion = fechaModificacion;
+        this.titulo = titulo;
+        this.subtitulos = subtitulos;
+        this.textos = textos;
+        this.maedia = maedia;
+    }
+    //constructor generico
+    public Investigacion(){
 
+    }
 
 
 }
