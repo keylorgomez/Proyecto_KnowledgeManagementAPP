@@ -1,6 +1,7 @@
 package com.horaaventura.horaaventura.Modelo;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Media {
     private String nombreArchivo;
@@ -48,6 +49,20 @@ public class Media {
 
     public void setMediaId(int mediaId) {
         this.mediaId = mediaId;
+    }
+
+    //Método equals
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Media media = (Media) o;
+        return mediaId == media.mediaId && Objects.equals(nombreArchivo, media.nombreArchivo) && Objects.equals(autor, media.autor) && Objects.equals(fechaCreacion, media.fechaCreacion);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nombreArchivo, autor, fechaCreacion, mediaId);
     }
 
 
