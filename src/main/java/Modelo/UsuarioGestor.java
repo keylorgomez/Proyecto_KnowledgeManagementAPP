@@ -1,5 +1,7 @@
-package com.horaaventura.horaaventura.Modelo;
+package Modelo;
 
+
+import Modelo.Usuario;
 
 import java.time.LocalDate;
 

@@ -1,4 +1,4 @@
-package com.horaaventura.horaaventura.Vista;
+package Vista;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
