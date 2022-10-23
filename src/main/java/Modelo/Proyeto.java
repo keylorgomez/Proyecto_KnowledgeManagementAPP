@@ -1,4 +1,4 @@
-package com.horaaventura.horaaventura.Modelo;
+package Modelo;
 
 import java.util.ArrayList;
 import java.util.Date;

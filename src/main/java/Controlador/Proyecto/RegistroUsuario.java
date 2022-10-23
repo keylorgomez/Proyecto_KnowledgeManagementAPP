@@ -1,6 +1,6 @@
-package com.horaaventura.horaaventura.Controlador.ControladorProyecto;
+package Controlador.Proyecto;
 
-import com.horaaventura.horaaventura.Modelo.Usuario;
+import Modelo.Usuario;
 import javafx.scene.control.Alert;
 
 import java.util.regex.Matcher;
