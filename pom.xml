@@ -38,6 +38,11 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.github.brunotl</groupId>
+            <artifactId>boost_exception</artifactId>
+            <version>1.80.0</version>
+        </dependency>
     </dependencies>
 
     <build>
