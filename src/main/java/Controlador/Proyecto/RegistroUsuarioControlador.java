@@ -6,7 +6,7 @@ import javafx.scene.control.Alert;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class RegistroUsuario {
+public class RegistroUsuarioControlador {
     Usuario usuario;
 
 
