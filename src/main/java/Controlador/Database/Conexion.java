@@ -1,14 +1,14 @@
 package Controlador.Database;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 public class Conexion {
-
     private Connection connection;
     private String usuario="root";
-    private String password="achaves2912";
+    private String password="123456";
     private String servidor="localhost";
     private String puerto="3306";
-    private String nombreDB="proyectopoo";
+    private String nombreDB="db_proyectopoo";
     private String url="jdbc:mysql://"+servidor+":"+puerto+"/"+nombreDB+"?serverTimezone=UTC";
     private String driver="com.mysql.cj.jdbc.Driver";
 
