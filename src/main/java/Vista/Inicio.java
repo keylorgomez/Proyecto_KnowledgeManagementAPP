@@ -1,6 +1,5 @@
 package Vista;
 
-import Controlador.Proyecto.RegistroUsuarioControlador;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
