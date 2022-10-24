@@ -18,7 +18,7 @@ public class Inicio extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Inicio.class.getResource("RegistroUsuario.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Inicio.class.getResource("Login.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 671, 463);
         primaryStage.setTitle("Hello!");
         primaryStage.setScene(scene);
