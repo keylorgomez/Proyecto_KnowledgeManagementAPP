@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.Proyecto.LoginControlador">
+   <children>
+      <AnchorPane prefHeight="400.0" prefWidth="310.0">
+         <children>
+            <Label fx:id="labelSesion" layoutX="112.0" layoutY="67.0" text="Inicio de Sesión" />
+            <Label fx:id="labelUsuario" layoutX="139.0" layoutY="104.0" text="Usuario" />
+            <Label fx:id="labelContrasenia" accessibleRoleDescription=".co" layoutX="140.0" layoutY="200.0" text="Contraseña" />
+            <TextField fx:id="txtUsuario" layoutX="85.0" layoutY="147.0" promptText="usuario@email.com" />
+            <TextField fx:id="txtContrasenia" layoutX="80.0" layoutY="231.0" promptText="Min4 o Maximo08" />
+            <Button fx:id="btnIniciar" layoutX="127.0" layoutY="274.0" mnemonicParsing="false" text="Iniciar" />
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="400.0" prefWidth="300.0">
+         <children>
+            <ImageView fx:id="imagLogo" fitHeight="150.0" fitWidth="200.0" layoutX="48.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="labelRegistrese" layoutX="14.0" layoutY="237.0" text="Si no tienes usuario, puedes registrarte aquí" />
+            <Button fx:id="btnRegistrarse" layoutX="104.0" layoutY="272.0" mnemonicParsing="false" text="Registrarse" />
+         </children>
+      </AnchorPane>
+   </children>
+</HBox>
