@@ -23,7 +23,7 @@
          <children>
             <ImageView fx:id="imagLogo" fitHeight="150.0" fitWidth="200.0" layoutX="48.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
             <Label fx:id="labelRegistrese" layoutX="14.0" layoutY="237.0" text="Si no tienes usuario, puedes registrarte aquí" />
-            <Button fx:id="btnRegistrarse" layoutX="104.0" layoutY="272.0" mnemonicParsing="false" text="Registrarse" />
+            <Button fx:id="btnRegistrarse" layoutX="104.0" layoutY="272.0" mnemonicParsing="false" onAction="#IrRegistrarse" text="Registrarse" />
          </children>
       </AnchorPane>
    </children>
