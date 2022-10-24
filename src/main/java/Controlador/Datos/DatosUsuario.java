@@ -8,14 +8,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DatosUsuario {
-    Usuario usuario;
     boolean userNuevo;
-    public void insertarUsser(Usuario usuario) throws SQLException {
+    public void insertarUser(Usuario usuario) throws SQLException {
         userNuevo = true;
         Conexion connection= new Conexion();
         Connection connectDB = Conexion.getConnection();
 
-        String insertInfo = "insert into usuarios(nombre, apellido,edad, fechaNacimiento, email, password,foto) values ('" + usuario.getNombre() + "','" + usuario.getApellido() + "','" + usuario.getEdad() + "','" + usuario.getFechaNacimiento() + "','" + usuario.getEmail() + "','" + usuario.getPassword() +"','"+usuario.getFoto() +"')";
+        String insertInfo = "insert into usuarios(id,nombre, apellido,edad, fechaNacimiento, email, password,foto) values ('"+ 1+ usuario.getNombre() + "','" + usuario.getApellido() + "','" + usuario.getEdad() + "','" + usuario.getFechaNacimiento() + "','" + usuario.getEmail() + "','" + usuario.getPassword() +"','"+usuario.getFoto() +"')";
         try {
             Statement statement = connectDB.createStatement();
             statement.executeUpdate(insertInfo);

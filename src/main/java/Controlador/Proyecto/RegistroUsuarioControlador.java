@@ -1,9 +1,11 @@
 package Controlador.Proyecto;
 
+import Controlador.Datos.DatosUsuario;
 import Modelo.Usuario;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.regex.Matcher;
@@ -11,6 +13,7 @@ import java.util.regex.Pattern;
 
 public class RegistroUsuarioControlador {
     Usuario usuario;
+    DatosUsuario DataU;
     @FXML private TextField txtnombreRegistro;
     @FXML private TextField txtapellidoRegistro;
     @FXML private DatePicker nacimientoRegistro;
@@ -62,7 +65,7 @@ public class RegistroUsuarioControlador {
 
     }
 
-    public void registrarUsuario(){
+    public void registrarUsuario() throws SQLException {
         usuario.setNombre(txtnombreRegistro.getText());
         usuario.setApellido(txtapellidoRegistro.getText());
         usuario.setFechaNacimiento(nacimientoRegistro.getValue());
@@ -79,7 +82,7 @@ public class RegistroUsuarioControlador {
         ValidarCamposRegistro(nombreUsuario, apellidoUsuario, fechaNacimientoUsuario, emailUsuario, passwordUsuario, fotoUsuario);
     }
 
-    public void ValidarCamposRegistro(String nombre, String apellido, LocalDate fecha, String email, String contrasenna, String foto){
+    public void ValidarCamposRegistro(String nombre, String apellido, LocalDate fecha, String email, String contrasenna, String foto) throws SQLException {
         int edad= calculoEdad(fecha);
         if(nombre.isEmpty() || apellido.isEmpty() ||email.isEmpty() || contrasenna.isEmpty()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -92,7 +95,7 @@ public class RegistroUsuarioControlador {
             }else{
                 labelRegistro.setText("Usuario registrado exitosamente");
                 usuario = new Usuario(nombre, apellido, edad, fecha, email, contrasenna, foto);
-                //UDI.insert(usuario);//envio de datos a la base de datos
+                DataU.insertarUser(usuario);
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setHeaderText(null);
                 alert.setTitle("Succesfull");
