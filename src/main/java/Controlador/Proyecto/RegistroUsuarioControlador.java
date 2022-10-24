@@ -17,7 +17,7 @@ public class RegistroUsuarioControlador {
     @FXML private TextField txtemailRegistro;
     @FXML private TextField txtcontrasenna;
 
-    private Label labelFotoRegistro;
+    @FXML private TextField txtLinkFoto;
     @FXML private Label labelRegistro;
 
     @FXML private Button btnbuscarFotoRegistro;
@@ -25,6 +25,7 @@ public class RegistroUsuarioControlador {
 
     public RegistroUsuarioControlador() {
         usuario = new Usuario("","",0,null,"","","");
+        usuario = new Usuario();
         labelRegistro = new Label();
     }
 
@@ -67,7 +68,7 @@ public class RegistroUsuarioControlador {
         usuario.setFechaNacimiento(nacimientoRegistro.getValue());
         usuario.setEmail(txtemailRegistro.getText());
         usuario.setPassword(txtcontrasenna.getText());
-        usuario.setFoto(labelFotoRegistro.getText());
+        usuario.setFoto(txtLinkFoto.getText());
 
         String nombreUsuario = usuario.getNombre();
         String apellidoUsuario = usuario.getApellido();
@@ -75,6 +76,7 @@ public class RegistroUsuarioControlador {
         String emailUsuario = usuario.getEmail();
         String passwordUsuario = usuario.getPassword();
         String fotoUsuario = usuario.getFoto();
+        ValidarCamposRegistro(nombreUsuario, apellidoUsuario, fechaNacimientoUsuario, emailUsuario, passwordUsuario, fotoUsuario);
     }
 
     public void ValidarCamposRegistro(String nombre, String apellido, LocalDate fecha, String email, String contrasenna, String foto){
@@ -85,7 +87,8 @@ public class RegistroUsuarioControlador {
             alert.setTitle("Error");
             alert.setContentText("Error debido a espacios en blanco");
             alert.showAndWait();
-        } else if(validarUserandContra(email, contrasenna)) {
+        } else {
+            if(validarUserandContra(email, contrasenna)== false) {
             }else{
                 labelRegistro.setText("Usuario registrado exitosamente");
                 usuario = new Usuario(nombre, apellido, edad, fecha, email, contrasenna, foto);
@@ -96,6 +99,7 @@ public class RegistroUsuarioControlador {
                 alert.setContentText("Usuario registrado exitosamente");
                 alert.showAndWait();
             }
+        }
     }
 
 

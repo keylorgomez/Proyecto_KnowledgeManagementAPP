@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class Usuario {
+    private  int usuarioId;
     private String nombre;
     private String apellido;
     private int edad;
@@ -12,7 +13,7 @@ public class Usuario {
     private String password;
     private String foto;
     private boolean rolLider;
-    private  int usuarioId;
+
 
     //Constructor que recibe todos los parametros
 
