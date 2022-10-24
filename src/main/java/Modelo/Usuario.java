@@ -33,6 +33,17 @@ public class Usuario {
     public Usuario(){
 
     }
+    //Constructor sin tipo de rol
+
+    public Usuario(String nombre, String apellido, int edad, LocalDate fechaNacimiento, String email, String password, String foto) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.edad = edad;
+        this.fechaNacimiento = fechaNacimiento;
+        this.email = email;
+        this.password = password;
+        this.foto = foto;
+    }
 
     //Getters and Setters
 
