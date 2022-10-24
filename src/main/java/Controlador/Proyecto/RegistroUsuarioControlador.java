@@ -11,19 +11,20 @@ import java.util.regex.Pattern;
 
 public class RegistroUsuarioControlador {
     Usuario usuario;
-    private TextField txtnombreRegistro;
-    private TextField txtapellidoRegistro;
-    private DatePicker nacimientoRegistro;
-    private TextField txtemailRegistro;
-    private TextField txtcontrasenna;
+    @FXML private TextField txtnombreRegistro;
+    @FXML private TextField txtapellidoRegistro;
+    @FXML private DatePicker nacimientoRegistro;
+    @FXML private TextField txtemailRegistro;
+    @FXML private TextField txtcontrasenna;
 
     private Label labelFotoRegistro;
-    private Label labelRegistro;
+    @FXML private Label labelRegistro;
 
-    private Button btnbuscarFotoRegistro;
-    private Button btnRegistro;
-    public RegistroUsuarioControlador(Usuario usuario) {
-        usuario = new Usuario();
+    @FXML private Button btnbuscarFotoRegistro;
+    @FXML private Button btnRegistro;
+
+    public RegistroUsuarioControlador() {
+        usuario = new Usuario("","",0,null,"","","");
         labelRegistro = new Label();
     }
 
