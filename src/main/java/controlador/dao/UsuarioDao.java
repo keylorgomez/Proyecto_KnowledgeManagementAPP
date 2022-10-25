@@ -1,7 +1,7 @@
-package dao;
+package controlador.dao;
 
-import Controlador.Database.Conexion;
-import Modelo.Usuario;
+import controlador.database.Conexion;
+import modelo.Usuario;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

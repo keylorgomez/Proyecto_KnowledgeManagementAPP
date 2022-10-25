@@ -1,9 +1,5 @@
-package Modelo;
+package modelo;
 
-
-import Modelo.Usuario;
-
-import java.time.LocalDate;
 
 public class UsuarioGestor extends Usuario {
     public UsuarioGestor(String nombre, String apellido, int edad, String fechaNacimiento, String email, String password, String foto, boolean rolLider, int usuarioId) {
