@@ -11,7 +11,6 @@ import modelo.Proyecto;
 public class CrearProyectoControlador {
     private Proyecto proyecto;
 
-
     @FXML private DatePicker dpFechaCreacion;
     @FXML private DatePicker dpFechaModificacion;
 

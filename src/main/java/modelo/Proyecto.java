@@ -1,6 +1,5 @@
 package modelo;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 public class Proyecto {
@@ -10,25 +9,28 @@ public class Proyecto {
 
     public String nombre;
 
-    public Date fechaCreacion;
+    public String fechaCreacion;
 
     public Date ultimaModificacion;
 
-    public ArrayList<Media> media;
-
-    public ArrayList<Usuario> colaboradores;
-
     public String repositorio;
 
-    public Proyecto(int idProyecto, String categoria, String nombre, Date fechaCreacion, Date ultimaModificacion, ArrayList<Media> media, ArrayList<Usuario> colaboradores, String repositorio) {
+    public int idCarpeta;
+
+    public int idUsuario;
+
+    public Proyecto(int idProyecto, String categoria, String nombre, String fechaCreacion, Date ultimaModificacion, String repositorio, int idCarpeta, int idUsuario) {
         this.idProyecto = idProyecto;
         this.categoria = categoria;
         this.nombre = nombre;
         this.fechaCreacion = fechaCreacion;
         this.ultimaModificacion = ultimaModificacion;
-        this.media = media;
-        this.colaboradores = colaboradores;
         this.repositorio = repositorio;
+        this.idCarpeta = idCarpeta;
+        this.idUsuario = idUsuario;
+    }
+
+    public Proyecto() {
     }
 
     public int getIdProyecto() {
@@ -55,11 +57,11 @@ public class Proyecto {
         this.nombre = nombre;
     }
 
-    public Date getFechaCreacion() {
+    public String getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(Date fechaCreacion) {
+    public void setFechaCreacion(String fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
@@ -71,27 +73,27 @@ public class Proyecto {
         this.ultimaModificacion = ultimaModificacion;
     }
 
-    public ArrayList<Media> getMedia() {
-        return media;
-    }
-
-    public void setMedia(ArrayList<Media> media) {
-        this.media = media;
-    }
-
-    public ArrayList<Usuario> getColaboradores() {
-        return colaboradores;
-    }
-
-    public void setColaboradores(ArrayList<Usuario> colaboradores) {
-        this.colaboradores = colaboradores;
-    }
-
     public String getRepositorio() {
         return repositorio;
     }
 
     public void setRepositorio(String repositorio) {
         this.repositorio = repositorio;
+    }
+
+    public int getIdCarpeta() {
+        return idCarpeta;
+    }
+
+    public void setIdCarpeta(int idCarpeta) {
+        this.idCarpeta = idCarpeta;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 }
