@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.proyecto.CrearProyectoControlador">
    <children>
       <HBox alignment="CENTER" layoutX="2.0" layoutY="7.0" prefHeight="34.0" prefWidth="593.0">
@@ -59,11 +58,6 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="labelMedia" text="Archivos de Media" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
-               <GridPane.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </GridPane.margin>
-            </Label>
             <Label fx:id="labelColaboradores" text="Colaboradores" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -76,7 +70,6 @@
             </Label>
             <TextField fx:id="txtCategoría" promptText="Categoria de Proyecto" GridPane.columnIndex="1" />
             <TextField promptText="txtNombre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="txtMedia" promptText="Dirección de archivo media" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField fx:id="txtColaboradores" promptText="Colaboradores" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <TextArea fx:id="txtRepositorio" prefHeight="28.0" prefWidth="459.0" promptText="Dirección de repositorio" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
@@ -94,6 +87,7 @@
             </HBox>
             <DatePicker fx:id="dpFechaCreacion" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <DatePicker fx:id="dpFechaModificacion" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Button mnemonicParsing="false" text="Crear carpeta " GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
    </children>
