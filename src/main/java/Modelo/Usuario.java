@@ -30,10 +30,6 @@ public class Usuario {
         this.usuarioId = usuarioId;
     }
 
-    //Constructor por defecto
-    public Usuario(){
-
-    }
     //Constructor sin tipo de rol
 
     public Usuario(String nombre, String apellido, int edad, String fechaNacimiento, String email, String password, String foto) {
@@ -46,7 +42,9 @@ public class Usuario {
         this.foto = foto;
     }
 
-    //Getters and Setters
+    public Usuario() {
+    }
+//Getters and Setters
 
 
     public String getNombre() {

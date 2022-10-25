@@ -12,7 +12,7 @@ public class UsuarioDao {
     public UsuarioDao(){
         this.obtenerConexion=new Conexion();
     }
-    public void registrarUsuario(Usuario usuario){
+    public boolean registrarUsuario(Usuario usuario){
         try {
             String SQL="insert into usuarios(nombre,apellido,edad,fechaNacimiento," +
                     "email,contrasenna,foto)" +
@@ -28,14 +28,17 @@ public class UsuarioDao {
             sentencia.setString(6, usuario.getPassword());
             sentencia.setString(7, usuario.getFoto());
 
+            sentencia.executeUpdate();
+            sentencia.close();
+            return true;
+
         }catch (Exception e){
             System.err.println("Ocurrió un error al registrar el usuario");
             System.err.println("Mensaje del error: "+e.getMessage());
             System.err.println("Detalle del error: ");
             e.printStackTrace();
-
+            return false;
         }
-
 
     }
 }
