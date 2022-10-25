@@ -1,5 +1,7 @@
 package controlador.proyecto;
 
+import controlador.dao.UsuarioDao;
+import javafx.scene.control.Alert;
 import modelo.Usuario;
 import vista.Inicio;
 import javafx.event.ActionEvent;
@@ -29,14 +31,47 @@ public class LoginControlador {
     @FXML private TextField txtContrasenia;
     @FXML private TextField txtUsuario;
     @FXML private Label mensaje;
+    private UsuarioDao usuarioDao;
+
+    public LoginControlador() {
+        usuario = new Usuario();
+        usuarioDao = new UsuarioDao();
+    }
+    @FXML public void loginUsuario() throws SQLException, IOException {
+        usuario.setEmail(txtUsuario.getText());
+        usuario.setPassword(txtContrasenia.getText());
+
+        String emailLogin = usuario.getEmail();
+        String passwordLogin = usuario.getPassword();
+        validarLogin(emailLogin, passwordLogin);
 
 
-    public void validarLogin() throws SQLException {
-        if (txtUsuario.getText() == "" || txtContrasenia.getText() == "")
+    }
+    public void validarLogin(String user, String password) throws SQLException, IOException {
+        if (user.isEmpty()|| password.isEmpty())
             mensaje.setText("Datos incorrectos");
         else {
-            mensaje.setText("Ingreso exitoso");
+            realizarLogin(user, password);
         }
+    }
+    public void realizarLogin(String email, String contrasenna) throws SQLException, IOException {
+        Boolean verificandoUsuario = usuarioDao.verificarUsuario(email, contrasenna);
+        if (verificandoUsuario == true) {
+            mensaje.setText("Ingresado con exito");
+            ingresarApp();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Error");
+            alert.setContentText("Error debido a datos incorrectos");
+            alert.showAndWait();
+        }
+
+    }
+    public void ingresarApp() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("CrearProyecto.fxml")));
+        Stage window = (Stage) btnIniciar.getScene().getWindow();
+        window.setScene(new Scene(root));
     }
 
 
