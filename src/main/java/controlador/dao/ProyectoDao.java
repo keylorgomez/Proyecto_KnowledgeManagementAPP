@@ -21,7 +21,7 @@ public class ProyectoDao {
         try {
             String SQL="insert into proyecto(nombre,categoria,fechaCreacion," +
                     "ultimaModificacion,repositorio,idUsuario)"+
-                    "values(?,?,?,?,?,?,?)";
+                    "values(?,?,?,?,?,?)";
             Connection connection=this.obtenerConexion.getConnection();
             PreparedStatement sentencia= connection.prepareStatement(SQL);
 
@@ -30,7 +30,7 @@ public class ProyectoDao {
             sentencia.setString(3,String.valueOf(proyecto.getFechaCreacion()));
             sentencia.setString(4,String.valueOf(proyecto.getUltimaModificacion()));
             sentencia.setString(5, proyecto.getRepositorio());
-            sentencia.setInt(6,usuario.getUsuarioId());
+            sentencia.setInt(6,proyecto.getIdUsuario());
 
             sentencia.executeUpdate();
             sentencia.close();
@@ -43,21 +43,18 @@ public class ProyectoDao {
             return false;
         }
 
-        public int getUsuarioId(String email){
-            Connection conexion=this.obtenerConexion.getConnection();
-            String SQLid = "SELECT idUsuario FROM usuarios WHERE email = " + "'" + id + "'";
-            PreparedStatement sentencia2 = conexion.prepareStatement(SQLid);
+        }
+        public int getUsuarioId(String email) throws SQLException {
+            Connection connection=this.obtenerConexion.getConnection();
+            String SQLidUser = "SELECT idUsuario FROM usuarios WHERE email = " + "'" + email + "'";
+            PreparedStatement sentencia2 = connection.prepareStatement(SQLidUser);
             ResultSet rs = sentencia2.executeQuery();
 
-            int idVideo = 0;
+            int idUsuario=0;
             if (rs.next()) {
-                idVideo = rs.getInt("videoId");
+                idUsuario = rs.getInt("idUsuario");
             }
-            return idVideo;
-        }
-
-
-
+            return idUsuario;
     }
 
 }
