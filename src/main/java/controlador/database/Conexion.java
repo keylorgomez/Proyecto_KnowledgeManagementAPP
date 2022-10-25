@@ -1,11 +1,12 @@
 package controlador.database;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class Conexion {
     private Connection connection;
     private String usuario="root";
-    private String password="123456";
+    private String password="achaves2912";
     private String servidor="localhost";
     private String puerto="3306";
     private String nombreDB="db_proyectopoo";
@@ -25,6 +26,10 @@ public class Conexion {
             System.err.println("Detalle del error: ");
             e.printStackTrace();
         }
+    }
+
+    public static void closeConnection(Connection connection) throws SQLException {
+        connection.close();
     }
 
     public Connection getConnection() {
