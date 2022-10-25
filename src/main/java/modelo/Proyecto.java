@@ -1,5 +1,6 @@
 package modelo;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Proyecto {
@@ -9,9 +10,9 @@ public class Proyecto {
 
     public String nombre;
 
-    public String fechaCreacion;
+    public LocalDate fechaCreacion;
 
-    public Date ultimaModificacion;
+    public LocalDate ultimaModificacion;
 
     public String repositorio;
 
@@ -19,7 +20,7 @@ public class Proyecto {
 
     public int idUsuario;
 
-    public Proyecto(int idProyecto, String categoria, String nombre, String fechaCreacion, Date ultimaModificacion, String repositorio, int idCarpeta, int idUsuario) {
+    public Proyecto(int idProyecto, String nombre ,String categoria,  LocalDate fechaCreacion, LocalDate ultimaModificacion, String repositorio, int idCarpeta, int idUsuario) {
         this.idProyecto = idProyecto;
         this.categoria = categoria;
         this.nombre = nombre;
@@ -27,6 +28,23 @@ public class Proyecto {
         this.ultimaModificacion = ultimaModificacion;
         this.repositorio = repositorio;
         this.idCarpeta = idCarpeta;
+        this.idUsuario = idUsuario;
+    }
+
+    public Proyecto(String nombre,String categoria,  LocalDate fechaCreacion, LocalDate ultimaModificacion, String repositorio) {
+        this.categoria = categoria;
+        this.nombre = nombre;
+        this.fechaCreacion = fechaCreacion;
+        this.ultimaModificacion = ultimaModificacion;
+        this.repositorio = repositorio;
+    }
+
+    public Proyecto(String nombre,String categoria,  LocalDate fechaCreacion, LocalDate ultimaModificacion, String repositorio, int idUsuario) {
+        this.categoria = categoria;
+        this.nombre = nombre;
+        this.fechaCreacion = fechaCreacion;
+        this.ultimaModificacion = ultimaModificacion;
+        this.repositorio = repositorio;
         this.idUsuario = idUsuario;
     }
 
@@ -57,19 +75,19 @@ public class Proyecto {
         this.nombre = nombre;
     }
 
-    public String getFechaCreacion() {
+    public LocalDate getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(String fechaCreacion) {
+    public void setFechaCreacion(LocalDate fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public Date getUltimaModificacion() {
+    public LocalDate getUltimaModificacion() {
         return ultimaModificacion;
     }
 
-    public void setUltimaModificacion(Date ultimaModificacion) {
+    public void setUltimaModificacion(LocalDate ultimaModificacion) {
         this.ultimaModificacion = ultimaModificacion;
     }
 

@@ -99,7 +99,6 @@ public class RegistroUsuarioControlador {
             alert.showAndWait();
              return rsp = false;
         } else {
-
                 usuario = new Usuario(nombre, apellido, edad, fecha, email, contrasenna, foto);
                 rsp= usuarioDao.registrarUsuario(usuario);
                 Alert alert=new Alert(Alert.AlertType.INFORMATION);
