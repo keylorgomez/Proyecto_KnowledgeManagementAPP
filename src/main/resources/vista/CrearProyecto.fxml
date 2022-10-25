@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.Proyecto.CrearProyectoControlador">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.proyecto.CrearProyectoControlador">
    <children>
       <HBox alignment="CENTER" layoutX="2.0" layoutY="7.0" prefHeight="34.0" prefWidth="593.0">
          <padding>

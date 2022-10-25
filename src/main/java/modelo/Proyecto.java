@@ -1,9 +1,9 @@
-package Modelo;
+package modelo;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Proyeto {
+public class Proyecto {
     public int idProyecto;
 
     public String categoria;
@@ -20,7 +20,7 @@ public class Proyeto {
 
     public String repositorio;
 
-    public Proyeto(int idProyecto, String categoria, String nombre, Date fechaCreacion, Date ultimaModificacion, ArrayList<Media> media, ArrayList<Usuario> colaboradores, String repositorio) {
+    public Proyecto(int idProyecto, String categoria, String nombre, Date fechaCreacion, Date ultimaModificacion, ArrayList<Media> media, ArrayList<Usuario> colaboradores, String repositorio) {
         this.idProyecto = idProyecto;
         this.categoria = categoria;
         this.nombre = nombre;
