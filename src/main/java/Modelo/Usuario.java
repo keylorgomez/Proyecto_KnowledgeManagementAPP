@@ -8,7 +8,7 @@ public class Usuario {
     private String nombre;
     private String apellido;
     private int edad;
-    private LocalDate fechaNacimiento;
+    private String fechaNacimiento;
     private String email;
     private String password;
     private String foto;
@@ -18,7 +18,7 @@ public class Usuario {
     //Constructor que recibe todos los parametros
 
 
-    public Usuario(String nombre, String apellido, int edad, LocalDate fechaNacimiento, String email, String password, String foto, boolean rolLider, int usuarioId) {
+    public Usuario(String nombre, String apellido, int edad, String fechaNacimiento, String email, String password, String foto, boolean rolLider, int usuarioId) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
@@ -36,7 +36,7 @@ public class Usuario {
     }
     //Constructor sin tipo de rol
 
-    public Usuario(String nombre, String apellido, int edad, LocalDate fechaNacimiento, String email, String password, String foto) {
+    public Usuario(String nombre, String apellido, int edad, String fechaNacimiento, String email, String password, String foto) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
@@ -73,11 +73,11 @@ public class Usuario {
         this.edad = edad;
     }
 
-    public LocalDate getFechaNacimiento() {
+    public String getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+    public void setFechaNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
