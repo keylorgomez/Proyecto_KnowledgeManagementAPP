@@ -3,8 +3,7 @@ package dao;
 import Controlador.Database.Conexion;
 import Modelo.Usuario;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import java.sql.*;
 
 public class UsuarioDao {
     private Conexion obtenerConexion;
@@ -41,4 +40,29 @@ public class UsuarioDao {
         }
 
     }
+    public Boolean verificarUsuario(String email, String contrasenna) throws SQLException, SQLException {
+        boolean error = true;
+        Conexion connectNow = new Conexion();
+        Connection connectDB = connectNow.getConnection();
+        String verifyLogin = "select count(1) from usuarios where email = " + "'" + email + "'" + " and contrasenna = " + "'" + contrasenna + "'";
+        try {
+            Statement statement = connectDB.createStatement();
+            ResultSet queryResult = statement.executeQuery(verifyLogin);
+
+            while (queryResult.next()) {
+                if (queryResult.getInt(1) == 1) {
+
+                } else {
+                    error = false;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error");
+            e.printStackTrace();
+            e.getCause();
+        }
+        Conexion.closeConnection(connectDB);
+        return error;
+    }
+
 }
