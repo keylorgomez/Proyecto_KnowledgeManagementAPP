@@ -1,19 +1,21 @@
 package Controlador.Proyecto;
 
-import Controlador.Datos.DatosUsuario;
 import Modelo.Usuario;
+import dao.UsuarioDao;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.StageStyle;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegistroUsuarioControlador {
     Usuario usuario;
-    DatosUsuario DataU;
+
     @FXML private TextField txtnombreRegistro;
     @FXML private TextField txtapellidoRegistro;
     @FXML private DatePicker nacimientoRegistro;
@@ -25,10 +27,10 @@ public class RegistroUsuarioControlador {
 
     @FXML private Button btnbuscarFotoRegistro;
     @FXML private Button btnRegistro;
+    private UsuarioDao usuarioDao;
 
     public RegistroUsuarioControlador() {
-        usuario = new Usuario("","",0,null,"","","");
-        usuario = new Usuario();
+        usuario = new Usuario("","",0,"","","","");
         labelRegistro = new Label();
     }
 
@@ -65,24 +67,24 @@ public class RegistroUsuarioControlador {
 
     }
 
-    public void registrarUsuario() throws SQLException {
+    @FXML public void registrarUsuario() throws SQLException {
         usuario.setNombre(txtnombreRegistro.getText());
         usuario.setApellido(txtapellidoRegistro.getText());
-        usuario.setFechaNacimiento(nacimientoRegistro.getValue());
+        usuario.setFechaNacimiento(nacimientoRegistro.getValue().toString());
         usuario.setEmail(txtemailRegistro.getText());
         usuario.setPassword(txtcontrasenna.getText());
         usuario.setFoto(txtLinkFoto.getText());
 
         String nombreUsuario = usuario.getNombre();
         String apellidoUsuario = usuario.getApellido();
-        LocalDate fechaNacimientoUsuario = usuario.getFechaNacimiento();
+        String fechaNacimientoUsuario = usuario.getFechaNacimiento();
         String emailUsuario = usuario.getEmail();
         String passwordUsuario = usuario.getPassword();
         String fotoUsuario = usuario.getFoto();
         ValidarCamposRegistro(nombreUsuario, apellidoUsuario, fechaNacimientoUsuario, emailUsuario, passwordUsuario, fotoUsuario);
     }
 
-    public void ValidarCamposRegistro(String nombre, String apellido, LocalDate fecha, String email, String contrasenna, String foto) throws SQLException {
+    public void ValidarCamposRegistro(String nombre, String apellido, String fecha, String email, String contrasenna, String foto) throws SQLException {
         int edad= calculoEdad(fecha);
         if(nombre.isEmpty() || apellido.isEmpty() ||email.isEmpty() || contrasenna.isEmpty()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -91,27 +93,44 @@ public class RegistroUsuarioControlador {
             alert.setContentText("Error debido a espacios en blanco");
             alert.showAndWait();
         } else {
-            if(validarUserandContra(email, contrasenna)== false) {
+
+            if((validarUserandContra(email, contrasenna)== false)) {
             }else{
-                labelRegistro.setText("Usuario registrado exitosamente");
                 usuario = new Usuario(nombre, apellido, edad, fecha, email, contrasenna, foto);
-                DataU.insertarUser(usuario);
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                usuarioDao.registrarUsuario(usuario);
+                Alert alert=new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Éxito");
                 alert.setHeaderText(null);
-                alert.setTitle("Succesfull");
-                alert.setContentText("Usuario registrado exitosamente");
+                alert.setContentText("Se registró correctamente el usuario");
+                alert.initStyle(StageStyle.UTILITY);
                 alert.showAndWait();
+                limpiarCampos();
             }
         }
     }
 
 
-    public int calculoEdad(LocalDate fechaNacimiento){
+    public int calculoEdad(String fechaNacimiento){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String date = fechaNacimiento;
+        //convert String to LocalDate
+        LocalDate Nacimiento = LocalDate.parse(date, formatter);
         LocalDate now = LocalDate.now();
-        LocalDate born = LocalDate.of(fechaNacimiento.getYear(),fechaNacimiento.getMonth(), fechaNacimiento.getDayOfMonth());
+        LocalDate born = LocalDate.of(Nacimiento.getYear(),Nacimiento.getMonth(), Nacimiento.getDayOfMonth());
         Period period = Period.between(born,now);
         int edad= period.getYears();
         return edad;
     }
+
+    private void limpiarCampos(){
+        txtnombreRegistro.setText("");
+        txtapellidoRegistro.setText("");
+        nacimientoRegistro.setValue(null);
+        txtemailRegistro.setText("");
+        txtcontrasenna.setText("");
+        txtLinkFoto.setText("");
+
+    }
+
 }
 
