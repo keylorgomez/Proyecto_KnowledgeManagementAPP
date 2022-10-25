@@ -1,5 +1,6 @@
 package controlador.proyecto;
 
+import controlador.dao.ProyectoDao;
 import controlador.dao.UsuarioDao;
 import javafx.scene.control.Alert;
 import modelo.Usuario;
@@ -32,10 +33,13 @@ public class LoginControlador {
     @FXML private TextField txtUsuario;
     @FXML private Label mensaje;
     private UsuarioDao usuarioDao;
+    private ProyectoDao proyectoDao;
+    public static int UserIdActivo=0;
 
     public LoginControlador() {
         usuario = new Usuario();
         usuarioDao = new UsuarioDao();
+        proyectoDao=new ProyectoDao();
     }
     @FXML public void loginUsuario() throws SQLException, IOException {
         usuario.setEmail(txtUsuario.getText());
@@ -44,8 +48,7 @@ public class LoginControlador {
         String emailLogin = usuario.getEmail();
         String passwordLogin = usuario.getPassword();
         validarLogin(emailLogin, passwordLogin);
-
-
+        UserIdActivo= proyectoDao.getUsuarioId(emailLogin);
     }
     public void validarLogin(String user, String password) throws SQLException, IOException {
         if (user.isEmpty()|| password.isEmpty())

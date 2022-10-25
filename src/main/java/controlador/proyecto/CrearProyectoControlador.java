@@ -54,6 +54,7 @@ public class CrearProyectoControlador {
         ValidarCampos(nombreProyecto,categoriaProyecto,repositorioProyecto);
     }
     public boolean ValidarCampos(String nombre, String categoria, String repositorio){
+        int IDUsuario=LoginControlador.UserIdActivo;
         boolean rsp=true;
         LocalDate fechaCreacion= LocalDate.now();
         LocalDate ultimaModificacion=LocalDate.now();
@@ -67,7 +68,7 @@ public class CrearProyectoControlador {
             rsp=false;
             return rsp;
         }else {
-            proyecto=new Proyecto(nombre,categoria,fechaCreacion,ultimaModificacion,repositorio);
+            proyecto=new Proyecto(nombre,categoria,fechaCreacion,ultimaModificacion,repositorio,IDUsuario);
             rsp=proyectoDao.registrarProyecto(proyecto);
             Alert alert=new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Éxito");
