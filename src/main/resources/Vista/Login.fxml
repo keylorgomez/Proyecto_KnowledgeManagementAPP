@@ -16,7 +16,8 @@
             <Label fx:id="labelContrasenia" accessibleRoleDescription=".co" layoutX="140.0" layoutY="200.0" text="Contraseña" />
             <TextField fx:id="txtUsuario" layoutX="85.0" layoutY="147.0" promptText="usuario@email.com" />
             <TextField fx:id="txtContrasenia" layoutX="80.0" layoutY="231.0" promptText="Min4 o Maximo08" />
-            <Button fx:id="btnIniciar" layoutX="127.0" layoutY="274.0" mnemonicParsing="false" text="Iniciar" />
+            <Button fx:id="btnIniciar" layoutX="130.0" layoutY="321.0" mnemonicParsing="false" onAction="#validarLogin" text="Iniciar" />
+            <Label fx:id="mensaje" layoutX="139.0" layoutY="282.0" />
          </children>
       </AnchorPane>
       <AnchorPane prefHeight="400.0" prefWidth="300.0">
