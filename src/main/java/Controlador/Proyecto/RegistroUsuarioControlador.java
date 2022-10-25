@@ -32,6 +32,8 @@ public class RegistroUsuarioControlador {
     public RegistroUsuarioControlador() {
         usuario = new Usuario("","",0,"","","","");
         labelRegistro = new Label();
+        usuario = new Usuario();
+        usuarioDao = new UsuarioDao();
     }
 
     public boolean validarUserandContra(String email, String password){
@@ -82,22 +84,24 @@ public class RegistroUsuarioControlador {
         String passwordUsuario = usuario.getPassword();
         String fotoUsuario = usuario.getFoto();
         ValidarCamposRegistro(nombreUsuario, apellidoUsuario, fechaNacimientoUsuario, emailUsuario, passwordUsuario, fotoUsuario);
+
     }
 
-    public void ValidarCamposRegistro(String nombre, String apellido, String fecha, String email, String contrasenna, String foto) throws SQLException {
+    public boolean ValidarCamposRegistro(String nombre, String apellido, String fecha, String email, String contrasenna, String foto) throws SQLException {
+        boolean rsp= true;
         int edad= calculoEdad(fecha);
-        if(nombre.isEmpty() || apellido.isEmpty() ||email.isEmpty() || contrasenna.isEmpty()){
+
+        if(nombre.isEmpty() || apellido.isEmpty() ||email.isEmpty() || contrasenna.isEmpty() || (validarUserandContra(email, contrasenna)== false)){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("Error");
             alert.setContentText("Error debido a espacios en blanco");
             alert.showAndWait();
+             return rsp = false;
         } else {
 
-            if((validarUserandContra(email, contrasenna)== false)) {
-            }else{
                 usuario = new Usuario(nombre, apellido, edad, fecha, email, contrasenna, foto);
-                usuarioDao.registrarUsuario(usuario);
+                rsp= usuarioDao.registrarUsuario(usuario);
                 Alert alert=new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Éxito");
                 alert.setHeaderText(null);
@@ -105,7 +109,7 @@ public class RegistroUsuarioControlador {
                 alert.initStyle(StageStyle.UTILITY);
                 alert.showAndWait();
                 limpiarCampos();
-            }
+                return rsp;
         }
     }
 
