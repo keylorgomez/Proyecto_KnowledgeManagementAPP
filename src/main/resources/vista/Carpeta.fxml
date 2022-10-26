@@ -16,8 +16,8 @@
                </font>
             </Label>
             <TextField fx:id="txtinvestigacion" layoutX="76.0" layoutY="119.0" promptText="Investigación" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 10px; -fx-background-color: fff;" />
-            <TextField fx:id="txtmedia" layoutX="271.0" layoutY="119.0" prefHeight="25.0" prefWidth="174.0" promptText="Media" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-background-radius: 10px; -fx-background-color: fff;" />
-            <Button fx:id="btnCrearCarpeta" layoutX="207.0" layoutY="174.0" mnemonicParsing="false" onAction="#crearProyecto" text="Crear Proyecto " />
+            <TextField fx:id="txtmedia" layoutX="271.0" layoutY="119.0" prefHeight="25.0" prefWidth="174.0" promptText="Media" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 10px; -fx-background-color: fff;" />
+            <Button fx:id="btnCrearCarpeta" layoutX="207.0" layoutY="174.0" mnemonicParsing="false" onAction="#crearProyecto" style="-fx-background-color: #E84F31;" text="Crear Proyecto " textFill="WHITE" />
          </children>
       </AnchorPane>
    </children>
