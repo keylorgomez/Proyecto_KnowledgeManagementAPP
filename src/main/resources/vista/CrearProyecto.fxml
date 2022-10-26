@@ -68,8 +68,9 @@
                   <Button mnemonicParsing="false" text="Candelar" />
                </children>
             </HBox>
-            <Button mnemonicParsing="false" text="Crear carpeta " visible="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Button fx:id="crearCarpeta" mnemonicParsing="false" onAction="#irCrearCarpeta" text="Crear carpeta " GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
+      <Button fx:id="btnRecuperar" layoutX="174.0" layoutY="333.0" mnemonicParsing="false" onAction="#recuperarDatos" text="Recuperar" />
    </children>
 </AnchorPane>

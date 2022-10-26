@@ -2,13 +2,21 @@ package controlador.proyecto;
 
 
 import controlador.dao.ProyectoDao;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import modelo.Proyecto;
+import vista.Inicio;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.Objects;
 
 public class CrearProyectoControlador {
     private Proyecto proyecto;
@@ -34,7 +42,15 @@ public class CrearProyectoControlador {
     @FXML
     private TextArea txtRepositorio;
 
+    @FXML
+    private Button crearCarpeta;
+
+    @FXML
+    private Button btnRecuperar;
+
     private ProyectoDao proyectoDao;
+
+
 
     public CrearProyectoControlador(){
         proyecto = new Proyecto();
@@ -76,7 +92,7 @@ public class CrearProyectoControlador {
             alert.setContentText("Se registró correctamente el proyecto");
             alert.initStyle(StageStyle.UTILITY);
             alert.showAndWait();
-            limpiarCampos();
+            //limpiarCampos();
             return rsp;
         }
 
@@ -87,5 +103,22 @@ public class CrearProyectoControlador {
         txtRepositorio.setText("");
     }
 
+    /*public void recuperarDatos(){
+        if (crearCarpeta.isPressed()){
+            btnRecuperar.setVisible(true);
+            txtNombrePoryecto.setText(proyecto.getNombre());
+            txtCategoría.setText(proyecto.categoria);
+            txtRepositorio.setText(proyecto.getRepositorio());
+        } else {
+            btnRecuperar.setVisible(false);
+        }
+
+    }*/
+
+    public void irCrearCarpeta(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("Carpeta.fxml")));
+        Stage window = (Stage) crearCarpeta.getScene().getWindow();
+        window.setScene(new Scene(root));
+    }
 }
 
