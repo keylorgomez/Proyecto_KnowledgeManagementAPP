@@ -2,7 +2,7 @@ package controlador.proyecto;
 
 import controlador.dao.ProyectoDao;
 import controlador.dao.UsuarioDao;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import modelo.Usuario;
 import vista.Inicio;
 import javafx.event.ActionEvent;
@@ -10,9 +10,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -29,7 +26,7 @@ public class LoginControlador {
     @FXML private Label labelRegistrese;
     @FXML private Label labelSesion;
     @FXML private Label labelUsuario;
-    @FXML private TextField txtContrasenia;
+    @FXML private PasswordField txtContrasenia;
     @FXML private TextField txtUsuario;
     @FXML private Label mensaje;
     private UsuarioDao usuarioDao;

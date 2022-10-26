@@ -52,15 +52,8 @@ public class CrearCarpetaControlador {
         String investigacion=carpeta.getInvestigacion();
         String media=carpeta.getMedia();
 
-        String numero = "";
-        String nombre="";
-        String categoria="";
-        String repositorio="";
+        ValidarCamposCarpeta(investigacion, media);
 
-        boolean resValidCampos= ValidarCamposCarpeta(investigacion, media);
-        if (resValidCampos==true){
-            registrarProyecto(numero, nombre, categoria, repositorio);
-        }
 
     }
 
@@ -81,7 +74,7 @@ public class CrearCarpetaControlador {
             Alert alert=new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Éxito");
             alert.setHeaderText(null);
-            alert.setContentText("Se registró correctamente la carpeta");
+            alert.setContentText("Se registró correctamente tanto el proyecto como la carpeta");
             alert.initStyle(StageStyle.UTILITY);
             alert.showAndWait();
             //regresarProyecto(); HAY QUE QUITARLO DE ACÁ
@@ -90,7 +83,7 @@ public class CrearCarpetaControlador {
         }
     }
 
-    public boolean registrarProyecto(String numero, String nombre,String categoria, String repositorio){
+    /*public boolean registrarProyecto(String numero, String nombre,String categoria, String repositorio){
         numero= String.valueOf(Integer.parseInt(CrearProyectoControlador.NumeroProyecto));
         nombre=CrearProyectoControlador.NombreProyecto;
         categoria=CrearProyectoControlador.CategoriaProyecto;
@@ -109,7 +102,7 @@ public class CrearCarpetaControlador {
         alert.showAndWait();
         //limpiarCampos();
         return respuestaProyecto;
-    }
+    }*/
     public void regresarProyecto() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("CrearProyecto.fxml")));
         Stage window = (Stage) btnCrearCarpeta.getScene().getWindow();

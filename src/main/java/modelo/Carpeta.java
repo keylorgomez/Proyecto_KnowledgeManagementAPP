@@ -1,24 +1,25 @@
 package modelo;
 
 public class Carpeta {
-    public int idCarpeta;
+    private int idCarpeta;
 
-    public String investigacion;
+    private String investigacion;
 
-    public String media;
+    private String media;
 
-    public int IDProyecto;
+    private int idProyecto;
 
     public Carpeta(int idCarpeta, String investigacion, String media, int idProyecto) {
         this.idCarpeta = idCarpeta;
         this.investigacion = investigacion;
         this.media = media;
+        this.idProyecto = idProyecto;
     }
 
     public Carpeta(String investigacion, String media, int idProyecto) {
         this.investigacion = investigacion;
         this.media = media;
-        this.IDProyecto = idProyecto;
+        this.idProyecto = idProyecto;
     }
 
     public Carpeta() {
@@ -50,10 +51,10 @@ public class Carpeta {
     }
 
     public int getIdProyecto() {
-        return IDProyecto;
+        return idProyecto;
     }
 
     public void setIdProyecto(int idProyecto) {
-        this.IDProyecto = idProyecto;
+        this.idProyecto = idProyecto;
     }
 }
