@@ -41,7 +41,7 @@ public class CrearProyectoControlador {
         proyectoDao=new ProyectoDao();
     }
 
-    @FXML public void crearProtecto(){
+    @FXML public void crearProyecto(){
 
         proyecto.setNombre(txtNombrePoryecto.getText());
         proyecto.setCategoria(txtCategoría.getText());
