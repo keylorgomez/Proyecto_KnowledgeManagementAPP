@@ -1,4 +1,5 @@
 package controlador.proyecto;
+import controlador.dao.ProyectoDao;
 import controlador.proyecto.CrearProyectoControlador;
 import controlador.dao.CarpetaDao;
 import javafx.fxml.FXML;
@@ -21,59 +22,89 @@ import java.util.Objects;
 
 public class CrearCarpetaControlador {
     @FXML
+    private Button btnCrearCarpeta;
+
+    @FXML
     private TextField txtinvestigacion;
+
     @FXML
     private TextField txtmedia;
 
-    @FXML
-    private Button btnCrearCarpeta;
-
+    private Proyecto proyecto;
+    private ProyectoDao proyectoDao;
     private Carpeta carpeta;
     private CarpetaDao carpetaDao;
 
 
-
     public CrearCarpetaControlador() {
+        proyecto = new Proyecto();
+        proyectoDao=new ProyectoDao();
         carpeta = new Carpeta();
         carpetaDao = new CarpetaDao();
+
     }
 
-    @FXML public void crearCarpeta() throws IOException {
+    @FXML public void crearProyecto() throws IOException {
 
         carpeta.setInvestigacion(txtinvestigacion.getText());
         carpeta.setMedia(txtmedia.getText());
 
         String investigacion=carpeta.getInvestigacion();
-        String media=carpeta.getInvestigacion();
+        String media=carpeta.getMedia();
 
-        ValidarCamposCarpeta(investigacion, media);
+        String nombre="";
+        String categoria="";
+        String repositorio="";
+
+        boolean resValidCampos= ValidarCamposCarpeta(investigacion, media);
+        if (resValidCampos==true){
+            registrarProyecto(nombre,categoria,repositorio);
+        }
     }
 
     public boolean ValidarCamposCarpeta(String linkInvestigacion, String linkMedia) throws IOException {
-        //int IDUsuario=LoginControlador.UserIdActivo;
-        boolean rsp=true;
-
+        boolean respuestaCampos=true;
         if(linkInvestigacion.isEmpty() || linkMedia.isEmpty()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("Error");
             alert.setContentText("Error debido a espacios en blanco");
             alert.showAndWait();
-            rsp=false;
-            return rsp;
+
+            return respuestaCampos=false;
         }else {
             carpeta=new Carpeta(linkInvestigacion, linkMedia);
-            rsp= carpetaDao.registrarCarpeta(carpeta);
+            respuestaCampos= carpetaDao.registrarCarpeta(carpeta);
             Alert alert=new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Éxito");
             alert.setHeaderText(null);
-            alert.setContentText("Se registró correctamente la carpeta al proyecto");
+            alert.setContentText("Se registró correctamente la carpeta");
             alert.initStyle(StageStyle.UTILITY);
             alert.showAndWait();
-            regresarProyecto();
+            //regresarProyecto(); HAY QUE QUITARLO DE ACÁ
             //limpiarCampos();
-            return rsp;
+            return respuestaCampos;
         }
+    }
+
+    public boolean registrarProyecto(String nombre,String categoria, String repositorio){
+        nombre=CrearProyectoControlador.NombreProyecto;
+        categoria=CrearProyectoControlador.CategoriaProyecto;
+        repositorio=CrearProyectoControlador.RepositorioProyecto;
+        int IDUsuario=LoginControlador.UserIdActivo;
+        LocalDate fechaCreacion= LocalDate.now();
+        LocalDate ultimaModificacion=LocalDate.now();
+        boolean respuestaProyecto=true;
+        proyecto=new Proyecto(nombre,categoria,fechaCreacion,ultimaModificacion,repositorio,IDUsuario);
+        respuestaProyecto=proyectoDao.registrarProyecto(proyecto);
+        Alert alert=new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Éxito");
+        alert.setHeaderText(null);
+        alert.setContentText("Se registró correctamente el proyecto al sistema");
+        alert.initStyle(StageStyle.UTILITY);
+        alert.showAndWait();
+        //limpiarCampos();
+        return respuestaProyecto;
     }
     public void regresarProyecto() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("CrearProyecto.fxml")));

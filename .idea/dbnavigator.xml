@@ -39,7 +39,11 @@
     <connection id="afbc77ad-4767-417a-b8ea-e1a6d3b513cd" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="afbc77ad-4767-417a-b8ea-e1a6d3b513cd" dataset="db_proyectopoo.carpeta" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="afbc77ad-4767-417a-b8ea-e1a6d3b513cd" dataset="db_proyectopoo.media" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="afbc77ad-4767-417a-b8ea-e1a6d3b513cd" dataset="db_proyectopoo.usuarios" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="afbc77ad-4767-417a-b8ea-e1a6d3b513cd" dataset="db_proyectopoo.investigacion" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="afbc77ad-4767-417a-b8ea-e1a6d3b513cd" dataset="db_proyectopoo.proyecto" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
