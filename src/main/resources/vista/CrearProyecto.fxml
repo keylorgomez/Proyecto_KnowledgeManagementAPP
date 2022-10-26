@@ -14,18 +14,18 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #082F32;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.proyecto.CrearProyectoControlador">
    <children>
-      <HBox alignment="CENTER" layoutX="35.0" layoutY="14.0" prefHeight="39.0" prefWidth="543.0" style="-fx-background-color: fff;">
+      <HBox alignment="CENTER" layoutX="35.0" layoutY="14.0" prefHeight="39.0" prefWidth="543.0" style="-fx-background-color: #fff; -fx-border-color: #e84f31; -fx-border-radius: 3px;">
          <padding>
             <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
          </padding>
          <children>
-            <Label fx:id="labelCrearProyecto" text="Formulario para crear un proyecto">
+            <Label fx:id="labelCrearProyecto" text="Formulario creación de proyecto">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font></Label>
          </children>
       </HBox>
-      <GridPane layoutX="35.0" layoutY="70.0" prefHeight="308.0" prefWidth="543.0" style="-fx-background-color: fff;">
+      <GridPane layoutX="35.0" layoutY="70.0" prefHeight="308.0" prefWidth="543.0" style="-fx-background-color: fff; -fx-border-color: #e84f31; -fx-border-radius: 4px;">
         <columnConstraints>
           <ColumnConstraints hgrow="ALWAYS" maxWidth="283.0" minWidth="10.0" prefWidth="79.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="475.0" minWidth="10.0" prefWidth="414.0" />
@@ -42,27 +42,36 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="labelCategoria" text="Categoria" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+            <Label fx:id="labelCategoria" prefHeight="16.0" prefWidth="60.0" text="Categoría:" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </GridPane.margin>
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
             </Label>
-            <Label fx:id="labelNombre" text="Nombre" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+            <Label fx:id="labelNombre" prefHeight="16.0" prefWidth="57.0" text="Nombre:" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </GridPane.margin>
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
             </Label>
-            <Label fx:id="labelRepositorio" text="Repositorio" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+            <Label fx:id="labelRepositorio" text="Repositorio:" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </GridPane.margin>
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
             </Label>
-            <TextField fx:id="txtCategoría" promptText="Categoria de Proyecto" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 10px; -fx-background-color: fff;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txtCategoría" promptText="Categoría del proyecto" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 10px; -fx-background-color: fff;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="txtNombrePoryecto" promptText="Nombre proyecto" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 10px; -fx-background-color: fff;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextArea fx:id="txtRepositorio" prefHeight="28.0" prefWidth="459.0" promptText="Dirección del repositorio" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 10px; -fx-background-color: fff;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+            <TextArea fx:id="txtRepositorio" prefHeight="28.0" prefWidth="459.0" promptText="Dirección del repositorio" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 3px; -fx-background-color: fff;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <HBox prefHeight="32.0" prefWidth="348.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                <children>
-                  <Button fx:id="bntCrearCarpeta" mnemonicParsing="false" onAction="#crearCarpeta" style="-fx-background-color: #E84F31;" text="Añadir Carpeta" textFill="WHITE">
+                  <Button fx:id="bntCrearCarpeta" mnemonicParsing="false" onAction="#crearCarpeta" style="-fx-background-color: #E84F31; -fx-font-weight: bold;" text="Añadir Carpeta" textFill="WHITE">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
@@ -70,11 +79,14 @@
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="62.0" style="-fx-background-color: #E84F31;" text="Cancelar" textFill="WHITE" />
+                  <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="87.0" style="-fx-background-color: #E84F31; -fx-font-weight: bold;" text="Cancelar" textFill="WHITE" />
                </children>
             </HBox>
-            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="Núm Proyecto" GridPane.rowIndex="1" />
-            <TextField promptText="Número de proyecto" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 10px; -fx-background-color: ffff;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="16.0" prefWidth="113.0" text="Núm Proyecto:" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font></Label>
+            <TextField prefHeight="27.0" prefWidth="380.0" promptText="Número de proyecto" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 10px; -fx-background-color: ffff;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
          <padding>
             <Insets bottom="10.0" left="25.0" right="25.0" top="10.0" />
