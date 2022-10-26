@@ -53,10 +53,6 @@ public class CrearProyectoControlador {
     private ProyectoDao proyectoDao;
     public static int proyectoIdActivo=0;
 
-    public static String NumeroProyecto;
-    public static String NombreProyecto;
-    public static String CategoriaProyecto;
-    public static String RepositorioProyecto;
 
     public CrearProyectoControlador(){
         proyecto = new Proyecto();
@@ -70,49 +66,45 @@ public class CrearProyectoControlador {
         proyecto.setCategoria(txtCategoría.getText());
         proyecto.setRepositorio(txtRepositorio.getText());
 
-        NumeroProyecto= String.valueOf(proyecto.getNumeroProyecto());
-        NombreProyecto=proyecto.getNombre();
-        CategoriaProyecto=proyecto.getCategoria();
-        RepositorioProyecto=proyecto.getRepositorio();
+        String NumeroProyecto=proyecto.getNumeroProyecto();
+        String NombreProyecto=proyecto.getNombre();
+        String CategoriaProyecto=proyecto.getCategoria();
+        String RepositorioProyecto=proyecto.getRepositorio();
 
-        boolean respuestaValidacion= ValidarCampos(NumeroProyecto,NombreProyecto,CategoriaProyecto,RepositorioProyecto);
+        boolean respuestaValidacion= ValidarCampos(NombreProyecto,CategoriaProyecto,RepositorioProyecto,NumeroProyecto);
         if (respuestaValidacion==true){
+            proyectoIdActivo= carpetaDao.getProyectoId(NumeroProyecto);
             Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("Carpeta.fxml")));
             Stage window = (Stage) bntCrearCarpeta.getScene().getWindow();
             window.setScene(new Scene(root));
         }
-        proyectoIdActivo= carpetaDao.getProyectoId(NumeroProyecto);
+
 
     }
-    public boolean ValidarCampos(String numero, String nombre, String categoria, String repositorio){
-        //int IDUsuario=LoginControlador.UserIdActivo;
+    public boolean ValidarCampos( String nombre, String categoria, String repositorio,String numero){
+        int IDUsuario=LoginControlador.UserIdActivo;
+        LocalDate fechaCreacion= LocalDate.now();
+        LocalDate ultimaModificacion=LocalDate.now();
         boolean rsp=true;
-        //LocalDate fechaCreacion= LocalDate.now();
-        //LocalDate ultimaModificacion=LocalDate.now();
-
         if(numero.isEmpty()||nombre.isEmpty() || categoria.isEmpty() || repositorio.isEmpty()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("Error");
             alert.setContentText("Error debido a espacios en blanco");
             alert.showAndWait();
-
             return rsp=false;
-        }
-        return rsp=true;
-
-        /*else {
-            proyecto=new Proyecto(nombre,categoria,fechaCreacion,ultimaModificacion,repositorio,IDUsuario);
+        }else{
+            proyecto=new Proyecto(nombre,categoria,fechaCreacion,ultimaModificacion,repositorio,IDUsuario,numero);
             rsp=proyectoDao.registrarProyecto(proyecto);
             Alert alert=new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Éxito");
             alert.setHeaderText(null);
-            alert.setContentText("Se registró correctamente el proyecto");
+            alert.setContentText("Se registró correctamente el proyecto al sistema");
             alert.initStyle(StageStyle.UTILITY);
             alert.showAndWait();
-            //limpiarCampos();
-            return rsp;
-        }*/
+            return rsp=true;
+        }
+
 
     }
     public void limpiarCampos(){

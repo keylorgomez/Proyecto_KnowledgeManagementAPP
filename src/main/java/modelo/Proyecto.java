@@ -20,7 +20,8 @@ public class Proyecto {
 
     public int idUsuario;
 
-    public Proyecto(int idProyecto, String nombre ,String categoria,  LocalDate fechaCreacion, LocalDate ultimaModificacion, String repositorio, int idCarpeta, int idUsuario) {
+
+    public Proyecto(int idProyecto, String nombre , String categoria, LocalDate fechaCreacion, LocalDate ultimaModificacion, String repositorio, int idCarpeta, int idUsuario) {
         this.idProyecto = idProyecto;
         this.categoria = categoria;
         this.nombre = nombre;
@@ -48,7 +49,7 @@ public class Proyecto {
         this.idUsuario = idUsuario;
     }
 
-    public Proyecto(String nombre, String numero, String categoria, LocalDate fechaCreacion, LocalDate ultimaModificacion, String repositorio, int idUsuario) {
+    public Proyecto(String nombre,String categoria, LocalDate fechaCreacion,LocalDate ultimaModificacion,String repositorio,int idUsuario,String numero) {
         this.categoria = categoria;
         this.numeroProyecto = numero;
         this.nombre = nombre;

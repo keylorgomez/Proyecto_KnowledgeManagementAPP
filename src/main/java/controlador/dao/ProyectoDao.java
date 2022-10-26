@@ -20,7 +20,7 @@ public class ProyectoDao {
     public boolean registrarProyecto(Proyecto proyecto){
         try {
             String SQL="insert into proyecto(nombre,categoria,fechaCreacion," +
-                    "ultimaModificacion,repositorio,idUsuario, numero)"+
+                    "ultimaModificacion,repositorio,idUsuario, numeroProyecto)"+
                     "values(?,?,?,?,?,?,?)";
             Connection connection=this.obtenerConexion.getConnection();
             PreparedStatement sentencia= connection.prepareStatement(SQL);
@@ -31,7 +31,7 @@ public class ProyectoDao {
             sentencia.setString(4,String.valueOf(proyecto.getUltimaModificacion()));
             sentencia.setString(5, proyecto.getRepositorio());
             sentencia.setInt(6,proyecto.getIdUsuario());
-            sentencia.setString(7, proyecto.getNumeroProyecto());
+            sentencia.setString(7,proyecto.getNumeroProyecto());
 
             sentencia.executeUpdate();
             sentencia.close();
