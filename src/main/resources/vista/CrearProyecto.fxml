@@ -57,7 +57,7 @@
             <TextArea fx:id="txtRepositorio" prefHeight="28.0" prefWidth="459.0" promptText="Dirección de repositorio" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" onAction="#crearProtecto" text="Guardar">
+                  <Button mnemonicParsing="false" onAction="#crearProyecto" text="Guardar">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>

@@ -13,8 +13,14 @@ public class Carpeta {
         this.media = media;
     }
 
+    public Carpeta(String investigacion, String media) {
+        this.investigacion = investigacion;
+        this.media = media;
+    }
+
     public Carpeta() {
     }
+
 
     public int getIdCarpeta() {
         return idCarpeta;
