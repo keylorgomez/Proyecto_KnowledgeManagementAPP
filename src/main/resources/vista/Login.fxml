@@ -11,28 +11,37 @@
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #082F32;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.proyecto.LoginControlador">
    <children>
-      <AnchorPane prefHeight="400.0" prefWidth="291.0" style="-fx-background-color: #fff;">
+      <AnchorPane prefHeight="400.0" prefWidth="291.0" style="-fx-background-color: #fff; -fx-border-color: #e84f31; -fx-border-radius: 7px;">
          <children>
-            <Label fx:id="labelSesion" layoutX="57.0" layoutY="47.0" style="-fx-background-color: #fff;" text="Inicio de Sesión">
+            <Label fx:id="labelSesion" layoutX="62.0" layoutY="51.0" style="-fx-background-color: #fff;" text="Inicio de Sesión">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font></Label>
-            <Label fx:id="labelUsuario" layoutX="105.0" layoutY="115.0" text="Usuario" />
-            <Label fx:id="labelContrasenia" accessibleRoleDescription=".co" layoutX="101.0" layoutY="202.0" text="Contraseña" />
-            <TextField fx:id="txtUsuario" layoutX="50.0" layoutY="143.0" promptText="usuario@email.com" style="-fx-border-color: #E84F31; -fx-border-style: solid; -fx-border-radius: 10px; -fx-background-color: #fff;" styleClass="Label" />
-            <TextField fx:id="txtContrasenia" layoutX="55.0" layoutY="233.0" promptText="Min4 o Maximo08" style="-fx-border-color: #E84F31; -fx-border-style: solid; -fx-border-radius: 10px; -fx-background-color: #fff;" />
-            <Button fx:id="btnIniciar" layoutX="102.0" layoutY="291.0" mnemonicParsing="false" onAction="#loginUsuario" style="-fx-background-color: #E84F31;" text="Iniciar" textFill="WHITE" />
+            <Label fx:id="labelUsuario" layoutX="107.0" layoutY="128.0" text="Usuario:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <Label fx:id="labelContrasenia" accessibleRoleDescription=".co" layoutX="97.0" layoutY="208.0" text="Contraseña:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <TextField fx:id="txtUsuario" layoutX="55.0" layoutY="152.0" promptText="user@dominio.com" style="-fx-border-color: #E84F31; -fx-border-style: solid; -fx-border-radius: 10px; -fx-background-color: #fff;" styleClass="Label" />
+            <TextField fx:id="txtContrasenia" layoutX="55.0" layoutY="232.0" promptText="Mínimo 4 o Máximo 8" style="-fx-border-color: #E84F31; -fx-border-style: solid; -fx-border-radius: 10px; -fx-background-color: #fff;" />
+            <Button fx:id="btnIniciar" layoutX="88.0" layoutY="277.0" mnemonicParsing="false" onAction="#loginUsuario" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #E84F31; -fx-font-weight: bold;" text="Iniciar" textFill="WHITE" />
             <Label fx:id="mensaje" layoutX="139.0" layoutY="282.0" />
          </children>
          <HBox.margin>
             <Insets bottom="20.0" left="25.0" right="25.0" top="20.0" />
          </HBox.margin>
       </AnchorPane>
-      <AnchorPane prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: fff;">
+      <AnchorPane prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: #fff; -fx-border-color: #e84f31; -fx-border-radius: 7px;">
          <children>
             <ImageView fx:id="imagLogo" fitHeight="150.0" fitWidth="200.0" layoutX="28.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="labelRegistrese" layoutX="12.0" layoutY="237.0" text="Si no tienes usuario, puedes registrarte aquí" />
-            <Button fx:id="btnRegistrarse" layoutX="90.0" layoutY="275.0" mnemonicParsing="false" onAction="#IrRegistrarse" style="-fx-background-color: #E84F31;" text="Registrarse" textFill="WHITE" />
+            <Label fx:id="labelRegistrese" layoutX="38.0" layoutY="246.0" text="¿No tienes cuenta? Registrate aquí" />
+            <Button fx:id="btnRegistrarse" layoutX="90.0" layoutY="277.0" mnemonicParsing="false" onAction="#IrRegistrarse" style="-fx-background-color: #E84F31;" text="Registrarse" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
          </children>
          <HBox.margin>
             <Insets bottom="20.0" left="25.0" right="25.0" top="20.0" />
