@@ -1,6 +1,7 @@
 package controlador.proyecto;
 
 
+import controlador.dao.CarpetaDao;
 import controlador.dao.ProyectoDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +15,7 @@ import modelo.Proyecto;
 import vista.Inicio;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
@@ -34,6 +36,8 @@ public class CrearProyectoControlador {
     private Label labelRepositorio;
 
     @FXML
+    private TextField txtNumProyecto;
+    @FXML
     private TextField txtCategoría;
 
     @FXML
@@ -45,9 +49,11 @@ public class CrearProyectoControlador {
     @FXML
     private Button bntCrearCarpeta;
 
-
+    private CarpetaDao carpetaDao;
     private ProyectoDao proyectoDao;
+    public static int proyectoIdActivo=0;
 
+    public static String NumeroProyecto;
     public static String NombreProyecto;
     public static String CategoriaProyecto;
     public static String RepositorioProyecto;
@@ -55,34 +61,36 @@ public class CrearProyectoControlador {
     public CrearProyectoControlador(){
         proyecto = new Proyecto();
         proyectoDao=new ProyectoDao();
+        carpetaDao=new CarpetaDao();
     }
 
-    @FXML public void crearCarpeta() throws IOException {
-
+    @FXML public void crearCarpeta() throws IOException, SQLException {
+        proyecto.setNumeroProyecto(txtNumProyecto.getText());
         proyecto.setNombre(txtNombrePoryecto.getText());
         proyecto.setCategoria(txtCategoría.getText());
         proyecto.setRepositorio(txtRepositorio.getText());
 
+        NumeroProyecto= String.valueOf(proyecto.getNumeroProyecto());
         NombreProyecto=proyecto.getNombre();
         CategoriaProyecto=proyecto.getCategoria();
         RepositorioProyecto=proyecto.getRepositorio();
 
-        boolean respuestaValidacion= ValidarCampos(NombreProyecto,NombreProyecto,RepositorioProyecto);
+        boolean respuestaValidacion= ValidarCampos(NumeroProyecto,NombreProyecto,CategoriaProyecto,RepositorioProyecto);
         if (respuestaValidacion==true){
             Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("Carpeta.fxml")));
             Stage window = (Stage) bntCrearCarpeta.getScene().getWindow();
             window.setScene(new Scene(root));
         }
-
+        proyectoIdActivo= carpetaDao.getProyectoId(NumeroProyecto);
 
     }
-    public boolean ValidarCampos(String nombre, String categoria, String repositorio){
+    public boolean ValidarCampos(String numero, String nombre, String categoria, String repositorio){
         //int IDUsuario=LoginControlador.UserIdActivo;
         boolean rsp=true;
         //LocalDate fechaCreacion= LocalDate.now();
         //LocalDate ultimaModificacion=LocalDate.now();
 
-        if(nombre.isEmpty() || categoria.isEmpty() || repositorio.isEmpty()){
+        if(numero.isEmpty()||nombre.isEmpty() || categoria.isEmpty() || repositorio.isEmpty()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("Error");

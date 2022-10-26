@@ -8,6 +8,8 @@ import modelo.Usuario;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class CarpetaDao {
     private Conexion obtenerConexion;
@@ -20,13 +22,14 @@ public class CarpetaDao {
 
     public boolean registrarCarpeta(Carpeta carpeta){
         try {
-            String SQL="insert into carpeta(investigacion,media)"+
-                    "values(?,?)";
+            String SQL="insert into carpeta(investigacion,media,idProyecto)"+
+                    "values(?,?,?)";
             Connection connection=this.obtenerConexion.getConnection();
             PreparedStatement sentencia= connection.prepareStatement(SQL);
 
             sentencia.setString(1,carpeta.getInvestigacion());
             sentencia.setString(2, carpeta.getMedia());
+            sentencia.setInt(3,carpeta.getIdProyecto());
 
             sentencia.executeUpdate();
             sentencia.close();
@@ -40,6 +43,18 @@ public class CarpetaDao {
             return false;
         }
 
+    }
+    public int getProyectoId(String numero) throws SQLException {
+        Connection connection=this.obtenerConexion.getConnection();
+        String SQLidProyecto = "SELECT idProyecto FROM proyecto WHERE numeroProyecto = " + "'" + numero + "'";
+        PreparedStatement sentencia2 = connection.prepareStatement(SQLidProyecto);
+        ResultSet rs = sentencia2.executeQuery();
+
+        int idProyecto=0;
+        if (rs.next()) {
+            idProyecto = rs.getInt("idProyecto");
+        }
+        return idProyecto;
     }
 
 }

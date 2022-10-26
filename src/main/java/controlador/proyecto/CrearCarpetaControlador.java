@@ -52,17 +52,20 @@ public class CrearCarpetaControlador {
         String investigacion=carpeta.getInvestigacion();
         String media=carpeta.getMedia();
 
+        String numero = "";
         String nombre="";
         String categoria="";
         String repositorio="";
 
         boolean resValidCampos= ValidarCamposCarpeta(investigacion, media);
         if (resValidCampos==true){
-            registrarProyecto(nombre,categoria,repositorio);
+            registrarProyecto(numero, nombre, categoria, repositorio);
         }
+
     }
 
     public boolean ValidarCamposCarpeta(String linkInvestigacion, String linkMedia) throws IOException {
+        int IDProyecto= CrearProyectoControlador.proyectoIdActivo;
         boolean respuestaCampos=true;
         if(linkInvestigacion.isEmpty() || linkMedia.isEmpty()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -73,7 +76,7 @@ public class CrearCarpetaControlador {
 
             return respuestaCampos=false;
         }else {
-            carpeta=new Carpeta(linkInvestigacion, linkMedia);
+            carpeta=new Carpeta(linkInvestigacion, linkMedia, IDProyecto);
             respuestaCampos= carpetaDao.registrarCarpeta(carpeta);
             Alert alert=new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Éxito");
@@ -87,7 +90,8 @@ public class CrearCarpetaControlador {
         }
     }
 
-    public boolean registrarProyecto(String nombre,String categoria, String repositorio){
+    public boolean registrarProyecto(String numero, String nombre,String categoria, String repositorio){
+        numero= String.valueOf(Integer.parseInt(CrearProyectoControlador.NumeroProyecto));
         nombre=CrearProyectoControlador.NombreProyecto;
         categoria=CrearProyectoControlador.CategoriaProyecto;
         repositorio=CrearProyectoControlador.RepositorioProyecto;
@@ -95,7 +99,7 @@ public class CrearCarpetaControlador {
         LocalDate fechaCreacion= LocalDate.now();
         LocalDate ultimaModificacion=LocalDate.now();
         boolean respuestaProyecto=true;
-        proyecto=new Proyecto(nombre,categoria,fechaCreacion,ultimaModificacion,repositorio,IDUsuario);
+        proyecto=new Proyecto(nombre, numero, categoria,fechaCreacion,ultimaModificacion,repositorio,IDUsuario);
         respuestaProyecto=proyectoDao.registrarProyecto(proyecto);
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Éxito");

@@ -1,11 +1,11 @@
 package modelo;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Proyecto {
     public int idProyecto;
 
+    public String numeroProyecto;
     public String categoria;
 
     public String nombre;
@@ -46,6 +46,24 @@ public class Proyecto {
         this.ultimaModificacion = ultimaModificacion;
         this.repositorio = repositorio;
         this.idUsuario = idUsuario;
+    }
+
+    public Proyecto(String nombre, String numero, String categoria, LocalDate fechaCreacion, LocalDate ultimaModificacion, String repositorio, int idUsuario) {
+        this.categoria = categoria;
+        this.numeroProyecto = numero;
+        this.nombre = nombre;
+        this.fechaCreacion = fechaCreacion;
+        this.ultimaModificacion = ultimaModificacion;
+        this.repositorio = repositorio;
+        this.idUsuario = idUsuario;
+    }
+
+    public String getNumeroProyecto() {
+        return numeroProyecto;
+    }
+
+    public void setNumeroProyecto(String numeroProyecto) {
+        this.numeroProyecto = numeroProyecto;
     }
 
     public Proyecto() {

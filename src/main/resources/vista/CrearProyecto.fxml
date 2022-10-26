@@ -74,7 +74,7 @@
                </children>
             </HBox>
             <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="Núm Proyecto" GridPane.rowIndex="1" />
-            <TextField promptText="Número de proyecto" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 10px; -fx-background-color: ffff;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtNumProyecto" promptText="Número de proyecto" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 10px; -fx-background-color: ffff;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
          <padding>
             <Insets bottom="10.0" left="25.0" right="25.0" top="10.0" />
