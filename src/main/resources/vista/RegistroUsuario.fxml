@@ -16,7 +16,7 @@
             <TextField fx:id="txtnombreRegistro" layoutX="40.0" layoutY="79.0" promptText="Nombre" style="-fx-border-style: solid; -fx-border-color: #e84f31; -fx-border-radius: 10px; -fx-background-color: #fff;" styleClass="inputs" />
             <TextField fx:id="txtemailRegistro" layoutX="41.0" layoutY="129.0" promptText="Correo electrónico" style="-fx-background-color: #fff; -fx-border-color: #e84f31; -fx-border-radius: 10px;" />
             <DatePicker fx:id="nacimientoRegistro" layoutX="143.0" layoutY="171.0" promptText="Fecha Nacimiento" style="-fx-background-color: #fff; -fx-border-color: #e84f31; -fx-border-radius: 6px;" />
-            <Button fx:id="btnRegistro" layoutX="190.0" layoutY="259.0" mnemonicParsing="false" onAction="#registrarUsuario" onMouseClicked="#registrarUsuario" prefHeight="26.0" prefWidth="90.0" style="-fx-background-color: #e84f31; -fx-border-radius: 10px;" text="Registrarse" textFill="WHITE">
+            <Button fx:id="btnRegistro" layoutX="114.0" layoutY="259.0" mnemonicParsing="false" onAction="#registrarUsuario" onMouseClicked="#registrarUsuario" prefHeight="26.0" prefWidth="90.0" style="-fx-background-color: #e84f31; -fx-border-radius: 10px;" text="Registrarse" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -34,6 +34,11 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
+            <Button fx:id="btnVolver" layoutX="262.0" layoutY="259.0" mnemonicParsing="false" onAction="#regresarInicio" prefHeight="26.0" prefWidth="90.0" style="-fx-background-color: #e84f31; -fx-border-radius: 10px;" text="Volver Inicio" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </children>

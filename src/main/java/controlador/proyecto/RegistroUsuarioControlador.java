@@ -1,15 +1,23 @@
 package controlador.proyecto;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import modelo.Usuario;
 import controlador.dao.UsuarioDao;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.StageStyle;
+import vista.Inicio;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,6 +35,7 @@ public class RegistroUsuarioControlador {
 
     @FXML private Button btnbuscarFotoRegistro;
     @FXML private Button btnRegistro;
+    @FXML private Button btnVolver;
     private UsuarioDao usuarioDao;
 
     public RegistroUsuarioControlador() {
@@ -133,6 +142,12 @@ public class RegistroUsuarioControlador {
         txtcontrasenna.setText("");
         txtLinkFoto.setText("");
 
+    }
+    @FXML
+    void regresarInicio(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("Login.fxml")));
+        Stage window = (Stage) btnVolver.getScene().getWindow();
+        window.setScene(new Scene(root));
     }
 
 }
