@@ -7,9 +7,9 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.proyecto.CrearCarpetaControlador">
    <children>
-      <Label layoutX="265.0" layoutY="38.0" prefHeight="17.0" prefWidth="94.0" text="Crear Carpeta " />
-      <TextField fx:id="txtinvestigacion" layoutX="83.0" layoutY="100.0" promptText="Investigación" />
-      <TextField fx:id="txtmedia" layoutX="341.0" layoutY="100.0" promptText="media" />
-      <Button fx:id="btnCrearCarpeta" layoutX="252.0" layoutY="200.0" mnemonicParsing="false" onAction="#crearCarpeta" text="Crear Carpeta" />
+      <Label layoutX="225.0" layoutY="39.0" prefHeight="18.0" prefWidth="150.0" text="Añadir carpeta al Proyecto" />
+      <TextField fx:id="txtinvestigacion" layoutX="102.0" layoutY="100.0" promptText="Investigación" />
+      <TextField fx:id="txtmedia" layoutX="324.0" layoutY="100.0" promptText="Media" />
+      <Button fx:id="btnCrearCarpeta" layoutX="251.0" layoutY="161.0" mnemonicParsing="false" onAction="#crearProyecto" text="Crear Proyecto " />
    </children>
 </AnchorPane>

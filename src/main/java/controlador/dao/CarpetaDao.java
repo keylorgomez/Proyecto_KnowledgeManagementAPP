@@ -1,6 +1,7 @@
 package controlador.dao;
 
 import controlador.database.Conexion;
+import javafx.stage.Stage;
 import modelo.Carpeta;
 import modelo.Proyecto;
 import modelo.Usuario;
@@ -29,6 +30,7 @@ public class CarpetaDao {
 
             sentencia.executeUpdate();
             sentencia.close();
+
             return true;
         }catch (Exception e){
             System.err.println("Ocurrió un error al registrar el proyecto");

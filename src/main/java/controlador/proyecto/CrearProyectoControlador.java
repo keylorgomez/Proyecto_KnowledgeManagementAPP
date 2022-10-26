@@ -43,37 +43,44 @@ public class CrearProyectoControlador {
     private TextArea txtRepositorio;
 
     @FXML
-    private Button crearCarpeta;
+    private Button bntCrearCarpeta;
 
-    @FXML
-    private Button btnRecuperar;
 
     private ProyectoDao proyectoDao;
 
-
+    public static String NombreProyecto;
+    public static String CategoriaProyecto;
+    public static String RepositorioProyecto;
 
     public CrearProyectoControlador(){
         proyecto = new Proyecto();
         proyectoDao=new ProyectoDao();
     }
 
-    @FXML public void crearProyecto(){
+    @FXML public void crearCarpeta() throws IOException {
 
         proyecto.setNombre(txtNombrePoryecto.getText());
         proyecto.setCategoria(txtCategoría.getText());
         proyecto.setRepositorio(txtRepositorio.getText());
 
-        String nombreProyecto=proyecto.getNombre();
-        String categoriaProyecto=proyecto.getCategoria();
-        String repositorioProyecto=proyecto.getRepositorio();
+        NombreProyecto=proyecto.getNombre();
+        CategoriaProyecto=proyecto.getCategoria();
+        RepositorioProyecto=proyecto.getRepositorio();
 
-        ValidarCampos(nombreProyecto,categoriaProyecto,repositorioProyecto);
+        boolean respuestaValidacion= ValidarCampos(NombreProyecto,NombreProyecto,RepositorioProyecto);
+        if (respuestaValidacion==true){
+            Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("Carpeta.fxml")));
+            Stage window = (Stage) bntCrearCarpeta.getScene().getWindow();
+            window.setScene(new Scene(root));
+        }
+
+
     }
     public boolean ValidarCampos(String nombre, String categoria, String repositorio){
-        int IDUsuario=LoginControlador.UserIdActivo;
+        //int IDUsuario=LoginControlador.UserIdActivo;
         boolean rsp=true;
-        LocalDate fechaCreacion= LocalDate.now();
-        LocalDate ultimaModificacion=LocalDate.now();
+        //LocalDate fechaCreacion= LocalDate.now();
+        //LocalDate ultimaModificacion=LocalDate.now();
 
         if(nombre.isEmpty() || categoria.isEmpty() || repositorio.isEmpty()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -81,9 +88,12 @@ public class CrearProyectoControlador {
             alert.setTitle("Error");
             alert.setContentText("Error debido a espacios en blanco");
             alert.showAndWait();
-            rsp=false;
-            return rsp;
-        }else {
+
+            return rsp=false;
+        }
+        return rsp=true;
+
+        /*else {
             proyecto=new Proyecto(nombre,categoria,fechaCreacion,ultimaModificacion,repositorio,IDUsuario);
             rsp=proyectoDao.registrarProyecto(proyecto);
             Alert alert=new Alert(Alert.AlertType.INFORMATION);
@@ -94,7 +104,7 @@ public class CrearProyectoControlador {
             alert.showAndWait();
             //limpiarCampos();
             return rsp;
-        }
+        }*/
 
     }
     public void limpiarCampos(){
@@ -103,22 +113,13 @@ public class CrearProyectoControlador {
         txtRepositorio.setText("");
     }
 
-    /*public void recuperarDatos(){
-        if (crearCarpeta.isPressed()){
-            btnRecuperar.setVisible(true);
-            txtNombrePoryecto.setText(proyecto.getNombre());
-            txtCategoría.setText(proyecto.categoria);
-            txtRepositorio.setText(proyecto.getRepositorio());
-        } else {
-            btnRecuperar.setVisible(false);
-        }
 
-    }*/
 
-    public void irCrearCarpeta(ActionEvent actionEvent) throws IOException {
+    /*public void irCrearCarpeta(ActionEvent actionEvent) throws IOException {
+
         Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("Carpeta.fxml")));
         Stage window = (Stage) crearCarpeta.getScene().getWindow();
         window.setScene(new Scene(root));
-    }
+    }*/
 }
 
