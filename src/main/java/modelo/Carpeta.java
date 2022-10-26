@@ -7,15 +7,18 @@ public class Carpeta {
 
     public String media;
 
-    public Carpeta(int idCarpeta, String investigacion, String media) {
+    public int IDProyecto;
+
+    public Carpeta(int idCarpeta, String investigacion, String media, int idProyecto) {
         this.idCarpeta = idCarpeta;
         this.investigacion = investigacion;
         this.media = media;
     }
 
-    public Carpeta(String investigacion, String media) {
+    public Carpeta(String investigacion, String media, int idProyecto) {
         this.investigacion = investigacion;
         this.media = media;
+        this.IDProyecto = idProyecto;
     }
 
     public Carpeta() {
@@ -44,5 +47,13 @@ public class Carpeta {
 
     public void setMedia(String media) {
         this.media = media;
+    }
+
+    public int getIdProyecto() {
+        return IDProyecto;
+    }
+
+    public void setIdProyecto(int idProyecto) {
+        this.IDProyecto = idProyecto;
     }
 }
