@@ -2,6 +2,7 @@ package controlador.proyecto;
 import controlador.dao.ProyectoDao;
 import controlador.proyecto.CrearProyectoControlador;
 import controlador.dao.CarpetaDao;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,6 +24,7 @@ import java.util.Objects;
 public class CrearCarpetaControlador {
     @FXML
     private Button btnCrearCarpeta;
+    @FXML private Button btnRegresar;
 
     @FXML
     private TextField txtinvestigacion;
@@ -81,6 +83,13 @@ public class CrearCarpetaControlador {
             //limpiarCampos();
             return respuestaCampos;
         }
+    }
+
+    @FXML
+    void regresarCrearProyecto(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("CrearProyecto.fxml")));
+        Stage window = (Stage) btnCrearCarpeta.getScene().getWindow();
+        window.setScene(new Scene(root));
     }
 
     public void regresarProyecto() throws IOException {
