@@ -5,40 +5,41 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="386.0" prefWidth="588.0" style="-fx-background-color: #082F32;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.proyecto.RegistroUsuarioControlador">
+<AnchorPane prefHeight="398.0" prefWidth="641.0" style="-fx-background-color: #082F32;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.proyecto.RegistroUsuarioControlador">
    <children>
       <Label fx:id="labelRegistro" layoutX="522.0" layoutY="176.0" prefHeight="17.0" prefWidth="119.0" />
-      <AnchorPane layoutX="85.0" layoutY="29.0" prefHeight="310.0" prefWidth="471.0" style="-fx-background-color: #fff; -fx-border-color: #e84f31;">
+      <AnchorPane layoutX="69.0" layoutY="29.0" prefHeight="336.0" prefWidth="510.0" style="-fx-background-color: #fff; -fx-border-color: #e84f31;">
          <children>
-            <TextField fx:id="txtnombreRegistro" layoutX="40.0" layoutY="79.0" promptText="Nombre" style="-fx-border-style: solid; -fx-border-color: #e84f31; -fx-border-radius: 10px; -fx-background-color: #fff;" styleClass="inputs" />
-            <TextField fx:id="txtemailRegistro" layoutX="41.0" layoutY="129.0" promptText="Correo electrónico" style="-fx-background-color: #fff; -fx-border-color: #e84f31; -fx-border-radius: 10px;" />
-            <DatePicker fx:id="nacimientoRegistro" layoutX="143.0" layoutY="171.0" promptText="Fecha Nacimiento" style="-fx-background-color: #fff; -fx-border-color: #e84f31; -fx-border-radius: 6px;" />
-            <Button fx:id="btnRegistro" layoutX="114.0" layoutY="259.0" mnemonicParsing="false" onAction="#registrarUsuario" onMouseClicked="#registrarUsuario" prefHeight="26.0" prefWidth="90.0" style="-fx-background-color: #e84f31; -fx-border-radius: 10px;" text="Registrarse" textFill="WHITE">
+            <TextField fx:id="txtnombreRegistro" layoutX="40.0" layoutY="47.0" promptText="Nombre" style="-fx-border-style: solid; -fx-border-color: #e84f31; -fx-border-radius: 10px; -fx-background-color: #fff;" styleClass="inputs" />
+            <TextField fx:id="txtemailRegistro" layoutX="41.0" layoutY="91.0" promptText="Correo electrónico" style="-fx-background-color: #fff; -fx-border-color: #e84f31; -fx-border-radius: 10px;" />
+            <DatePicker fx:id="nacimientoRegistro" layoutX="143.0" layoutY="133.0" promptText="Fecha Nacimiento" style="-fx-background-color: #fff; -fx-border-color: #e84f31; -fx-border-radius: 6px;" />
+            <Button fx:id="btnRegistro" layoutX="114.0" layoutY="298.0" mnemonicParsing="false" onAction="#registrarUsuario" onMouseClicked="#registrarUsuario" prefHeight="26.0" prefWidth="90.0" style="-fx-background-color: #e84f31; -fx-border-radius: 10px;" text="Registrarse" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <PasswordField fx:id="txtcontrasenna" layoutX="269.0" layoutY="129.0" promptText="Contraseña" style="-fx-background-color: #fff; -fx-border-color: #e84f31; -fx-border-radius: 10px;" />
-            <TextField fx:id="txtapellidoRegistro" layoutX="269.0" layoutY="80.0" promptText="Apellidos" style="-fx-background-color: #fff; -fx-border-color: #e84f31; -fx-border-radius: 10px;" />
-            <TextField fx:id="txtLinkFoto" layoutX="156.0" layoutY="215.0" promptText="URL imagen" style="-fx-background-color: #fff; -fx-border-color: #e84f31; -fx-border-radius: 10px;" />
-            <Button fx:id="btnbuscarFotoRegistro" layoutX="318.0" layoutY="215.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="89.0" style="-fx-background-color: #e84f31; -fx-border-radius: 10px;" text="Buscar" textFill="WHITE">
+            <PasswordField fx:id="txtcontrasenna" layoutX="269.0" layoutY="91.0" promptText="Contraseña" style="-fx-background-color: #fff; -fx-border-color: #e84f31; -fx-border-radius: 10px;" />
+            <TextField fx:id="txtapellidoRegistro" layoutX="269.0" layoutY="48.0" promptText="Apellidos" style="-fx-background-color: #fff; -fx-border-color: #e84f31; -fx-border-radius: 10px;" />
+            <Button fx:id="btnbuscarFotoRegistro" layoutX="258.0" layoutY="213.0" mnemonicParsing="false" onAction="#buscarFoto" prefHeight="26.0" prefWidth="119.0" style="-fx-background-color: #e84f31; -fx-border-radius: 10px;" text="Buscar Imagen " textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Label layoutX="160.0" layoutY="34.0" text="Registro Usuario" textFill="#082f32">
+            <Label layoutX="161.0" layoutY="8.0" text="Registro Usuario" textFill="#082f32">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Button fx:id="btnVolver" layoutX="262.0" layoutY="259.0" mnemonicParsing="false" onAction="#regresarInicio" prefHeight="26.0" prefWidth="90.0" style="-fx-background-color: #e84f31; -fx-border-radius: 10px;" text="Volver Inicio" textFill="WHITE">
+            <Button fx:id="btnVolver" layoutX="262.0" layoutY="298.0" mnemonicParsing="false" onAction="#regresarInicio" prefHeight="26.0" prefWidth="90.0" style="-fx-background-color: #e84f31; -fx-border-radius: 10px;" text="Volver Inicio" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
+            <ImageView fx:id="fotoUsuario" fitHeight="79.0" fitWidth="90.0" layoutX="116.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
    </children>
