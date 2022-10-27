@@ -1,6 +1,9 @@
 package modelo;
 
 public class Carpeta {
+    /**
+     * Atributos de la clase Carpeta
+     */
     private int idCarpeta;
 
     private String investigacion;
@@ -22,6 +25,9 @@ public class Carpeta {
         this.idProyecto = idProyecto;
     }
 
+    /**
+     * Constructor Por defecto
+     */
     public Carpeta() {
     }
 

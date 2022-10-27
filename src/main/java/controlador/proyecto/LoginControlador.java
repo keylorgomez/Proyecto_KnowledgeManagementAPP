@@ -19,6 +19,9 @@ import java.util.Objects;
 
 public class LoginControlador {
     Usuario usuario;
+    /**
+     * Cada uno de los campos de entrada pertenecientes a la interfaz de Iniciar Sesion
+     */
     @FXML private Button btnIniciar;
     @FXML private Button btnRegistrarse;
     @FXML private ImageView imagLogo;
@@ -33,11 +36,20 @@ public class LoginControlador {
     private ProyectoDao proyectoDao;
     public static int UserIdActivo=0;
 
+    /**
+     * Se instancias las clases necesarias para el controlador
+     */
     public LoginControlador() {
         usuario = new Usuario();
         usuarioDao = new UsuarioDao();
         proyectoDao=new ProyectoDao();
     }
+
+    /**
+     * Funcion que se activa con un boton y permite iniciar sesion
+     * @throws SQLException
+     * @throws IOException
+     */
     @FXML public void loginUsuario() throws SQLException, IOException {
         usuario.setEmail(txtUsuario.getText());
         usuario.setPassword(txtContrasenia.getText());

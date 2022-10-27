@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Investigacion {
+    /**
+     * Atributos de la clase Investigacion
+     */
     private int InvestigacionId;
     private String nombreAutor;
     private LocalDate fechaInicio;
@@ -14,8 +17,19 @@ public class Investigacion {
     private ArrayList<String> textos;
     private ArrayList<Media> maedia;
 
+    /**
+     * Se crea un constrctor con parametros de entrada
+     * @param investigacionId
+     * @param nombreAutor
+     * @param fechaInicio
+     * @param fechaModificacion
+     * @param titulo
+     * @param subtitulos
+     * @param textos
+     * @param maedia
+     */
 
-    //contructor con todos los parametros
+
     public Investigacion(int investigacionId, String nombreAutor, LocalDate fechaInicio, LocalDate fechaModificacion, String titulo, ArrayList<String> subtitulos, ArrayList<String> textos, ArrayList<Media> maedia) {
         InvestigacionId = investigacionId;
         this.nombreAutor = nombreAutor;
@@ -26,12 +40,16 @@ public class Investigacion {
         this.textos = textos;
         this.maedia = maedia;
     }
-    //constructor generico
+
+    /**
+     * Constructor generico
+     */
+
     public Investigacion(){
 
     }
 
-    //getters and setters
+
     public int getInvestigacionId() {
         return InvestigacionId;
     }

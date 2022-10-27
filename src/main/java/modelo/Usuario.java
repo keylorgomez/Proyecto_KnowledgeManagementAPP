@@ -3,6 +3,9 @@ package modelo;
 import java.util.Objects;
 
 public class Usuario {
+    /**
+     * Se crea la clase usuario con sus debidos atributos
+     */
     private  int usuarioId;
     private String nombre;
     private String apellido;
@@ -14,8 +17,18 @@ public class Usuario {
     private boolean rolLider;
 
 
-    //Constructor que recibe todos los parametros
-
+    /**
+     * Se crean los diferentes constructores para la clase usuario para que permite el ingreso de usuarios con los atributos declarados antes
+     * @param nombre
+     * @param apellido
+     * @param edad
+     * @param fechaNacimiento
+     * @param email
+     * @param password
+     * @param foto
+     * @param rolLider
+     * @param usuarioId
+     */
 
     public Usuario(String nombre, String apellido, int edad, String fechaNacimiento, String email, String password, String foto, boolean rolLider, int usuarioId) {
         this.nombre = nombre;
@@ -118,8 +131,12 @@ public class Usuario {
         this.usuarioId = usuarioId;
     }
 
-    //Método equals
 
+    /**
+     * Se genera el Equals que es metodo para comparar
+     * @param o
+     * @return
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -133,7 +150,10 @@ public class Usuario {
         return Objects.hash(nombre, apellido, edad, fechaNacimiento, email, password, foto, rolLider, usuarioId);
     }
 
-    //ToString
+    /**
+     * Se genera el toString de la clase para verificar e imprimir por consola
+     * @return el objeto como una String
+     */
     @Override
     public String toString() {
         return "Usuario{" +

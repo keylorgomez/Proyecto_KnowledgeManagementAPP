@@ -1,8 +1,12 @@
 package modelo;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Proyecto {
+    /**
+     * Atributos de la clase
+     */
     public int idProyecto;
 
     public String numeroProyecto;
@@ -20,6 +24,17 @@ public class Proyecto {
 
     public int idUsuario;
 
+    /**
+     * Constructores que recibem todos los atributos de la clase como parametros
+     * @param idProyecto
+     * @param nombre
+     * @param categoria
+     * @param fechaCreacion
+     * @param ultimaModificacion
+     * @param repositorio
+     * @param idCarpeta
+     * @param idUsuario
+     */
 
     public Proyecto(int idProyecto, String nombre , String categoria, LocalDate fechaCreacion, LocalDate ultimaModificacion, String repositorio, int idCarpeta, int idUsuario) {
         this.idProyecto = idProyecto;
@@ -132,5 +147,33 @@ public class Proyecto {
 
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Proyecto proyecto = (Proyecto) o;
+        return idProyecto == proyecto.idProyecto && idCarpeta == proyecto.idCarpeta && idUsuario == proyecto.idUsuario && Objects.equals(numeroProyecto, proyecto.numeroProyecto) && Objects.equals(categoria, proyecto.categoria) && Objects.equals(nombre, proyecto.nombre) && Objects.equals(fechaCreacion, proyecto.fechaCreacion) && Objects.equals(ultimaModificacion, proyecto.ultimaModificacion) && Objects.equals(repositorio, proyecto.repositorio);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idProyecto, numeroProyecto, categoria, nombre, fechaCreacion, ultimaModificacion, repositorio, idCarpeta, idUsuario);
+    }
+
+    @Override
+    public String toString() {
+        return "Proyecto{" +
+                "idProyecto=" + idProyecto +
+                ", numeroProyecto='" + numeroProyecto + '\'' +
+                ", categoria='" + categoria + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", fechaCreacion=" + fechaCreacion +
+                ", ultimaModificacion=" + ultimaModificacion +
+                ", repositorio='" + repositorio + '\'' +
+                ", idCarpeta=" + idCarpeta +
+                ", idUsuario=" + idUsuario +
+                '}';
     }
 }
