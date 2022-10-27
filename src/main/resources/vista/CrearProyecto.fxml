@@ -66,9 +66,9 @@
                   <Font size="11.0" />
                </font>
             </Label>
-            <TextField fx:id="txtCategoría" promptText="Categoría de Proyecto" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 10px; -fx-background-color: fff;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="txtNombrePoryecto" promptText="Nombre proyecto" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 10px; -fx-background-color: fff;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextArea fx:id="txtRepositorio" prefHeight="28.0" prefWidth="459.0" promptText="Dirección del repositorio" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 4px; -fx-background-color: fff;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="txtCategoría" focusTraversable="false" promptText="Categoría de Proyecto" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 10px; -fx-background-color: fff; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txtNombrePoryecto" focusTraversable="false" promptText="Nombre proyecto" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 10px; -fx-background-color: fff; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextArea fx:id="txtRepositorio" focusTraversable="false" prefHeight="28.0" prefWidth="459.0" promptText="Dirección del repositorio" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 4px; -fx-background-color: fff; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <HBox prefHeight="30.0" prefWidth="438.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                <children>
                   <Button fx:id="bntCrearCarpeta" mnemonicParsing="false" onAction="#crearCarpeta" style="-fx-background-color: #E84F31;" text="Añadir Carpeta" textFill="WHITE">
@@ -89,7 +89,7 @@
                <font>
                   <Font name="System Bold" size="11.0" />
                </font></Label>
-            <TextField fx:id="txtNumProyecto" prefHeight="27.0" prefWidth="324.0" promptText="Número de proyecto" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 10px; -fx-background-color: ffff;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtNumProyecto" focusTraversable="false" prefHeight="27.0" prefWidth="324.0" promptText="Número de proyecto" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 10px; -fx-background-color: ffff; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
          <padding>
             <Insets bottom="10.0" left="25.0" right="25.0" top="10.0" />

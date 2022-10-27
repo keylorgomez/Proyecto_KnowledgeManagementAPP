@@ -112,7 +112,7 @@ public class CrearProyectoControlador {
 
     @FXML
     void cancelarRegistroProyecto(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("RegistroUsuario.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("Login.fxml")));
         Stage window = (Stage) btnCancelar.getScene().getWindow();
         window.setScene(new Scene(root));
 
