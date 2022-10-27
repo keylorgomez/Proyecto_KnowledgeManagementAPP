@@ -8,16 +8,17 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #082F32;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.proyecto.CrearCarpetaControlador">
    <children>
-      <AnchorPane layoutX="41.0" layoutY="37.0" prefHeight="329.0" prefWidth="511.0" style="-fx-background-color: fff;">
+      <AnchorPane layoutX="55.0" layoutY="55.0" prefHeight="290.0" prefWidth="489.0" style="-fx-background-color: fff; -fx-border-color: #E84F31; -fx-border-radius: 4px;">
          <children>
-            <Label layoutX="148.0" layoutY="60.0" prefHeight="27.0" prefWidth="216.0" text="Añadir Carpeta Al Proyecto">
+            <Label layoutX="132.0" layoutY="44.0" prefHeight="27.0" prefWidth="248.0" text="Añadir Carpeta Al Proyecto" textFill="#082f32">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="txtinvestigacion" layoutX="76.0" layoutY="119.0" promptText="Investigación" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 10px; -fx-background-color: fff;" />
-            <TextField fx:id="txtmedia" layoutX="271.0" layoutY="119.0" prefHeight="25.0" prefWidth="174.0" promptText="Media" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 10px; -fx-background-color: fff;" />
-            <Button fx:id="btnCrearCarpeta" layoutX="207.0" layoutY="174.0" mnemonicParsing="false" onAction="#crearProyecto" style="-fx-background-color: #E84F31;" text="Crear Proyecto " textFill="WHITE" />
+            <TextField fx:id="txtinvestigacion" focusTraversable="false" layoutX="67.0" layoutY="105.0" promptText="Investigación" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 10px; -fx-background-color: fff; -fx-font-weight: bold; -fx-alignment: center;" />
+            <TextField fx:id="txtmedia" focusTraversable="false" layoutX="256.0" layoutY="105.0" prefHeight="25.0" prefWidth="174.0" promptText="Media" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 10px; -fx-background-color: fff; -fx-font-weight: bold; -fx-alignment: center;" />
+            <Button fx:id="btnCrearCarpeta" layoutX="114.0" layoutY="164.0" mnemonicParsing="false" onAction="#crearProyecto" style="-fx-background-color: #E84F31; -fx-font-weight: bold;" text="Crear Proyecto " textFill="WHITE" />
+            <Button fx:id="btnRegresar" layoutX="263.0" layoutY="164.0" mnemonicParsing="false" onAction="#regresarCrearProyecto" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: #E84F31; -fx-border-radius: 7px; -fx-font-weight: bold;" text="Regresar" textFill="WHITE" />
          </children>
       </AnchorPane>
    </children>
