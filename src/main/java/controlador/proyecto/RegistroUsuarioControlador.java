@@ -45,12 +45,23 @@ public class RegistroUsuarioControlador {
     private String imagen;
     private String foto;
 
+    /**
+     * Se crea el constructor de la clase que inicializa las clases externas del mismo proyecto que se utilizaran
+     */
+
     public RegistroUsuarioControlador() {
         usuario = new Usuario("","",0,"","","","");
         labelRegistro = new Label();
         usuario = new Usuario();
         usuarioDao = new UsuarioDao();
     }
+
+    /**
+     * Funcion que valida los campos de usuario y contrasena y los recibe como parametro
+     * @param email
+     * @param password
+     * @return
+     */
 
     public boolean validarUserandContra(String email, String password){
         Pattern Correo =null;

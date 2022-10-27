@@ -79,8 +79,7 @@ public class CrearCarpetaControlador {
             alert.setContentText("¡Se registró el proyecto y carpeta de manera exitosa!");
             alert.initStyle(StageStyle.UTILITY);
             alert.showAndWait();
-            //regresarProyecto(); HAY QUE QUITARLO DE ACÁ
-            //limpiarCampos();
+
             return respuestaCampos;
         }
     }

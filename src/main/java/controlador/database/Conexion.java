@@ -4,6 +4,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Conexion {
+    /**
+     * Se establecen los atributos para realizar la conexion a la base de datos
+     */
     private Connection connection;
     private String usuario="root";
     private String password="123456";
@@ -13,6 +16,9 @@ public class Conexion {
     private String url="jdbc:mysql://"+servidor+":"+puerto+"/"+nombreDB+"?serverTimezone=UTC";
     private String driver="com.mysql.cj.jdbc.Driver";
 
+    /**
+     * Funcion para realizar el proceso de conexion
+     */
     public Conexion(){
         try {
             Class.forName(driver);

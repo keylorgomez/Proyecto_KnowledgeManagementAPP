@@ -4,12 +4,23 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class Media {
+    /**
+     * Atributos de la clase Media
+     */
     private String nombreArchivo;
     private String autor;
     private LocalDate fechaCreacion;
     private int mediaId;
 
-    //Constructor con todos los parametros
+    /**
+     * Constructor que recibe todos los parametros de entrada
+     * @param nombreArchivo
+     * @param autor
+     * @param fechaCreacion
+     * @param mediaId
+     */
+
+
     public Media(String nombreArchivo, String autor, LocalDate fechaCreacion, int mediaId) {
         this.nombreArchivo = nombreArchivo;
         this.autor = autor;
@@ -17,7 +28,7 @@ public class Media {
         this.mediaId = mediaId;
     }
 
-    //getters and setters
+
 
     public String getNombreArchivo() {
         return nombreArchivo;
@@ -51,7 +62,7 @@ public class Media {
         this.mediaId = mediaId;
     }
 
-    //Método equals
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -65,7 +76,7 @@ public class Media {
         return Objects.hash(nombreArchivo, autor, fechaCreacion, mediaId);
     }
 
-    //Método toString
+
 
 
     @Override
