@@ -4,6 +4,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import modelo.Usuario;
 import controlador.dao.UsuarioDao;
@@ -12,6 +15,7 @@ import javafx.scene.control.*;
 import javafx.stage.StageStyle;
 import vista.Inicio;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -33,10 +37,13 @@ public class RegistroUsuarioControlador {
     @FXML private TextField txtLinkFoto;
     @FXML private Label labelRegistro;
 
+    @FXML private ImageView fotoUsuario;
     @FXML private Button btnbuscarFotoRegistro;
     @FXML private Button btnRegistro;
     @FXML private Button btnVolver;
     private UsuarioDao usuarioDao;
+    private String imagen;
+    private String foto;
 
     public RegistroUsuarioControlador() {
         usuario = new Usuario("","",0,"","","","");
@@ -84,19 +91,17 @@ public class RegistroUsuarioControlador {
         usuario.setFechaNacimiento(nacimientoRegistro.getValue().toString());
         usuario.setEmail(txtemailRegistro.getText());
         usuario.setPassword(txtcontrasenna.getText());
-        usuario.setFoto(txtLinkFoto.getText());
 
         String nombreUsuario = usuario.getNombre();
         String apellidoUsuario = usuario.getApellido();
         String fechaNacimientoUsuario = usuario.getFechaNacimiento();
         String emailUsuario = usuario.getEmail();
         String passwordUsuario = usuario.getPassword();
-        String fotoUsuario = usuario.getFoto();
-        ValidarCamposRegistro(nombreUsuario, apellidoUsuario, fechaNacimientoUsuario, emailUsuario, passwordUsuario, fotoUsuario);
+        ValidarCamposRegistro(nombreUsuario, apellidoUsuario, fechaNacimientoUsuario, emailUsuario, passwordUsuario);
 
     }
 
-    public boolean ValidarCamposRegistro(String nombre, String apellido, String fecha, String email, String contrasenna, String foto) throws SQLException {
+    public boolean ValidarCamposRegistro(String nombre, String apellido, String fecha, String email, String contrasenna) throws SQLException {
         boolean rsp= true;
         int edad= calculoEdad(fecha);
 
@@ -140,7 +145,8 @@ public class RegistroUsuarioControlador {
         nacimientoRegistro.setValue(null);
         txtemailRegistro.setText("");
         txtcontrasenna.setText("");
-        txtLinkFoto.setText("");
+        fotoUsuario.setImage(null);
+
 
     }
     @FXML
@@ -148,6 +154,32 @@ public class RegistroUsuarioControlador {
         Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("Login.fxml")));
         Stage window = (Stage) btnVolver.getScene().getWindow();
         window.setScene(new Scene(root));
+    }
+    public String buscarFoto() {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Buscar Imagen");
+
+            // Agregar filtros para facilitar la busqueda
+            fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("All Images", "*.*"),
+                    new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                    new FileChooser.ExtensionFilter("PNG", "*.png")
+            );
+
+            // Obtener la imagen seleccionada
+            File file = fileChooser.showOpenDialog(null);
+
+            // Mostar la imagen
+            if (file != null) {
+                imagen = file.toString();
+                fotoUsuario.setImage(new Image(file.toURI().toString()));
+                foto = imagen;
+                return foto;
+            }else {
+                String error ="Ocurre error con foto";
+                return error;
+            }
+
     }
 
 }
