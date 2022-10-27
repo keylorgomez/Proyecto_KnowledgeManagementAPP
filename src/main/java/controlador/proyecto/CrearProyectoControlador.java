@@ -49,6 +49,8 @@ public class CrearProyectoControlador {
     @FXML
     private Button bntCrearCarpeta;
 
+    @FXML private Button btnCancelar;
+
     private CarpetaDao carpetaDao;
     private ProyectoDao proyectoDao;
     public static int proyectoIdActivo=0;
@@ -96,12 +98,6 @@ public class CrearProyectoControlador {
         }else{
             proyecto=new Proyecto(nombre,categoria,fechaCreacion,ultimaModificacion,repositorio,IDUsuario,numero);
             rsp=proyectoDao.registrarProyecto(proyecto);
-            Alert alert=new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Éxito");
-            alert.setHeaderText(null);
-            alert.setContentText("Se registró correctamente el proyecto al sistema");
-            alert.initStyle(StageStyle.UTILITY);
-            alert.showAndWait();
             return rsp=true;
         }
 
@@ -114,12 +110,13 @@ public class CrearProyectoControlador {
     }
 
 
-
-    /*public void irCrearCarpeta(ActionEvent actionEvent) throws IOException {
-
-        Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("Carpeta.fxml")));
-        Stage window = (Stage) crearCarpeta.getScene().getWindow();
+    @FXML
+    void cancelarRegistroProyecto(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("RegistroUsuario.fxml")));
+        Stage window = (Stage) btnCancelar.getScene().getWindow();
         window.setScene(new Scene(root));
-    }*/
+
+    }
+
 }
 

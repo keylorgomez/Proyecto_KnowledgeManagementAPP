@@ -74,7 +74,7 @@ public class CrearCarpetaControlador {
             Alert alert=new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Éxito");
             alert.setHeaderText(null);
-            alert.setContentText("Se registró correctamente tanto el proyecto como la carpeta");
+            alert.setContentText("¡Se registró el proyecto y carpeta de manera exitosa!");
             alert.initStyle(StageStyle.UTILITY);
             alert.showAndWait();
             //regresarProyecto(); HAY QUE QUITARLO DE ACÁ
@@ -83,28 +83,8 @@ public class CrearCarpetaControlador {
         }
     }
 
-    /*public boolean registrarProyecto(String numero, String nombre,String categoria, String repositorio){
-        numero= String.valueOf(Integer.parseInt(CrearProyectoControlador.NumeroProyecto));
-        nombre=CrearProyectoControlador.NombreProyecto;
-        categoria=CrearProyectoControlador.CategoriaProyecto;
-        repositorio=CrearProyectoControlador.RepositorioProyecto;
-        int IDUsuario=LoginControlador.UserIdActivo;
-        LocalDate fechaCreacion= LocalDate.now();
-        LocalDate ultimaModificacion=LocalDate.now();
-        boolean respuestaProyecto=true;
-        proyecto=new Proyecto(nombre, numero, categoria,fechaCreacion,ultimaModificacion,repositorio,IDUsuario);
-        respuestaProyecto=proyectoDao.registrarProyecto(proyecto);
-        Alert alert=new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Éxito");
-        alert.setHeaderText(null);
-        alert.setContentText("Se registró correctamente el proyecto al sistema");
-        alert.initStyle(StageStyle.UTILITY);
-        alert.showAndWait();
-        //limpiarCampos();
-        return respuestaProyecto;
-    }*/
     public void regresarProyecto() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("CrearProyecto.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("Login.fxml")));
         Stage window = (Stage) btnCrearCarpeta.getScene().getWindow();
         window.setScene(new Scene(root));
     }
