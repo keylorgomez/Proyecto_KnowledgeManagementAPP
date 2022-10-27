@@ -26,10 +26,10 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-            <TextField fx:id="txtUsuario" layoutX="55.0" layoutY="152.0" promptText="user@dominio.com" style="-fx-border-color: #E84F31; -fx-border-style: solid; -fx-border-radius: 10px; -fx-background-color: #fff;" styleClass="Label" />
+            <TextField fx:id="txtUsuario" focusTraversable="false" layoutX="48.0" layoutY="152.0" promptText="user@dominio.com" style="-fx-border-color: #E84F31; -fx-border-style: solid; -fx-border-radius: 10px; -fx-background-color: #fff; -fx-font-weight: bold; -fx-alignment: center;" styleClass="Label" />
             <Button fx:id="btnIniciar" layoutX="88.0" layoutY="277.0" mnemonicParsing="false" onAction="#loginUsuario" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #E84F31; -fx-font-weight: bold;" text="Iniciar" textFill="WHITE" />
             <Label fx:id="mensaje" layoutX="139.0" layoutY="282.0" />
-            <PasswordField fx:id="txtContrasenia" layoutX="57.0" layoutY="238.0" promptText="Mínimo 4 / Máximo 8" style="-fx-background-color: #FFF; -fx-border-color: #E84F31; -fx-border-radius: 7PX;" />
+            <PasswordField fx:id="txtContrasenia" focusTraversable="false" layoutX="50.0" layoutY="238.0" promptText="Mínimo 4 / Máximo 8" style="-fx-background-color: #FFF; -fx-border-color: #E84F31; -fx-border-radius: 7PX; -fx-font-weight: bold; -fx-alignment: center;" />
          </children>
          <HBox.margin>
             <Insets bottom="20.0" left="25.0" right="25.0" top="20.0" />
@@ -38,7 +38,7 @@
       <AnchorPane prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: #fff; -fx-border-color: #e84f31; -fx-border-radius: 7px;">
          <children>
             <ImageView fx:id="imagLogo" fitHeight="150.0" fitWidth="200.0" layoutX="28.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="labelRegistrese" layoutX="38.0" layoutY="246.0" text="¿No tienes cuenta? Registrate aquí" />
+            <Label fx:id="labelRegistrese" layoutX="32.0" layoutY="246.0" prefHeight="18.0" prefWidth="200.0" style="-fx-font-style: italic; -fx-font-weight: bold;" text="¿No tienes cuenta? Registrate aquí" />
             <Button fx:id="btnRegistrarse" layoutX="90.0" layoutY="277.0" mnemonicParsing="false" onAction="#IrRegistrarse" style="-fx-background-color: #E84F31;" text="Registrarse" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
