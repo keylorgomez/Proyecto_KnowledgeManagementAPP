@@ -72,7 +72,7 @@ public class RegistroUsuarioControlador {
         Pattern Contrasenna=null;
         Matcher ResultadoContra=null;
 
-        Contrasenna=Pattern.compile( "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$");
+        Contrasenna=Pattern.compile( "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,20}$");
         ResultadoCorreo= Correo.matcher(email);
         ResultadoContra=Contrasenna.matcher(password);
 
@@ -87,7 +87,8 @@ public class RegistroUsuarioControlador {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("Incorrecto");
-            alert.setContentText("La contraseña debe contener de 4 a 8 caracteres. Además incluir mínimo una mayúscula y un número.");
+            alert.setContentText("La contraseña debe contener de 6 a 8 caracteres.\n" +
+                    "Tambíen incluir almenos una mayúscula, una minúscula, un número y un caracter especial.");
             alert.showAndWait();
             return false;
         }else{
@@ -108,23 +109,11 @@ public class RegistroUsuarioControlador {
         String fechaNacimientoUsuario = usuario.getFechaNacimiento();
         String emailUsuario = usuario.getEmail();
         String passwordUsuario = usuario.getPassword();
-        ValidarCamposRegistro(nombreUsuario, apellidoUsuario, fechaNacimientoUsuario, emailUsuario, passwordUsuario);
-
-    }
-
-    public boolean ValidarCamposRegistro(String nombre, String apellido, String fecha, String email, String contrasenna) throws SQLException {
-        boolean rsp= true;
-        int edad= calculoEdad(fecha);
-
-        if(nombre.isEmpty() || apellido.isEmpty() ||email.isEmpty() || contrasenna.isEmpty() || (validarUserandContra(email, contrasenna)== false)){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setTitle("Error");
-            alert.setContentText("Error debido a espacios en blanco");
-            alert.showAndWait();
-             return rsp = false;
-        } else {
-                usuario = new Usuario(nombre, apellido, edad, fecha, email, contrasenna, foto);
+        if(ValidarCamposRegistro(nombreUsuario, apellidoUsuario, fechaNacimientoUsuario, emailUsuario, passwordUsuario)==true){
+            if (validarUserandContra(emailUsuario,passwordUsuario)){
+                boolean rsp= true;
+                int edad= calculoEdad(fechaNacimientoUsuario);
+                usuario = new Usuario(nombreUsuario, apellidoUsuario, edad, fechaNacimientoUsuario, emailUsuario, passwordUsuario, foto);
                 rsp= usuarioDao.registrarUsuario(usuario);
                 Alert alert=new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Éxito");
@@ -133,7 +122,25 @@ public class RegistroUsuarioControlador {
                 alert.initStyle(StageStyle.UTILITY);
                 alert.showAndWait();
                 limpiarCampos();
-                return rsp;
+                //return rsp;
+            }
+
+
+        }
+
+
+    }
+
+    public boolean ValidarCamposRegistro(String nombre, String apellido, String fecha, String email, String contrasenna) throws SQLException {
+        if(nombre.isEmpty() || apellido.isEmpty() ||email.isEmpty() || contrasenna.isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Error");
+            alert.setContentText("Error debido a espacios en blanco");
+            alert.showAndWait();
+            return false;
+        } else {
+            return true;
         }
     }
 
