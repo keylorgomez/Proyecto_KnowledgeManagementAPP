@@ -64,6 +64,30 @@ public class UsuarioDao {
         Conexion.closeConnection(connectDB);
         return error;
     }
+    public boolean ValidarUsuarioRegistrado(String email) throws SQLException {
+        boolean usurioExistente=false;
+        Conexion connectNow = new Conexion();
+        Connection connectDB = connectNow.getConnection();
+        String verifyLogin = "select count(1) from usuarios where email = " + "'" + email + "'";
+        try {
+            Statement statement = connectDB.createStatement();
+            ResultSet queryResult = statement.executeQuery(verifyLogin);
+
+            while (queryResult.next()) {
+                if (queryResult.getInt(1) == 1) {
+                    usurioExistente=true;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error");
+            e.printStackTrace();
+            e.getCause();
+        }
+        Conexion.closeConnection(connectDB);
+        return usurioExistente;
+
+
+    }
 
 
 }
