@@ -129,7 +129,7 @@ public class RegistroUsuarioControlador {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setHeaderText(null);
                     alert.setTitle("Error");
-                    alert.setContentText("Ya se encuentra un usuario registrado con el mismo correo electrónico");
+                    alert.setContentText("Ya se encuentra un usuario registrado con el mismo correo electrónico.");
                     alert.showAndWait();
                 }
             }
