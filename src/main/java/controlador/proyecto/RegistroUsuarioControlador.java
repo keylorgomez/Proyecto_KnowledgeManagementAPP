@@ -72,7 +72,7 @@ public class RegistroUsuarioControlador {
         Pattern Contrasenna=null;
         Matcher ResultadoContra=null;
 
-        Contrasenna=Pattern.compile( "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$");
+        Contrasenna=Pattern.compile( "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,20}$");
         ResultadoCorreo= Correo.matcher(email);
         ResultadoContra=Contrasenna.matcher(password);
 
@@ -87,7 +87,8 @@ public class RegistroUsuarioControlador {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("Incorrecto");
-            alert.setContentText("La contraseña debe contener de 4 a 8 caracteres. Además incluir mínimo una mayúscula y un número.");
+            alert.setContentText("La contraseña debe contener de 6 a 8 caracteres.\n" +
+                    "Tambíen incluir almenos una mayúscula, una minúscula, un número y un caracter especial.");
             alert.showAndWait();
             return false;
         }else{
@@ -108,32 +109,43 @@ public class RegistroUsuarioControlador {
         String fechaNacimientoUsuario = usuario.getFechaNacimiento();
         String emailUsuario = usuario.getEmail();
         String passwordUsuario = usuario.getPassword();
-        ValidarCamposRegistro(nombreUsuario, apellidoUsuario, fechaNacimientoUsuario, emailUsuario, passwordUsuario);
-
+        if(ValidarCamposRegistro(nombreUsuario, apellidoUsuario, fechaNacimientoUsuario, emailUsuario, passwordUsuario)==true){
+            if (validarUserandContra(emailUsuario,passwordUsuario)==true){
+                boolean verificanoNuevoUsuario=usuarioDao.ValidarUsuarioRegistrado(emailUsuario);
+                if(verificanoNuevoUsuario==false){
+                    boolean rsp= true;
+                    int edad= calculoEdad(fechaNacimientoUsuario);
+                    usuario = new Usuario(nombreUsuario, apellidoUsuario, edad, fechaNacimientoUsuario, emailUsuario, passwordUsuario, foto);
+                    rsp= usuarioDao.registrarUsuario(usuario);
+                    Alert alert=new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Éxito");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Se registró correctamente el usuario");
+                    alert.initStyle(StageStyle.UTILITY);
+                    alert.showAndWait();
+                    limpiarCampos();
+                    //return rsp;
+                }else{
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText(null);
+                    alert.setTitle("Error");
+                    alert.setContentText("Ya se encuentra un usuario registrado con el mismo correo electrónico.");
+                    alert.showAndWait();
+                }
+            }
+        }
     }
 
     public boolean ValidarCamposRegistro(String nombre, String apellido, String fecha, String email, String contrasenna) throws SQLException {
-        boolean rsp= true;
-        int edad= calculoEdad(fecha);
-
-        if(nombre.isEmpty() || apellido.isEmpty() ||email.isEmpty() || contrasenna.isEmpty() || (validarUserandContra(email, contrasenna)== false)){
+        if(nombre.isEmpty() || apellido.isEmpty() ||email.isEmpty() || contrasenna.isEmpty()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("Error");
             alert.setContentText("Error debido a espacios en blanco");
             alert.showAndWait();
-             return rsp = false;
+            return false;
         } else {
-                usuario = new Usuario(nombre, apellido, edad, fecha, email, contrasenna, foto);
-                rsp= usuarioDao.registrarUsuario(usuario);
-                Alert alert=new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Éxito");
-                alert.setHeaderText(null);
-                alert.setContentText("Se registró correctamente el usuario");
-                alert.initStyle(StageStyle.UTILITY);
-                alert.showAndWait();
-                limpiarCampos();
-                return rsp;
+            return true;
         }
     }
 
