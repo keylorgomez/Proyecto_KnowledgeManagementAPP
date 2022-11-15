@@ -110,25 +110,30 @@ public class RegistroUsuarioControlador {
         String emailUsuario = usuario.getEmail();
         String passwordUsuario = usuario.getPassword();
         if(ValidarCamposRegistro(nombreUsuario, apellidoUsuario, fechaNacimientoUsuario, emailUsuario, passwordUsuario)==true){
-            if (validarUserandContra(emailUsuario,passwordUsuario)){
-                boolean rsp= true;
-                int edad= calculoEdad(fechaNacimientoUsuario);
-                usuario = new Usuario(nombreUsuario, apellidoUsuario, edad, fechaNacimientoUsuario, emailUsuario, passwordUsuario, foto);
-                rsp= usuarioDao.registrarUsuario(usuario);
-                Alert alert=new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Éxito");
-                alert.setHeaderText(null);
-                alert.setContentText("Se registró correctamente el usuario");
-                alert.initStyle(StageStyle.UTILITY);
-                alert.showAndWait();
-                limpiarCampos();
-                //return rsp;
+            if (validarUserandContra(emailUsuario,passwordUsuario)==true){
+                boolean verificanoNuevoUsuario=usuarioDao.ValidarUsuarioRegistrado(emailUsuario);
+                if(verificanoNuevoUsuario==false){
+                    boolean rsp= true;
+                    int edad= calculoEdad(fechaNacimientoUsuario);
+                    usuario = new Usuario(nombreUsuario, apellidoUsuario, edad, fechaNacimientoUsuario, emailUsuario, passwordUsuario, foto);
+                    rsp= usuarioDao.registrarUsuario(usuario);
+                    Alert alert=new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Éxito");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Se registró correctamente el usuario");
+                    alert.initStyle(StageStyle.UTILITY);
+                    alert.showAndWait();
+                    limpiarCampos();
+                    //return rsp;
+                }else{
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText(null);
+                    alert.setTitle("Error");
+                    alert.setContentText("Ya se encuentra un usuario registrado con el mismo correo electrónico");
+                    alert.showAndWait();
+                }
             }
-
-
         }
-
-
     }
 
     public boolean ValidarCamposRegistro(String nombre, String apellido, String fecha, String email, String contrasenna) throws SQLException {
