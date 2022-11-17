@@ -70,7 +70,7 @@ public class LoginControlador {
         Boolean verificandoUsuario = usuarioDao.verificarUsuario(email, contrasenna);
         if (verificandoUsuario == true) {
             mensaje.setText("Ingresado con exito");
-            ingresarApp();
+            ingresarApp(email);
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
@@ -80,10 +80,19 @@ public class LoginControlador {
         }
 
     }
-    public void ingresarApp() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("CrearProyecto.fxml")));
-        Stage window = (Stage) btnIniciar.getScene().getWindow();
-        window.setScene(new Scene(root));
+    public void ingresarApp(String email) throws IOException, SQLException {
+        String tipoUsuario= usuarioDao.getTipoUsuario(email);
+        System.out.println(tipoUsuario);
+        if(tipoUsuario==null || tipoUsuario==""){
+            Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("PantallaEspera.fxml")));
+            Stage window = (Stage) btnIniciar.getScene().getWindow();
+            window.setScene(new Scene(root));
+        }else{
+            Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("CrearProyecto.fxml")));
+            Stage window = (Stage) btnIniciar.getScene().getWindow();
+            window.setScene(new Scene(root));
+        }
+
     }
 
 
