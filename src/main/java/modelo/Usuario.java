@@ -14,23 +14,10 @@ public class Usuario {
     private String email;
     private String password;
     private String foto;
-    private boolean rolLider;
+    private  String tipoUsuario;
 
-
-    /**
-     * Se crean los diferentes constructores para la clase usuario para que permite el ingreso de usuarios con los atributos declarados antes
-     * @param nombre
-     * @param apellido
-     * @param edad
-     * @param fechaNacimiento
-     * @param email
-     * @param password
-     * @param foto
-     * @param rolLider
-     * @param usuarioId
-     */
-
-    public Usuario(String nombre, String apellido, int edad, String fechaNacimiento, String email, String password, String foto, boolean rolLider, int usuarioId) {
+    public Usuario(int usuarioId, String nombre, String apellido, int edad, String fechaNacimiento, String email, String password, String foto, String tipoUsuario) {
+        this.usuarioId = usuarioId;
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
@@ -38,26 +25,33 @@ public class Usuario {
         this.email = email;
         this.password = password;
         this.foto = foto;
-        this.rolLider = rolLider;
+        this.tipoUsuario = tipoUsuario;
+    }
+    public Usuario(String nombre, String apellido, int edad, String fechaNacimiento, String email, String password, String foto, String tipoUsuario) {
         this.usuarioId = usuarioId;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.edad = edad;
+        this.fechaNacimiento = fechaNacimiento;
+        this.email = email;
+        this.password = password;
+        this.foto = foto;
+        this.tipoUsuario = tipoUsuario;
+    }
+    public Usuario(){
+
     }
 
     //Constructor sin tipo de rol
 
-    public Usuario(String nombre, String apellido, int edad, String fechaNacimiento, String email, String password, String foto) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.edad = edad;
-        this.fechaNacimiento = fechaNacimiento;
-        this.email = email;
-        this.password = password;
-        this.foto = foto;
+
+    public int getUsuarioId() {
+        return usuarioId;
     }
 
-    public Usuario() {
+    public void setUsuarioId(int usuarioId) {
+        this.usuarioId = usuarioId;
     }
-//Getters and Setters
-
 
     public String getNombre() {
         return nombre;
@@ -115,39 +109,25 @@ public class Usuario {
         this.foto = foto;
     }
 
-    public boolean isRolLider() {
-        return rolLider;
+    public String getTipoUsuario() {
+        return tipoUsuario;
     }
 
-    public void setRolLider(boolean rolLider) {
-        this.rolLider = rolLider;
+    public void setTipoUsuario(String tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
     }
 
-    public int getUsuarioId() {
-        return usuarioId;
-    }
-
-    public void setUsuarioId(int usuarioId) {
-        this.usuarioId = usuarioId;
-    }
-
-
-    /**
-     * Se genera el Equals que es metodo para comparar
-     * @param o
-     * @return
-     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Usuario usuario = (Usuario) o;
-        return edad == usuario.edad && rolLider == usuario.rolLider && usuarioId == usuario.usuarioId && Objects.equals(nombre, usuario.nombre) && Objects.equals(apellido, usuario.apellido) && Objects.equals(fechaNacimiento, usuario.fechaNacimiento) && Objects.equals(email, usuario.email) && Objects.equals(password, usuario.password) && Objects.equals(foto, usuario.foto);
+        return usuarioId == usuario.usuarioId && edad == usuario.edad && Objects.equals(nombre, usuario.nombre) && Objects.equals(apellido, usuario.apellido) && Objects.equals(fechaNacimiento, usuario.fechaNacimiento) && Objects.equals(email, usuario.email) && Objects.equals(password, usuario.password) && Objects.equals(foto, usuario.foto) && Objects.equals(tipoUsuario, usuario.tipoUsuario);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nombre, apellido, edad, fechaNacimiento, email, password, foto, rolLider, usuarioId);
+        return Objects.hash(usuarioId, nombre, apellido, edad, fechaNacimiento, email, password, foto, tipoUsuario);
     }
 
     /**
@@ -157,15 +137,15 @@ public class Usuario {
     @Override
     public String toString() {
         return "Usuario{" +
-                "nombre='" + nombre + '\'' +
+                "usuarioId=" + usuarioId +
+                ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", edad=" + edad +
-                ", fechaNacimiento=" + fechaNacimiento +
+                ", fechaNacimiento='" + fechaNacimiento + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", foto='" + foto + '\'' +
-                ", rolLider=" + rolLider +
-                ", usuarioId=" + usuarioId +
+                ", tipoUsuario='" + tipoUsuario + '\'' +
                 '}';
     }
 }
