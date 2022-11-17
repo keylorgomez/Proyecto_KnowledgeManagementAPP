@@ -49,6 +49,7 @@ public class UsuarioDao {
         try {
             Statement statement = connectDB.createStatement();
             ResultSet queryResult = statement.executeQuery(verifyLogin);
+
             while (queryResult.next()) {
                 if (queryResult.getInt(1) == 1) {
 
@@ -85,11 +86,19 @@ public class UsuarioDao {
         }
         Conexion.closeConnection(connectDB);
         return usurioExistente;
-
-
     }
+    public String getTipoUsuario(String email) throws SQLException {
+        Connection connection=this.obtenerConexion.getConnection();
+        String SQLidUser = "SELECT tipoUsuario FROM usuarios WHERE email = " + "'" + email + "'";
+        PreparedStatement sentencia2 = connection.prepareStatement(SQLidUser);
+        ResultSet rs = sentencia2.executeQuery();
 
-
+        String tipoUsuario="";
+        if (rs.next()) {
+            tipoUsuario = rs.getString("tipoUsuario");
+        }
+        return tipoUsuario;
+    }
 }
 
 
