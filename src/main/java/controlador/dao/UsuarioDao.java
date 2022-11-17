@@ -14,8 +14,8 @@ public class UsuarioDao {
     public boolean registrarUsuario(Usuario usuario){
         try {
             String SQL="insert into usuarios(nombre,apellido,edad,fechaNacimiento," +
-                    "email,contrasenna,foto)" +
-                    "values(?,?,?,?,?,?,?)";
+                    "email,contrasenna,foto,tipoUsuario)" +
+                    "values(?,?,?,?,?,?,?,?)";
             Connection connection=this.obtenerConexion.getConnection();
             PreparedStatement sentencia=connection.prepareStatement(SQL);
 
@@ -26,6 +26,7 @@ public class UsuarioDao {
             sentencia.setString(5, usuario.getEmail());
             sentencia.setString(6, usuario.getPassword());
             sentencia.setString(7, usuario.getFoto());
+            sentencia.setString(8,usuario.getTipoUsuario());
 
             sentencia.executeUpdate();
             sentencia.close();
