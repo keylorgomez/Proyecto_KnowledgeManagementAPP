@@ -50,7 +50,7 @@ public class RegistroUsuarioControlador {
      */
 
     public RegistroUsuarioControlador() {
-        usuario = new Usuario("","",0,"","","","");
+        usuario = new Usuario("","",0,"","","","","");
         labelRegistro = new Label();
         usuario = new Usuario();
         usuarioDao = new UsuarioDao();
@@ -72,7 +72,9 @@ public class RegistroUsuarioControlador {
         Pattern Contrasenna=null;
         Matcher ResultadoContra=null;
 
-        Contrasenna=Pattern.compile( "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,20}$");
+
+
+        Contrasenna=Pattern.compile( "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,20}$"); //CAMBIO REALIZADO
         ResultadoCorreo= Correo.matcher(email);
         ResultadoContra=Contrasenna.matcher(password);
 
@@ -88,7 +90,7 @@ public class RegistroUsuarioControlador {
             alert.setHeaderText(null);
             alert.setTitle("Incorrecto");
             alert.setContentText("La contraseña debe contener de 6 a 8 caracteres.\n" +
-                    "Tambíen incluir almenos una mayúscula, una minúscula, un número y un caracter especial.");
+                    "Tambíen incluir almenos una mayúscula, una minúscula, un número y un caracter especial."); //CAMBIO
             alert.showAndWait();
             return false;
         }else{
@@ -115,7 +117,8 @@ public class RegistroUsuarioControlador {
                 if(verificanoNuevoUsuario==false){
                     boolean rsp= true;
                     int edad= calculoEdad(fechaNacimientoUsuario);
-                    usuario = new Usuario(nombreUsuario, apellidoUsuario, edad, fechaNacimientoUsuario, emailUsuario, passwordUsuario, foto);
+                    String tipoUsuario=null;
+                    usuario = new Usuario(nombreUsuario, apellidoUsuario, edad, fechaNacimientoUsuario, emailUsuario, passwordUsuario, foto,tipoUsuario);
                     rsp= usuarioDao.registrarUsuario(usuario);
                     Alert alert=new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Éxito");
@@ -129,7 +132,7 @@ public class RegistroUsuarioControlador {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setHeaderText(null);
                     alert.setTitle("Error");
-                    alert.setContentText("Ya se encuentra un usuario registrado con el mismo correo electrónico.");
+                    alert.setContentText("Ya se encuentra un usuario registrado con el mismo correo electrónico");
                     alert.showAndWait();
                 }
             }
