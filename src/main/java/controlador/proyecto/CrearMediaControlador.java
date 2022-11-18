@@ -64,9 +64,15 @@ public class CrearMediaControlador {
             alert.showAndWait();
             return rsp=false;
         }else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Exito");
+            alert.setContentText("Se registro exitosamente la media");
+            alert.showAndWait();
             media=new Media(autor,foto,fechaCreacion);
             rsp= mediaDao.registrarMedia(media);
             return rsp=true;
+
         }
     }
     public String buscarFoto() {
