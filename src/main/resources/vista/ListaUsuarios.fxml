@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="502.0" prefWidth="898.0" style="-fx-background-color: #082F32;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.proyecto.ListaUsuariosController">
+<AnchorPane prefHeight="502.0" prefWidth="850.0" style="-fx-background-color: #082F32;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.proyecto.ListaUsuariosController">
     <children>
         <AnchorPane layoutX="20.0" layoutY="131.0" prefHeight="254.0" prefWidth="211.0" style="-fx-background-color: #fff; -fx-border-color: #e84f31; -fx-border-radius: 7px;">
             <children>
@@ -20,7 +19,7 @@
                 <Button fx:id="btnRegresar" layoutX="66.0" layoutY="192.0" mnemonicParsing="false" onAction="#Regresar" prefWidth="80.0" style="-fx-background-color: #E84F31; -fx-font-weight: bold;" text="Salir" textFill="WHITE" />
             </children>
         </AnchorPane>
-        <TableView fx:id="tbUsuarios" layoutX="252.0" layoutY="73.0" prefHeight="366.0" prefWidth="628.0" />
+        <TableView fx:id="tbUsuarios" layoutX="252.0" layoutY="73.0" prefHeight="366.0" prefWidth="570.0" style="-fx-border-color: #E84F31; -fx-border-radius: 7px; -fx-background-color: fff;" />
         <Label layoutX="289.0" layoutY="23.0" style="-fx-border-color: fff; -fx-background-color: fff;" text="Lista de usuarios registrados" textFill="#e84f31">
             <font>
                 <Font name="System Bold" size="24.0" />
