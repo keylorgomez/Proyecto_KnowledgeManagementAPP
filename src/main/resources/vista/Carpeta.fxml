@@ -14,8 +14,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Button fx:id="btnCrearCarpeta" layoutX="102.0" layoutY="165.0" mnemonicParsing="false" onAction="#crearProyecto" style="-fx-background-color: #E84F31; -fx-font-weight: bold;" text="Crear Proyecto " textFill="WHITE" />
-            <Button fx:id="btnRegresar" layoutX="288.0" layoutY="164.0" mnemonicParsing="false" onAction="#regresarCrearProyecto" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: #E84F31; -fx-border-radius: 7px; -fx-font-weight: bold;" text="Regresar" textFill="WHITE" />
+            <Button fx:id="btnCrearCarpeta" layoutX="166.0" layoutY="168.0" mnemonicParsing="false" onAction="#crearProyecto" style="-fx-background-color: #E84F31; -fx-font-weight: bold;" text="Regresar Proyecto " textFill="WHITE" />
             <Button fx:id="btnMedia" layoutX="263.0" layoutY="105.0" mnemonicParsing="false" onAction="#irCrearMedia" prefHeight="27.0" prefWidth="147.0" style="-fx-background-color: #E84F31; -fx-font-weight: bold;" text="Agregar Media" textFill="WHITE" />
             <Button fx:id="btnAgregarInvestigacion" layoutX="80.0" layoutY="105.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="147.0" style="-fx-background-color: #E84F31; -fx-font-weight: bold;" text="Agregar Investigación" textFill="WHITE" />
          </children>

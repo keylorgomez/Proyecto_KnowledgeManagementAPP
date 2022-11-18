@@ -17,7 +17,7 @@ public class MediaDao {
 
     public boolean registrarMedia(Media media){
         try {
-            String SQL="insert into media(nombre,autor,fechaCreacion)"+
+            String SQL="insert into media(nombreArchivo,autor,fechaCreacion)"+
                     "values(?,?,?)";
             Connection connection=this.obtenerConexion.getConnection();
             PreparedStatement sentencia= connection.prepareStatement(SQL);

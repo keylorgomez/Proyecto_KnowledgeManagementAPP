@@ -25,7 +25,7 @@ public class CrearCarpetaControlador {
     @FXML
     private Button btnCrearCarpeta;
     @FXML private Button btnRegresar;
-    @FXML private Button btntMedia;
+    @FXML Button btnMedia;
 
 
     private Proyecto proyecto;
@@ -35,7 +35,7 @@ public class CrearCarpetaControlador {
 
 
     @FXML
-    void regresarCrearProyecto(ActionEvent event) throws IOException {
+    void crearProyecto(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("CrearProyecto.fxml")));
         Stage window = (Stage) btnCrearCarpeta.getScene().getWindow();
         window.setScene(new Scene(root));
@@ -43,7 +43,7 @@ public class CrearCarpetaControlador {
 
     public void irCrearMedia() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("CrearMedia.fxml")));
-        Stage window = (Stage) btntMedia.getScene().getWindow();
+        Stage window = (Stage) btnMedia.getScene().getWindow();
         window.setScene(new Scene(root));
     }
 
