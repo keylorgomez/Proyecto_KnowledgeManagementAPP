@@ -131,6 +131,28 @@ public class UsuarioDao {
         }
         return listaUsuarios;
     }
+
+    public boolean asignarRol(Usuario usuario){
+        try {
+            String SQL="update usuarios set tipoUsuario=? WHERE idUsuario=?";
+            Connection connection=this.obtenerConexion.getConnection();
+            PreparedStatement sentencia=connection.prepareStatement(SQL);
+            sentencia.setString(1,usuario.getTipoUsuario());
+
+            sentencia.setInt(2, usuario.getUsuarioId());
+
+            sentencia.executeUpdate();
+            sentencia.close();
+            return true;
+
+        }catch (Exception e){
+            System.err.println("Ocurrió un error al editar la tarea");
+            System.err.println("Mensaje del error: "+e.getMessage());
+            System.err.println("Detalle del error: ");
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
 
 

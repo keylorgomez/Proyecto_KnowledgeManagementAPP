@@ -15,7 +15,7 @@
                 <Label layoutX="34.0" layoutY="45.0" style="-fx-font-weight: bold;" text="desea asignar al usuario:" />
                 <RadioButton fx:id="rbtMiembro" layoutX="24.0" layoutY="94.0" mnemonicParsing="false" style="-fx-font-weight: bold;" text="Miembro" />
                 <RadioButton fx:id="rbtLider" layoutX="124.0" layoutY="94.0" mnemonicParsing="false" style="-fx-font-weight: bold;" text="Líder" />
-                <Button fx:id="btnAsignar" layoutX="66.0" layoutY="154.0" mnemonicParsing="false" onAction="#AsignarRol" prefWidth="80.0" style="-fx-background-color: #E84F31; -fx-font-weight: bold;" text="Asignar" textFill="WHITE" />
+                <Button fx:id="btnAsignar" disable="true" layoutX="66.0" layoutY="154.0" mnemonicParsing="false" onAction="#AsignarRol" prefWidth="80.0" style="-fx-background-color: #E84F31; -fx-font-weight: bold;" text="Asignar" textFill="WHITE" />
                 <Button fx:id="btnRegresar" layoutX="66.0" layoutY="192.0" mnemonicParsing="false" onAction="#Regresar" prefWidth="80.0" style="-fx-background-color: #E84F31; -fx-font-weight: bold;" text="Salir" textFill="WHITE" />
             </children>
         </AnchorPane>

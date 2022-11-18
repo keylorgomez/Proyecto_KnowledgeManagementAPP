@@ -74,7 +74,7 @@ public class RegistroUsuarioControlador {
 
 
 
-        Contrasenna=Pattern.compile( "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,20}$"); //CAMBIO REALIZADO
+        Contrasenna=Pattern.compile( "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{6,8}$"); //CAMBIO REALIZADO
         ResultadoCorreo= Correo.matcher(email);
         ResultadoContra=Contrasenna.matcher(password);
 
@@ -117,7 +117,7 @@ public class RegistroUsuarioControlador {
                 if(verificanoNuevoUsuario==false){
                     boolean rsp= true;
                     int edad= calculoEdad(fechaNacimientoUsuario);
-                    String tipoUsuario=null;
+                    String tipoUsuario="Sin rol";
                     usuario = new Usuario(nombreUsuario, apellidoUsuario, edad, fechaNacimientoUsuario, emailUsuario, passwordUsuario, foto,tipoUsuario);
                     rsp= usuarioDao.registrarUsuario(usuario);
                     Alert alert=new Alert(Alert.AlertType.INFORMATION);
