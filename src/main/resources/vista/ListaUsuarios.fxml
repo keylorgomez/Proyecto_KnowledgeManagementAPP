@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="502.0" prefWidth="898.0" style="-fx-background-color: #082F32;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.proyecto.ListaUsuariosController">
+    <children>
+        <AnchorPane layoutX="20.0" layoutY="131.0" prefHeight="254.0" prefWidth="211.0" style="-fx-background-color: #fff; -fx-border-color: #e84f31; -fx-border-radius: 7px;">
+            <children>
+                <Label layoutX="17.0" layoutY="27.0" style="-fx-font-weight: bold;" text="Seleccione el tipo de rol que le" />
+                <Label layoutX="34.0" layoutY="45.0" style="-fx-font-weight: bold;" text="desea asignar al usuario:" />
+                <RadioButton fx:id="rbtMiembro" layoutX="24.0" layoutY="94.0" mnemonicParsing="false" style="-fx-font-weight: bold;" text="Miembro" />
+                <RadioButton fx:id="rbtLider" layoutX="124.0" layoutY="94.0" mnemonicParsing="false" style="-fx-font-weight: bold;" text="Líder" />
+                <Button fx:id="btnAsignar" layoutX="66.0" layoutY="154.0" mnemonicParsing="false" onAction="#AsignarRol" prefWidth="80.0" style="-fx-background-color: #E84F31; -fx-font-weight: bold;" text="Asignar" textFill="WHITE" />
+                <Button fx:id="btnRegresar" layoutX="66.0" layoutY="192.0" mnemonicParsing="false" onAction="#Regresar" prefWidth="80.0" style="-fx-background-color: #E84F31; -fx-font-weight: bold;" text="Salir" textFill="WHITE" />
+            </children>
+        </AnchorPane>
+        <TableView fx:id="tbUsuarios" layoutX="252.0" layoutY="73.0" prefHeight="366.0" prefWidth="628.0" />
+        <Label layoutX="289.0" layoutY="23.0" style="-fx-border-color: fff; -fx-background-color: fff;" text="Lista de usuarios registrados" textFill="#e84f31">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+        </Label>
+        <Button fx:id="btnIrMenuPrincipal" layoutX="449.0" layoutY="451.0" mnemonicParsing="false" onAction="#IrMenuPrincipal" style="-fx-background-color: #E84F31; -fx-font-weight: bold;" text="Ir menú principal" textFill="WHITE" />
+    </children>
+</AnchorPane>

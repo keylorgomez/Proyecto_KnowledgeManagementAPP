@@ -4,6 +4,8 @@ import controlador.database.Conexion;
 import modelo.Usuario;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UsuarioDao {
     private Conexion obtenerConexion;
@@ -98,6 +100,36 @@ public class UsuarioDao {
             tipoUsuario = rs.getString("tipoUsuario");
         }
         return tipoUsuario;
+    }
+    public List<Usuario> listarUsuarios(){
+        List<Usuario> listaUsuarios = new ArrayList<>();
+        try{
+            String SQL="select idUsuario, nombre,apellido, edad, fechaNacimiento, email, tipoUsuario from usuarios";
+            Connection connection=this.obtenerConexion.getConnection();
+            PreparedStatement sentencia=connection.prepareStatement(SQL);
+            ResultSet data=sentencia.executeQuery();
+            while (data.next()==true){
+                Usuario usuario=new Usuario();
+                usuario.setUsuarioId(data.getInt(1));
+                usuario.setNombre(data.getString(2));
+                usuario.setApellido(data.getString(3));
+                usuario.setEdad(data.getInt(4));
+                usuario.setFechaNacimiento(data.getString(5));
+                usuario.setEmail(data.getString(6));
+                usuario.setTipoUsuario(data.getString(7));
+
+                listaUsuarios.add(usuario);
+
+            }
+            data.close();
+            sentencia.close();
+        }catch (Exception e){
+            System.err.println("Ocurrió un error al listar los usuarios");
+            System.err.println("Mensaje del error: "+e.getMessage());
+            System.err.println("Detalle del error: ");
+            e.printStackTrace();
+        }
+        return listaUsuarios;
     }
 }
 
