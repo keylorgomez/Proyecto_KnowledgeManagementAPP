@@ -87,8 +87,12 @@ public class LoginControlador {
             Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("PantallaEspera.fxml")));
             Stage window = (Stage) btnIniciar.getScene().getWindow();
             window.setScene(new Scene(root));
+        }else if (tipoUsuario.equals("Gestor")){
+            Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("ListaUsuarios.fxml")));
+            Stage window = (Stage) btnIniciar.getScene().getWindow();
+            window.setScene(new Scene(root));
         }else{
-            Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("CrearProyecto.fxml")));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("MenuInicial.fxml")));
             Stage window = (Stage) btnIniciar.getScene().getWindow();
             window.setScene(new Scene(root));
         }
