@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #082F32;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.proyecto.CrearMediaControlador">
+   <children>
+      <AnchorPane layoutX="49.0" layoutY="35.0" prefHeight="332.0" prefWidth="504.0" style="-fx-background-color: fff; -fx-border-color: #E84F31; -fx-border-radius: 4px;">
+         <children>
+            <Label alignment="CENTER" layoutX="128.0" layoutY="36.0" prefHeight="27.0" prefWidth="248.0" text="Añadir Media al Proyecto" textAlignment="CENTER" textFill="#082f32">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtAutor" focusTraversable="false" layoutX="173.0" layoutY="79.0" promptText="Autor" style="-fx-border-style: solid; -fx-border-color: #e84f31; -fx-border-radius: 10px; -fx-background-color: #fff; -fx-font-weight: bold; -fx-alignment: center;" styleClass="inputs" />
+            <Button fx:id="btnbuscarMedia" layoutX="199.0" layoutY="225.0" mnemonicParsing="false" onAction="#buscarFoto" prefHeight="26.0" prefWidth="106.0" style="-fx-background-color: #e84f31; -fx-border-radius: 10px;" text="Buscar Media" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <ImageView fx:id="mediaImagen" fitHeight="85.0" fitWidth="122.0" layoutX="191.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="btnCrearMedia" layoutX="122.0" layoutY="285.0" mnemonicParsing="false" onAction="#crearMedia" style="-fx-background-color: #E84F31; -fx-font-weight: bold;" text="Crear Media" textFill="WHITE" />
+            <Button fx:id="btnRegresar" layoutX="285.0" layoutY="285.0" mnemonicParsing="false" onAction="#regresarCrearCarpeta" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: #E84F31; -fx-border-radius: 7px; -fx-font-weight: bold;" text="Regresar" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

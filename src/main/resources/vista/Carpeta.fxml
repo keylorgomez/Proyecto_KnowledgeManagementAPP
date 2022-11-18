@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -10,15 +9,15 @@
    <children>
       <AnchorPane layoutX="55.0" layoutY="55.0" prefHeight="290.0" prefWidth="489.0" style="-fx-background-color: fff; -fx-border-color: #E84F31; -fx-border-radius: 4px;">
          <children>
-            <Label layoutX="132.0" layoutY="44.0" prefHeight="27.0" prefWidth="248.0" text="Añadir Carpeta Al Proyecto" textFill="#082f32">
+            <Label layoutX="132.0" layoutY="44.0" prefHeight="27.0" prefWidth="248.0" text="Añadir Carpeta al Proyecto" textFill="#082f32">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="txtinvestigacion" focusTraversable="false" layoutX="67.0" layoutY="105.0" promptText="Investigación" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 10px; -fx-background-color: fff; -fx-font-weight: bold; -fx-alignment: center;" />
-            <TextField fx:id="txtmedia" focusTraversable="false" layoutX="256.0" layoutY="105.0" prefHeight="25.0" prefWidth="174.0" promptText="Media" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 10px; -fx-background-color: fff; -fx-font-weight: bold; -fx-alignment: center;" />
-            <Button fx:id="btnCrearCarpeta" layoutX="114.0" layoutY="164.0" mnemonicParsing="false" onAction="#crearProyecto" style="-fx-background-color: #E84F31; -fx-font-weight: bold;" text="Crear Proyecto " textFill="WHITE" />
-            <Button fx:id="btnRegresar" layoutX="263.0" layoutY="164.0" mnemonicParsing="false" onAction="#regresarCrearProyecto" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: #E84F31; -fx-border-radius: 7px; -fx-font-weight: bold;" text="Regresar" textFill="WHITE" />
+            <Button fx:id="btnCrearCarpeta" layoutX="102.0" layoutY="165.0" mnemonicParsing="false" onAction="#crearProyecto" style="-fx-background-color: #E84F31; -fx-font-weight: bold;" text="Crear Proyecto " textFill="WHITE" />
+            <Button fx:id="btnRegresar" layoutX="288.0" layoutY="164.0" mnemonicParsing="false" onAction="#regresarCrearProyecto" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: #E84F31; -fx-border-radius: 7px; -fx-font-weight: bold;" text="Regresar" textFill="WHITE" />
+            <Button fx:id="btnMedia" layoutX="263.0" layoutY="105.0" mnemonicParsing="false" onAction="#irCrearMedia" prefHeight="27.0" prefWidth="147.0" style="-fx-background-color: #E84F31; -fx-font-weight: bold;" text="Agregar Media" textFill="WHITE" />
+            <Button fx:id="btnAgregarInvestigacion" layoutX="80.0" layoutY="105.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="147.0" style="-fx-background-color: #E84F31; -fx-font-weight: bold;" text="Agregar Investigación" textFill="WHITE" />
          </children>
       </AnchorPane>
    </children>

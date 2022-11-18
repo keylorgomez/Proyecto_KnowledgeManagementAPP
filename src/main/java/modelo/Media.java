@@ -28,6 +28,15 @@ public class Media {
         this.mediaId = mediaId;
     }
 
+    public Media(String nombreArchivo, String autor, LocalDate fechaCreacion) {
+        this.nombreArchivo = nombreArchivo;
+        this.autor = autor;
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    public Media() {
+
+    }
 
 
     public String getNombreArchivo() {

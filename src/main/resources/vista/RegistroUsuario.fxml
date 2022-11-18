@@ -34,7 +34,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Button fx:id="btnVolver" layoutX="262.0" layoutY="298.0" mnemonicParsing="false" onAction="#regresarInicio" prefHeight="26.0" prefWidth="90.0" style="-fx-background-color: #e84f31; -fx-border-radius: 10px;" text="Volver Inicio" textFill="WHITE">
+            <Button fx:id="btnVolver" layoutX="262.0" layoutY="298.0" mnemonicParsing="false" onAction="#regresarCrearCarpeta" prefHeight="26.0" prefWidth="90.0" style="-fx-background-color: #e84f31; -fx-border-radius: 10px;" text="Regresar" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
