@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="300.0" prefWidth="500.0" style="-fx-background-color: #082F32;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.proyecto.CrearCarpetaController">
+    <children>
+        <GridPane alignment="CENTER" layoutX="38.0" layoutY="24.0" prefHeight="250.0" prefWidth="430.0" style="-fx-background-color: fff; -fx-border-color: #E84F31; -fx-border-radius: 4px;">
+            <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Label text="Gestión de Carpetas">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <HBox GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                    <children>
+                        <Label contentDisplay="CENTER" prefHeight="20.0" prefWidth="166.0" text="Ubicación de carpeta">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                            <padding>
+                                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                            </padding>
+                            <HBox.margin>
+                                <Insets bottom="10.0" top="10.0" />
+                            </HBox.margin>
+                        </Label>
+                        <TextField fx:id="txtRutaDeCarpeta" prefHeight="25.0" prefWidth="250.0" promptText="Pegue aqui dirección de la carpeta">
+                            <HBox.margin>
+                                <Insets bottom="10.0" top="10.0" />
+                            </HBox.margin>
+                        </TextField>
+                    </children>
+                </HBox>
+                <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+                    <children>
+                        <Label prefHeight="20.0" prefWidth="169.0" text="Nombre de Carpeta">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                            <padding>
+                                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                            </padding>
+                            <HBox.margin>
+                                <Insets bottom="10.0" top="10.0" />
+                            </HBox.margin>
+                        </Label>
+                        <TextField fx:id="txtNombreDeCarpeta" prefHeight="25.0" prefWidth="250.0" promptText="Nombre de la carpeta">
+                            <HBox.margin>
+                                <Insets bottom="10.0" top="10.0" />
+                            </HBox.margin>
+                        </TextField>
+                    </children>
+                </HBox>
+                <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
+                    <children>
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #E84F31; -fx-font-weight: bold;" text="Crear Carpeta" textAlignment="CENTER" textFill="WHITE">
+                            <HBox.margin>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </HBox.margin>
+                        </Button>
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #E84F31; -fx-font-weight: bold;" text="Borrar Carpeta" textAlignment="CENTER" textFill="WHITE">
+                            <HBox.margin>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                </HBox>
+            </children>
+        </GridPane>
+    </children>
+</AnchorPane>
