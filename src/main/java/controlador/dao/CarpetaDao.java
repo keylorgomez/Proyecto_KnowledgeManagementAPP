@@ -27,9 +27,9 @@ public class CarpetaDao {
             Connection connection=this.obtenerConexion.getConnection();
             PreparedStatement sentencia= connection.prepareStatement(SQL);
 
-            sentencia.setString(1,carpeta.getInvestigacion());
-            sentencia.setString(2, carpeta.getMedia());
-            sentencia.setInt(3,carpeta.getIdProyecto());
+            //sentencia.setString(1,carpeta.getInvestigacion());
+            //sentencia.setString(2, carpeta.getMedia());
+            //sentencia.setInt(3,carpeta.getIdProyecto());
 
             sentencia.executeUpdate();
             sentencia.close();
