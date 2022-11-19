@@ -8,62 +8,55 @@ public class Investigacion {
     /**
      * Atributos de la clase Investigacion
      */
-    private int InvestigacionId;
-    private String nombreAutor;
+    private String tituloInvestigacion;
+    private String CategoriaInvestigacion;
+    private String tema;
+    private String autor;
     private LocalDate fechaInicio;
     private LocalDate fechaModificacion;
-    private String titulo;
-    private ArrayList<String> subtitulos;
-    private ArrayList<String> textos;
-    private ArrayList<Media> maedia;
 
-    /**
-     * Se crea un constrctor con parametros de entrada
-     * @param investigacionId
-     * @param nombreAutor
-     * @param fechaInicio
-     * @param fechaModificacion
-     * @param titulo
-     * @param subtitulos
-     * @param textos
-     * @param maedia
-     */
+    public Investigacion() {
+    }
 
-
-    public Investigacion(int investigacionId, String nombreAutor, LocalDate fechaInicio, LocalDate fechaModificacion, String titulo, ArrayList<String> subtitulos, ArrayList<String> textos, ArrayList<Media> maedia) {
-        InvestigacionId = investigacionId;
-        this.nombreAutor = nombreAutor;
+    public Investigacion(String tituloInvestigacion, String categoriaInvestigacion, String tema, String autor, LocalDate fechaInicio, LocalDate fechaModificacion) {
+        this.tituloInvestigacion = tituloInvestigacion;
+        CategoriaInvestigacion = categoriaInvestigacion;
+        this.tema = tema;
+        this.autor = autor;
         this.fechaInicio = fechaInicio;
         this.fechaModificacion = fechaModificacion;
-        this.titulo = titulo;
-        this.subtitulos = subtitulos;
-        this.textos = textos;
-        this.maedia = maedia;
     }
 
-    /**
-     * Constructor generico
-     */
-
-    public Investigacion(){
-
+    public String getTituloInvestigacion() {
+        return tituloInvestigacion;
     }
 
-
-    public int getInvestigacionId() {
-        return InvestigacionId;
+    public void setTituloInvestigacion(String tituloInvestigacion) {
+        this.tituloInvestigacion = tituloInvestigacion;
     }
 
-    public void setInvestigacionId(int investigacionId) {
-        InvestigacionId = investigacionId;
+    public String getCategoriaInvestigacion() {
+        return CategoriaInvestigacion;
     }
 
-    public String getNombreAutor() {
-        return nombreAutor;
+    public void setCategoriaInvestigacion(String categoriaInvestigacion) {
+        CategoriaInvestigacion = categoriaInvestigacion;
     }
 
-    public void setNombreAutor(String nombreAutor) {
-        this.nombreAutor = nombreAutor;
+    public String getTema() {
+        return tema;
+    }
+
+    public void setTema(String tema) {
+        this.tema = tema;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
     }
 
     public LocalDate getFechaInicio() {
@@ -82,63 +75,23 @@ public class Investigacion {
         this.fechaModificacion = fechaModificacion;
     }
 
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public ArrayList<String> getSubtitulos() {
-        return subtitulos;
-    }
-
-    public void setSubtitulos(ArrayList<String> subtitulos) {
-        this.subtitulos = subtitulos;
-    }
-
-    public ArrayList<String> getTextos() {
-        return textos;
-    }
-
-    public void setTextos(ArrayList<String> textos) {
-        this.textos = textos;
-    }
-
-    public ArrayList<Media> getMaedia() {
-        return maedia;
-    }
-
-    public void setMaedia(ArrayList<Media> maedia) {
-        this.maedia = maedia;
-    }
-
-    //equals
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Investigacion that = (Investigacion) o;
-        return InvestigacionId == that.InvestigacionId && Objects.equals(nombreAutor, that.nombreAutor) && Objects.equals(fechaInicio, that.fechaInicio) && Objects.equals(fechaModificacion, that.fechaModificacion) && Objects.equals(titulo, that.titulo) && Objects.equals(subtitulos, that.subtitulos) && Objects.equals(textos, that.textos) && Objects.equals(maedia, that.maedia);
-    }
-    @Override
-    public int hashCode() {
-        return Objects.hash(InvestigacionId, nombreAutor, fechaInicio, fechaModificacion, titulo, subtitulos, textos, maedia);
+        return Objects.equals(tituloInvestigacion, that.tituloInvestigacion);
     }
 
-    //toString
     @Override
     public String toString() {
         return "Investigacion{" +
-                "InvestigacionId=" + InvestigacionId +
-                ", nombreAutor='" + nombreAutor + '\'' +
+                "tituloInvestigacion='" + tituloInvestigacion + '\'' +
+                ", CategoriaInvestigacion='" + CategoriaInvestigacion + '\'' +
+                ", tema='" + tema + '\'' +
+                ", autor='" + autor + '\'' +
                 ", fechaInicio=" + fechaInicio +
                 ", fechaModificacion=" + fechaModificacion +
-                ", titulo='" + titulo + '\'' +
-                ", subtitulos=" + subtitulos +
-                ", textos=" + textos +
-                ", maedia=" + maedia +
                 '}';
     }
 }

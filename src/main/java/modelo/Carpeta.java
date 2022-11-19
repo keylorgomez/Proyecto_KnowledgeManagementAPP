@@ -1,66 +1,47 @@
 package modelo;
 
+import java.util.Objects;
+
 public class Carpeta {
-    /**
-     * Atributos de la clase Carpeta
-     */
-    private int idCarpeta;
+    String rutaCarpeta ;
+    String nombreCarpeta;
 
-    private String investigacion;
-
-    private String media;
-
-    private int idProyecto;
-
-    public Carpeta(int idCarpeta, String investigacion, String media, int idProyecto) {
-        this.idCarpeta = idCarpeta;
-        this.investigacion = investigacion;
-        this.media = media;
-        this.idProyecto = idProyecto;
-    }
-
-    public Carpeta(String investigacion, String media, int idProyecto) {
-        this.investigacion = investigacion;
-        this.media = media;
-        this.idProyecto = idProyecto;
-    }
-
-    /**
-     * Constructor Por defecto
-     */
     public Carpeta() {
     }
-
-
-    public int getIdCarpeta() {
-        return idCarpeta;
+    public Carpeta(String rutaCarpeta, String nombreCarpeta) {
+        this.rutaCarpeta = rutaCarpeta;
+        this.nombreCarpeta = nombreCarpeta;
     }
 
-    public void setIdCarpeta(int idCarpeta) {
-        this.idCarpeta = idCarpeta;
+    public String getRutaCarpeta() {
+        return rutaCarpeta;
     }
 
-    public String getInvestigacion() {
-        return investigacion;
+    public void setRutaCarpeta(String rutaCarpeta) {
+        this.rutaCarpeta = rutaCarpeta;
     }
 
-    public void setInvestigacion(String investigacion) {
-        this.investigacion = investigacion;
+    public String getNombreCarpeta() {
+        return nombreCarpeta;
     }
 
-    public String getMedia() {
-        return media;
+    public void setNombreCarpeta(String nombreCarpeta) {
+        this.nombreCarpeta = nombreCarpeta;
     }
 
-    public void setMedia(String media) {
-        this.media = media;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Carpeta carpeta = (Carpeta) o;
+        return Objects.equals(rutaCarpeta, carpeta.rutaCarpeta) && Objects.equals(nombreCarpeta, carpeta.nombreCarpeta);
     }
 
-    public int getIdProyecto() {
-        return idProyecto;
+    @Override
+    public String toString() {
+        return "Carpeta{" +
+                "rutaCarpeta='" + rutaCarpeta + '\'' +
+                ", nombreCarpeta='" + nombreCarpeta + '\'' +
+                '}';
     }
-
-    public void setIdProyecto(int idProyecto) {
-        this.idProyecto = idProyecto;
-    }
-}
+}// fin clase carpeta
