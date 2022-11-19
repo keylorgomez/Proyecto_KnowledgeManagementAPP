@@ -18,7 +18,8 @@ public class Investigacion {
     public Investigacion() {
     }
 
-    public Investigacion(String tituloInvestigacion, String categoriaInvestigacion, String tema, String autor, LocalDate fechaInicio, LocalDate fechaModificacion) {
+    public Investigacion(String tituloInvestigacion, String categoriaInvestigacion, String tema,
+                         String autor, LocalDate fechaInicio, LocalDate fechaModificacion) {
         this.tituloInvestigacion = tituloInvestigacion;
         CategoriaInvestigacion = categoriaInvestigacion;
         this.tema = tema;
