@@ -99,10 +99,13 @@
                 <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
             </padding>
             <children>
-                <Button fx:id="btnGuardarInvestigacion" mnemonicParsing="false" onAction="#crearInvestigacion" style="-fx-background-color: #E84F31;" text="Guardar Investigación" textFill="WHITE">
+                <Button fx:id="btnGuardarInvestigacion" mnemonicParsing="false" onAction="#crearInvestigacion" style="-fx-background-color: #E84F31;" text="Guardar Investigación" textAlignment="CENTER" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="12.0" />
                     </font>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
                 </Button>
             </children>
         </HBox>

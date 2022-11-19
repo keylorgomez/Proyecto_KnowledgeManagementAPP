@@ -44,4 +44,4 @@ public class Carpeta {
                 ", nombreCarpeta='" + nombreCarpeta + '\'' +
                 '}';
     }
-}// fin clase carpeta
+}// fin de clase
