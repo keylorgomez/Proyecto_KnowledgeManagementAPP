@@ -3,22 +3,22 @@ import controlador.dao.ProyectoDao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import modelo.Proyecto;
 import vista.Inicio;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -50,21 +50,86 @@ public class ListaProyectosController implements Initializable {
 
     private ProyectoDao proyectoDao;
 
+    private ContextMenu cmOpciones;
+    private Proyecto proyectoSelecionado;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.proyectoDao=new ProyectoDao();
+        btnCancelar.setDisable(true);
         CargarProyectos();
+
+        cmOpciones=new ContextMenu();
+
+        MenuItem editarProyecto=new MenuItem("EditarProyecto");
+        cmOpciones.getItems().addAll(editarProyecto);
+        editarProyecto.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                int index=tbProyectos.getSelectionModel().getSelectedIndex();
+                proyectoSelecionado=tbProyectos.getItems().get(index);
+                txtNombre.setText(proyectoSelecionado.getNombre());
+                txtCategoria.setText(proyectoSelecionado.getCategoria());
+                txtVersion.setText(proyectoSelecionado.getNumeroProyecto());
+                txtRepositorio.setText(proyectoSelecionado.getRepositorio());
+
+                btnCancelar.setDisable(false);
+                btnEditar.setDisable(false);
+            }
+        });
+        tbProyectos.setContextMenu(cmOpciones);
 
     }
 
     @FXML
     void Cancelar(ActionEvent event) {
-
+        proyectoSelecionado=null;
+        limpiarCampos();
+        btnCancelar.setDisable(true);
+        btnEditar.setDisable(true);
     }
 
     @FXML
     void EditarProyecto(ActionEvent event) {
+        if(proyectoSelecionado!=null){
+            proyectoSelecionado.setNombre(txtNombre.getText());
+            proyectoSelecionado.setCategoria(txtCategoria.getText());
+            proyectoSelecionado.setNumeroProyecto(txtVersion.getText());
+            proyectoSelecionado.setRepositorio(txtRepositorio.getText());
+            LocalDate FechaModi;
+            FechaModi=LocalDate.now();
+            String FechaModiString=FechaModi.toString();
+            proyectoSelecionado.setUltimaModificacion(FechaModiString);
 
+            boolean rsp=this.proyectoDao.editarProyecto(proyectoSelecionado);
+            if (rsp==true){
+                Alert alert=new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Éxito");
+                alert.setHeaderText(null);
+                alert.setContentText("Se editó correctamente la tarea.");
+                alert.initStyle(StageStyle.UTILITY);
+                alert.showAndWait();
+                limpiarCampos();
+                CargarProyectos();
+                proyectoSelecionado=null;
+                btnCancelar.setDisable(true);
+                btnEditar.setDisable(true);
+            }else {
+                Alert alert=new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Se presentó un error al editar el proyecto.");
+                alert.initStyle(StageStyle.UTILITY);
+                alert.showAndWait();
+            }
+        }
+
+    }
+    public void limpiarCampos(){
+        txtNombre.setText("");
+        txtCategoria.setText("");
+        txtVersion.setText("");
+        txtRepositorio.setText("");
     }
 
     @FXML
