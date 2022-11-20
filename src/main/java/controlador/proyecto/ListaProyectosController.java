@@ -21,6 +21,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ListaProyectosController implements Initializable {
@@ -61,8 +62,9 @@ public class ListaProyectosController implements Initializable {
 
         cmOpciones=new ContextMenu();
 
-        MenuItem editarProyecto=new MenuItem("EditarProyecto");
-        cmOpciones.getItems().addAll(editarProyecto);
+        MenuItem editarProyecto=new MenuItem("Editar Proyecto");
+        MenuItem eliminarProyecto=new MenuItem("Eliminar Proyecto");
+        cmOpciones.getItems().addAll(editarProyecto,eliminarProyecto);
         editarProyecto.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -75,6 +77,39 @@ public class ListaProyectosController implements Initializable {
 
                 btnCancelar.setDisable(false);
                 btnEditar.setDisable(false);
+            }
+        });
+        eliminarProyecto.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                int index=tbProyectos.getSelectionModel().getSelectedIndex();
+                Proyecto proyectoEliminar=tbProyectos.getItems().get(index);
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmación");
+                alert.setHeaderText(null);
+                alert.setContentText("¿Seguro que desea eliminar el proyeto: "+proyectoEliminar.getNombre()+"?");
+                alert.initStyle(StageStyle.UTILITY);
+                Optional<ButtonType> result= alert.showAndWait();
+
+                if (result.get()==ButtonType.OK){
+                    boolean rsp=proyectoDao.eliminarProyecto(proyectoEliminar.getIdProyecto());
+                    if (rsp == true) {
+                        Alert alert2=new Alert(Alert.AlertType.INFORMATION);
+                        alert2.setTitle("Éxito");
+                        alert2.setHeaderText(null);
+                        alert2.setContentText("Se eliminó correctamente el proyecto.");
+                        alert2.initStyle(StageStyle.UTILITY);
+                        alert2.showAndWait();
+                        CargarProyectos();
+                    }else {
+                        Alert alert2=new Alert(Alert.AlertType.ERROR);
+                        alert2.setTitle("Error");
+                        alert2.setHeaderText(null);
+                        alert2.setContentText("Se presentó un error y no se logró eliminar el proyecto.");
+                        alert2.initStyle(StageStyle.UTILITY);
+                        alert2.showAndWait();
+                    }
+                }
             }
         });
         tbProyectos.setContextMenu(cmOpciones);
@@ -106,7 +141,7 @@ public class ListaProyectosController implements Initializable {
                 Alert alert=new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Éxito");
                 alert.setHeaderText(null);
-                alert.setContentText("Se editó correctamente la tarea.");
+                alert.setContentText("Se editó correctamente el proyecto.");
                 alert.initStyle(StageStyle.UTILITY);
                 alert.showAndWait();
                 limpiarCampos();
