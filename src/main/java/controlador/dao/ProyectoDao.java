@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProyectoDao {
     private Conexion obtenerConexion;
@@ -57,5 +59,34 @@ public class ProyectoDao {
             }
             return idUsuario;
         }
+    public List<Proyecto> listarProyectos(){
+        List<Proyecto> listaProyecto=new ArrayList<>();
+        try {
+            String SQL="select idProyecto, nombre,categoria,numeroProyecto,repositorio,fechaCreacion,ultimaModificacion from proyecto";
+            Connection connection=this.obtenerConexion.getConnection();
+            PreparedStatement sentencia=connection.prepareStatement(SQL);
+            ResultSet data=sentencia.executeQuery();
+            while (data.next()==true){
+                Proyecto proyecto=new Proyecto();
+                proyecto.setIdProyecto(data.getInt(1));
+                proyecto.setNombre(data.getString(2));
+                proyecto.setCategoria(data.getString(3));
+                proyecto.setNumeroProyecto(data.getString(4));
+                proyecto.setRepositorio(data.getString(5));
+                proyecto.setFechaCreacion(data.getString(6));
+                proyecto.setUltimaModificacion(data.getString(7));
+
+                listaProyecto.add(proyecto);
+            }
+            data.close();
+            sentencia.close();
+        }catch (Exception e){
+            System.err.println("Ocurrió un error al listar los proyectos");
+            System.err.println("Mensaje del error: "+e.getMessage());
+            System.err.println("Detalle del error: ");
+            e.printStackTrace();
+        }
+        return listaProyecto;
+    }
 
 }

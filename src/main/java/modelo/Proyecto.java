@@ -14,9 +14,9 @@ public class Proyecto {
 
     public String nombre;
 
-    public LocalDate fechaCreacion;
+    public String fechaCreacion;
 
-    public LocalDate ultimaModificacion;
+    public String ultimaModificacion;
 
     public String repositorio;
 
@@ -36,7 +36,7 @@ public class Proyecto {
      * @param idUsuario
      */
 
-    public Proyecto(int idProyecto, String nombre , String categoria, LocalDate fechaCreacion, LocalDate ultimaModificacion, String repositorio, int idCarpeta, int idUsuario) {
+    public Proyecto(int idProyecto, String nombre , String categoria, String fechaCreacion, String ultimaModificacion, String repositorio, int idCarpeta, int idUsuario) {
         this.idProyecto = idProyecto;
         this.categoria = categoria;
         this.nombre = nombre;
@@ -47,7 +47,7 @@ public class Proyecto {
         this.idUsuario = idUsuario;
     }
 
-    public Proyecto(String nombre,String categoria,  LocalDate fechaCreacion, LocalDate ultimaModificacion, String repositorio) {
+    public Proyecto(String nombre,String categoria,  String fechaCreacion, String ultimaModificacion, String repositorio) {
         this.categoria = categoria;
         this.nombre = nombre;
         this.fechaCreacion = fechaCreacion;
@@ -55,7 +55,7 @@ public class Proyecto {
         this.repositorio = repositorio;
     }
 
-    public Proyecto(String nombre,String categoria,  LocalDate fechaCreacion, LocalDate ultimaModificacion, String repositorio, int idUsuario) {
+    public Proyecto(String nombre,String categoria,  String fechaCreacion, String ultimaModificacion, String repositorio, int idUsuario) {
         this.categoria = categoria;
         this.nombre = nombre;
         this.fechaCreacion = fechaCreacion;
@@ -64,7 +64,7 @@ public class Proyecto {
         this.idUsuario = idUsuario;
     }
 
-    public Proyecto(String nombre,String categoria, LocalDate fechaCreacion,LocalDate ultimaModificacion,String repositorio,int idUsuario,String numero) {
+    public Proyecto(String nombre,String categoria, String fechaCreacion,String ultimaModificacion,String repositorio,int idUsuario,String numero) {
         this.categoria = categoria;
         this.numeroProyecto = numero;
         this.nombre = nombre;
@@ -109,19 +109,19 @@ public class Proyecto {
         this.nombre = nombre;
     }
 
-    public LocalDate getFechaCreacion() {
+    public String getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(LocalDate fechaCreacion) {
+    public void setFechaCreacion(String fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public LocalDate getUltimaModificacion() {
+    public String getUltimaModificacion() {
         return ultimaModificacion;
     }
 
-    public void setUltimaModificacion(LocalDate ultimaModificacion) {
+    public void setUltimaModificacion(String ultimaModificacion) {
         this.ultimaModificacion = ultimaModificacion;
     }
 
