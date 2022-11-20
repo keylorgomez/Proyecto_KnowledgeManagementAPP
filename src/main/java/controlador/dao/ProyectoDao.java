@@ -113,5 +113,23 @@ public class ProyectoDao {
             return false;
         }
     }
+    public  boolean eliminarProyecto(int idProyecto){
+        try {
+            String SQL="delete from proyecto where idProyecto=?";
+            Connection connection=this.obtenerConexion.getConnection();
+            PreparedStatement sentencia=connection.prepareStatement(SQL);
+
+            sentencia.setInt(1,idProyecto);
+            sentencia.executeUpdate();
+            sentencia.close();
+            return true;
+        }catch (Exception e){
+            System.err.println("Ocurrió un error al eliminar el proyecto");
+            System.err.println("Mensaje del error: "+e.getMessage());
+            System.err.println("Detalle del error: ");
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 }
