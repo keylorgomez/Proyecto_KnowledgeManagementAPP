@@ -40,7 +40,10 @@ public class MenuInicialController {
     }
 
     @FXML
-    void IrEditarProyecto(ActionEvent event) {
+    void IrEditarProyecto(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("ListaProyectos.fxml")));
+        Stage window = (Stage) btnEditarProyecto.getScene().getWindow();
+        window.setScene(new Scene(root));
 
     }
 
