@@ -48,6 +48,14 @@ public class ListaProyectosController implements Initializable {
     private TextField txtVersion;
     @FXML
     private TableView<Proyecto> tbProyectos;
+    @FXML
+    private Button btnAgregarParticipante;
+    @FXML
+    private Label lblAgregarParticipante;
+    @FXML
+    private Label lblEmailParticpante;
+    @FXML
+    private TextField txtEmailParticipante;
 
     private ProyectoDao proyectoDao;
 
@@ -61,59 +69,134 @@ public class ListaProyectosController implements Initializable {
         String tipoUsuario = LoginControlador.tipoUsuario;
         CargarProyectos(tipoUsuario);
 
-        cmOpciones = new ContextMenu();
+        if(tipoUsuario.equals("Gestor") || tipoUsuario.equals("Líder")){
+            btnAgregarParticipante.setVisible(true);
+            lblAgregarParticipante.setVisible(true);
+            lblEmailParticpante.setVisible(true);
+            txtEmailParticipante.setVisible(true);
+            cmOpciones = new ContextMenu();
 
-        MenuItem editarProyecto = new MenuItem("Editar Proyecto");
-        MenuItem eliminarProyecto = new MenuItem("Eliminar Proyecto");
-        cmOpciones.getItems().addAll(editarProyecto, eliminarProyecto);
-        editarProyecto.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                int index = tbProyectos.getSelectionModel().getSelectedIndex();
-                proyectoSelecionado = tbProyectos.getItems().get(index);
-                txtNombre.setText(proyectoSelecionado.getNombre());
-                txtCategoria.setText(proyectoSelecionado.getCategoria());
-                txtVersion.setText(proyectoSelecionado.getNumeroProyecto());
-                txtRepositorio.setText(proyectoSelecionado.getRepositorio());
+            MenuItem editarProyecto = new MenuItem("Editar Proyecto");
+            MenuItem eliminarProyecto = new MenuItem("Eliminar Proyecto");
+            MenuItem agregarParticipante=new MenuItem("Añadir Participante");
+            cmOpciones.getItems().addAll(editarProyecto, eliminarProyecto,agregarParticipante);
+            agregarParticipante.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    int index=tbProyectos.getSelectionModel().getSelectedIndex();
+                    Proyecto agregarParticipanteProyecto=tbProyectos.getItems().get(index);
+                    int idProyecto=agregarParticipanteProyecto.getIdProyecto();
+                    btnAgregarParticipante.setDisable(false);
+                    btnEditar.setDisable(true);
+                    btnCancelar.setDisable(true);
+                }
+            });
+            editarProyecto.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    int index = tbProyectos.getSelectionModel().getSelectedIndex();
+                    proyectoSelecionado = tbProyectos.getItems().get(index);
+                    txtNombre.setText(proyectoSelecionado.getNombre());
+                    txtCategoria.setText(proyectoSelecionado.getCategoria());
+                    txtVersion.setText(proyectoSelecionado.getNumeroProyecto());
+                    txtRepositorio.setText(proyectoSelecionado.getRepositorio());
 
-                btnCancelar.setDisable(false);
-                btnEditar.setDisable(false);
-            }
-        });
-        eliminarProyecto.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                int index = tbProyectos.getSelectionModel().getSelectedIndex();
-                Proyecto proyectoEliminar = tbProyectos.getItems().get(index);
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Confirmación");
-                alert.setHeaderText(null);
-                alert.setContentText("¿Seguro que desea eliminar el proyeto: " + proyectoEliminar.getNombre() + "?");
-                alert.initStyle(StageStyle.UTILITY);
-                Optional<ButtonType> result = alert.showAndWait();
+                    btnCancelar.setDisable(false);
+                    btnEditar.setDisable(false);
+                    btnAgregarParticipante.setDisable(true);
+                }
+            });
+            eliminarProyecto.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    int index = tbProyectos.getSelectionModel().getSelectedIndex();
+                    Proyecto proyectoEliminar = tbProyectos.getItems().get(index);
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Confirmación");
+                    alert.setHeaderText(null);
+                    alert.setContentText("¿Seguro que desea eliminar el proyeto: " + proyectoEliminar.getNombre() + "?");
+                    alert.initStyle(StageStyle.UTILITY);
+                    Optional<ButtonType> result = alert.showAndWait();
 
-                if (result.get() == ButtonType.OK) {
-                    boolean rsp = proyectoDao.eliminarProyecto(proyectoEliminar.getIdProyecto());
-                    if (rsp == true) {
-                        Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
-                        alert2.setTitle("Éxito");
-                        alert2.setHeaderText(null);
-                        alert2.setContentText("Se eliminó correctamente el proyecto.");
-                        alert2.initStyle(StageStyle.UTILITY);
-                        alert2.showAndWait();
-                        CargarProyectos(tipoUsuario);
-                    } else {
-                        Alert alert2 = new Alert(Alert.AlertType.ERROR);
-                        alert2.setTitle("Error");
-                        alert2.setHeaderText(null);
-                        alert2.setContentText("Se presentó un error y no se logró eliminar el proyecto.");
-                        alert2.initStyle(StageStyle.UTILITY);
-                        alert2.showAndWait();
+                    if (result.get() == ButtonType.OK) {
+                        boolean rsp = proyectoDao.eliminarProyecto(proyectoEliminar.getIdProyecto());
+                        if (rsp == true) {
+                            Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+                            alert2.setTitle("Éxito");
+                            alert2.setHeaderText(null);
+                            alert2.setContentText("Se eliminó correctamente el proyecto.");
+                            alert2.initStyle(StageStyle.UTILITY);
+                            alert2.showAndWait();
+                            CargarProyectos(tipoUsuario);
+                        } else {
+                            Alert alert2 = new Alert(Alert.AlertType.ERROR);
+                            alert2.setTitle("Error");
+                            alert2.setHeaderText(null);
+                            alert2.setContentText("Se presentó un error y no se logró eliminar el proyecto.");
+                            alert2.initStyle(StageStyle.UTILITY);
+                            alert2.showAndWait();
+                        }
                     }
                 }
-            }
-        });
-        tbProyectos.setContextMenu(cmOpciones);
+            });
+            tbProyectos.setContextMenu(cmOpciones);
+        }else {
+            cmOpciones = new ContextMenu();
+
+            MenuItem editarProyecto = new MenuItem("Editar Proyecto");
+            MenuItem eliminarProyecto = new MenuItem("Eliminar Proyecto");
+            cmOpciones.getItems().addAll(editarProyecto, eliminarProyecto);
+            editarProyecto.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    int index = tbProyectos.getSelectionModel().getSelectedIndex();
+                    proyectoSelecionado = tbProyectos.getItems().get(index);
+                    txtNombre.setText(proyectoSelecionado.getNombre());
+                    txtCategoria.setText(proyectoSelecionado.getCategoria());
+                    txtVersion.setText(proyectoSelecionado.getNumeroProyecto());
+                    txtRepositorio.setText(proyectoSelecionado.getRepositorio());
+
+                    btnCancelar.setDisable(false);
+                    btnEditar.setDisable(false);
+                }
+            });
+            eliminarProyecto.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    int index = tbProyectos.getSelectionModel().getSelectedIndex();
+                    Proyecto proyectoEliminar = tbProyectos.getItems().get(index);
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Confirmación");
+                    alert.setHeaderText(null);
+                    alert.setContentText("¿Seguro que desea eliminar el proyeto: " + proyectoEliminar.getNombre() + "?");
+                    alert.initStyle(StageStyle.UTILITY);
+                    Optional<ButtonType> result = alert.showAndWait();
+
+                    if (result.get() == ButtonType.OK) {
+                        boolean rsp = proyectoDao.eliminarProyecto(proyectoEliminar.getIdProyecto());
+                        if (rsp == true) {
+                            Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+                            alert2.setTitle("Éxito");
+                            alert2.setHeaderText(null);
+                            alert2.setContentText("Se eliminó correctamente el proyecto.");
+                            alert2.initStyle(StageStyle.UTILITY);
+                            alert2.showAndWait();
+                            CargarProyectos(tipoUsuario);
+                        } else {
+                            Alert alert2 = new Alert(Alert.AlertType.ERROR);
+                            alert2.setTitle("Error");
+                            alert2.setHeaderText(null);
+                            alert2.setContentText("Se presentó un error y no se logró eliminar el proyecto.");
+                            alert2.initStyle(StageStyle.UTILITY);
+                            alert2.showAndWait();
+                        }
+                    }
+                }
+            });
+            tbProyectos.setContextMenu(cmOpciones);
+        }
+
+
 
     }
 
@@ -191,7 +274,7 @@ public class ListaProyectosController implements Initializable {
             TableColumn nombreCol = new TableColumn("Nombre");
             nombreCol.setCellValueFactory(new PropertyValueFactory("nombre"));
 
-            TableColumn categoriaCol = new TableColumn("Categpría");
+            TableColumn categoriaCol = new TableColumn("Categoría");
             categoriaCol.setCellValueFactory(new PropertyValueFactory("categoria"));
 
             TableColumn numeroCol = new TableColumn("Versión");
@@ -235,5 +318,9 @@ public class ListaProyectosController implements Initializable {
             tbProyectos.setItems(data);
             tbProyectos.getColumns().addAll(idCol, nombreCol, categoriaCol, numeroCol, repositorioCol, creacionCol, modificacionCol);
         }
+    }
+    @FXML
+    void AgregarParticipante(ActionEvent event) {
+
     }
 }
