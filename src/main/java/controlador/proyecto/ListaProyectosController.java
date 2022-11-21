@@ -56,20 +56,21 @@ public class ListaProyectosController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.proyectoDao=new ProyectoDao();
+        this.proyectoDao = new ProyectoDao();
         btnCancelar.setDisable(true);
-        CargarProyectos();
+        String tipoUsuario = LoginControlador.tipoUsuario;
+        CargarProyectos(tipoUsuario);
 
-        cmOpciones=new ContextMenu();
+        cmOpciones = new ContextMenu();
 
-        MenuItem editarProyecto=new MenuItem("Editar Proyecto");
-        MenuItem eliminarProyecto=new MenuItem("Eliminar Proyecto");
-        cmOpciones.getItems().addAll(editarProyecto,eliminarProyecto);
+        MenuItem editarProyecto = new MenuItem("Editar Proyecto");
+        MenuItem eliminarProyecto = new MenuItem("Eliminar Proyecto");
+        cmOpciones.getItems().addAll(editarProyecto, eliminarProyecto);
         editarProyecto.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                int index=tbProyectos.getSelectionModel().getSelectedIndex();
-                proyectoSelecionado=tbProyectos.getItems().get(index);
+                int index = tbProyectos.getSelectionModel().getSelectedIndex();
+                proyectoSelecionado = tbProyectos.getItems().get(index);
                 txtNombre.setText(proyectoSelecionado.getNombre());
                 txtCategoria.setText(proyectoSelecionado.getCategoria());
                 txtVersion.setText(proyectoSelecionado.getNumeroProyecto());
@@ -82,27 +83,27 @@ public class ListaProyectosController implements Initializable {
         eliminarProyecto.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                int index=tbProyectos.getSelectionModel().getSelectedIndex();
-                Proyecto proyectoEliminar=tbProyectos.getItems().get(index);
+                int index = tbProyectos.getSelectionModel().getSelectedIndex();
+                Proyecto proyectoEliminar = tbProyectos.getItems().get(index);
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Confirmación");
                 alert.setHeaderText(null);
-                alert.setContentText("¿Seguro que desea eliminar el proyeto: "+proyectoEliminar.getNombre()+"?");
+                alert.setContentText("¿Seguro que desea eliminar el proyeto: " + proyectoEliminar.getNombre() + "?");
                 alert.initStyle(StageStyle.UTILITY);
-                Optional<ButtonType> result= alert.showAndWait();
+                Optional<ButtonType> result = alert.showAndWait();
 
-                if (result.get()==ButtonType.OK){
-                    boolean rsp=proyectoDao.eliminarProyecto(proyectoEliminar.getIdProyecto());
+                if (result.get() == ButtonType.OK) {
+                    boolean rsp = proyectoDao.eliminarProyecto(proyectoEliminar.getIdProyecto());
                     if (rsp == true) {
-                        Alert alert2=new Alert(Alert.AlertType.INFORMATION);
+                        Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
                         alert2.setTitle("Éxito");
                         alert2.setHeaderText(null);
                         alert2.setContentText("Se eliminó correctamente el proyecto.");
                         alert2.initStyle(StageStyle.UTILITY);
                         alert2.showAndWait();
-                        CargarProyectos();
-                    }else {
-                        Alert alert2=new Alert(Alert.AlertType.ERROR);
+                        CargarProyectos(tipoUsuario);
+                    } else {
+                        Alert alert2 = new Alert(Alert.AlertType.ERROR);
                         alert2.setTitle("Error");
                         alert2.setHeaderText(null);
                         alert2.setContentText("Se presentó un error y no se logró eliminar el proyecto.");
@@ -118,7 +119,7 @@ public class ListaProyectosController implements Initializable {
 
     @FXML
     void Cancelar(ActionEvent event) {
-        proyectoSelecionado=null;
+        proyectoSelecionado = null;
         limpiarCampos();
         btnCancelar.setDisable(true);
         btnEditar.setDisable(true);
@@ -126,31 +127,32 @@ public class ListaProyectosController implements Initializable {
 
     @FXML
     void EditarProyecto(ActionEvent event) {
-        if(proyectoSelecionado!=null){
+        String tipoUsuario = LoginControlador.tipoUsuario;
+        if (proyectoSelecionado != null) {
             proyectoSelecionado.setNombre(txtNombre.getText());
             proyectoSelecionado.setCategoria(txtCategoria.getText());
             proyectoSelecionado.setNumeroProyecto(txtVersion.getText());
             proyectoSelecionado.setRepositorio(txtRepositorio.getText());
             LocalDate FechaModi;
-            FechaModi=LocalDate.now();
-            String FechaModiString=FechaModi.toString();
+            FechaModi = LocalDate.now();
+            String FechaModiString = FechaModi.toString();
             proyectoSelecionado.setUltimaModificacion(FechaModiString);
 
-            boolean rsp=this.proyectoDao.editarProyecto(proyectoSelecionado);
-            if (rsp==true){
-                Alert alert=new Alert(Alert.AlertType.INFORMATION);
+            boolean rsp = this.proyectoDao.editarProyecto(proyectoSelecionado);
+            if (rsp == true) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Éxito");
                 alert.setHeaderText(null);
                 alert.setContentText("Se editó correctamente el proyecto.");
                 alert.initStyle(StageStyle.UTILITY);
                 alert.showAndWait();
                 limpiarCampos();
-                CargarProyectos();
-                proyectoSelecionado=null;
+                CargarProyectos(tipoUsuario);
+                proyectoSelecionado = null;
                 btnCancelar.setDisable(true);
                 btnEditar.setDisable(true);
-            }else {
-                Alert alert=new Alert(Alert.AlertType.ERROR);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setHeaderText(null);
                 alert.setContentText("Se presentó un error al editar el proyecto.");
@@ -160,7 +162,8 @@ public class ListaProyectosController implements Initializable {
         }
 
     }
-    public void limpiarCampos(){
+
+    public void limpiarCampos() {
         txtNombre.setText("");
         txtCategoria.setText("");
         txtVersion.setText("");
@@ -175,36 +178,62 @@ public class ListaProyectosController implements Initializable {
 
     }
 
-    public void CargarProyectos(){
+    public void CargarProyectos(String tipoUsuario) {
         tbProyectos.getItems().clear();
         tbProyectos.getColumns().clear();
+        int UsuarioId = LoginControlador.UserIdActivo;
+        if (tipoUsuario.equals("Gestor")) {
+            List<Proyecto> proyectos = this.proyectoDao.listarProyectosGestor();
+            ObservableList<Proyecto> data = FXCollections.observableArrayList(proyectos);
+            TableColumn idCol = new TableColumn("Id Proyecto");
+            idCol.setCellValueFactory(new PropertyValueFactory("idProyecto"));
 
-        List<Proyecto> proyectos=this.proyectoDao.listarProyectos();
-        ObservableList<Proyecto> data= FXCollections.observableArrayList(proyectos);
-        TableColumn idCol=new TableColumn("Id Proyecto");
-        idCol.setCellValueFactory(new PropertyValueFactory("idProyecto"));
+            TableColumn nombreCol = new TableColumn("Nombre");
+            nombreCol.setCellValueFactory(new PropertyValueFactory("nombre"));
 
-        TableColumn nombreCol=new TableColumn("Nombre");
-        nombreCol.setCellValueFactory(new PropertyValueFactory("nombre"));
+            TableColumn categoriaCol = new TableColumn("Categpría");
+            categoriaCol.setCellValueFactory(new PropertyValueFactory("categoria"));
 
-        TableColumn categoriaCol=new TableColumn("Categpría");
-        categoriaCol.setCellValueFactory(new PropertyValueFactory("categoria"));
+            TableColumn numeroCol = new TableColumn("Versión");
+            numeroCol.setCellValueFactory(new PropertyValueFactory("numeroProyecto"));
 
-        TableColumn numeroCol=new TableColumn("Versión");
-        numeroCol.setCellValueFactory(new PropertyValueFactory("numeroProyecto"));
+            TableColumn repositorioCol = new TableColumn("Repositorio");
+            repositorioCol.setCellValueFactory(new PropertyValueFactory("repositorio"));
 
-        TableColumn repositorioCol=new TableColumn("Repositorio");
-        repositorioCol.setCellValueFactory(new PropertyValueFactory("repositorio"));
+            TableColumn creacionCol = new TableColumn("Fecha creación");
+            creacionCol.setCellValueFactory(new PropertyValueFactory("fechaCreacion"));
 
-        TableColumn creacionCol=new TableColumn("Fecha creación");
-        creacionCol.setCellValueFactory(new PropertyValueFactory("fechaCreacion"));
+            TableColumn modificacionCol = new TableColumn("Última modificación");
+            modificacionCol.setCellValueFactory(new PropertyValueFactory("ultimaModificacion"));
 
-        TableColumn modificacionCol=new TableColumn("Última modificación");
-        modificacionCol.setCellValueFactory(new PropertyValueFactory("ultimaModificacion"));
+            tbProyectos.setItems(data);
+            tbProyectos.getColumns().addAll(idCol, nombreCol, categoriaCol, numeroCol, repositorioCol, creacionCol, modificacionCol);
+        } else if (tipoUsuario.equals("Miembro") || tipoUsuario.equals("Líder")) {
+            List<Proyecto> proyectos = this.proyectoDao.listarProyectosUsuarios(UsuarioId);
+            ObservableList<Proyecto> data = FXCollections.observableArrayList(proyectos);
+            TableColumn idCol = new TableColumn("Id Proyecto");
+            idCol.setCellValueFactory(new PropertyValueFactory("idProyecto"));
 
-        tbProyectos.setItems(data);
-        tbProyectos.getColumns().addAll(idCol,nombreCol,categoriaCol,numeroCol,repositorioCol,creacionCol,modificacionCol);
+            TableColumn nombreCol = new TableColumn("Nombre");
+            nombreCol.setCellValueFactory(new PropertyValueFactory("nombre"));
 
+            TableColumn categoriaCol = new TableColumn("Categpría");
+            categoriaCol.setCellValueFactory(new PropertyValueFactory("categoria"));
+
+            TableColumn numeroCol = new TableColumn("Versión");
+            numeroCol.setCellValueFactory(new PropertyValueFactory("numeroProyecto"));
+
+            TableColumn repositorioCol = new TableColumn("Repositorio");
+            repositorioCol.setCellValueFactory(new PropertyValueFactory("repositorio"));
+
+            TableColumn creacionCol = new TableColumn("Fecha creación");
+            creacionCol.setCellValueFactory(new PropertyValueFactory("fechaCreacion"));
+
+            TableColumn modificacionCol = new TableColumn("Última modificación");
+            modificacionCol.setCellValueFactory(new PropertyValueFactory("ultimaModificacion"));
+
+            tbProyectos.setItems(data);
+            tbProyectos.getColumns().addAll(idCol, nombreCol, categoriaCol, numeroCol, repositorioCol, creacionCol, modificacionCol);
+        }
     }
-
 }
