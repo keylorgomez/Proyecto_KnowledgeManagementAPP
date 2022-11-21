@@ -46,23 +46,52 @@ public class ProyectoDao {
             return false;
         }
 
-        }
-        public int getUsuarioId(String email) throws SQLException {
-            Connection connection=this.obtenerConexion.getConnection();
-            String SQLidUser = "SELECT idUsuario FROM usuarios WHERE email = " + "'" + email + "'";
-            PreparedStatement sentencia2 = connection.prepareStatement(SQLidUser);
-            ResultSet rs = sentencia2.executeQuery();
+    }
+    public int getUsuarioId(String email) throws SQLException {
+        Connection connection=this.obtenerConexion.getConnection();
+        String SQLidUser = "SELECT idUsuario FROM usuarios WHERE email = " + "'" + email + "'";
+        PreparedStatement sentencia2 = connection.prepareStatement(SQLidUser);
+        ResultSet rs = sentencia2.executeQuery();
 
-            int idUsuario=0;
-            if (rs.next()) {
-                idUsuario = rs.getInt("idUsuario");
-            }
-            return idUsuario;
+        int idUsuario=0;
+        if (rs.next()) {
+            idUsuario = rs.getInt("idUsuario");
         }
-    public List<Proyecto> listarProyectos(){
+        return idUsuario;
+    }
+    public List<Proyecto> listarProyectosGestor(){
         List<Proyecto> listaProyecto=new ArrayList<>();
         try {
             String SQL="select idProyecto, nombre,categoria,numeroProyecto,repositorio,fechaCreacion,ultimaModificacion from proyecto";
+            Connection connection=this.obtenerConexion.getConnection();
+            PreparedStatement sentencia=connection.prepareStatement(SQL);
+            ResultSet data=sentencia.executeQuery();
+            while (data.next()==true){
+                Proyecto proyecto=new Proyecto();
+                proyecto.setIdProyecto(data.getInt(1));
+                proyecto.setNombre(data.getString(2));
+                proyecto.setCategoria(data.getString(3));
+                proyecto.setNumeroProyecto(data.getString(4));
+                proyecto.setRepositorio(data.getString(5));
+                proyecto.setFechaCreacion(data.getString(6));
+                proyecto.setUltimaModificacion(data.getString(7));
+
+                listaProyecto.add(proyecto);
+            }
+            data.close();
+            sentencia.close();
+        }catch (Exception e){
+            System.err.println("Ocurrió un error al listar los proyectos");
+            System.err.println("Mensaje del error: "+e.getMessage());
+            System.err.println("Detalle del error: ");
+            e.printStackTrace();
+        }
+        return listaProyecto;
+    }
+    public List<Proyecto> listarProyectosUsuarios(int idUsuario){
+        List<Proyecto> listaProyecto=new ArrayList<>();
+        try {
+            String SQL="select idProyecto, nombre,categoria,numeroProyecto,repositorio,fechaCreacion,ultimaModificacion from proyecto WHERE idUsuario="+"'" + idUsuario + "'";
             Connection connection=this.obtenerConexion.getConnection();
             PreparedStatement sentencia=connection.prepareStatement(SQL);
             ResultSet data=sentencia.executeQuery();

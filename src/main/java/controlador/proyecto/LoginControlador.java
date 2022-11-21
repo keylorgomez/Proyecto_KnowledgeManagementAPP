@@ -34,7 +34,8 @@ public class LoginControlador {
     @FXML private Label mensaje;
     private UsuarioDao usuarioDao;
     private ProyectoDao proyectoDao;
-    public static int UserIdActivo=0;
+    public static int UserIdActivo;
+    public static String tipoUsuario;
 
     /**
      * Se instancias las clases necesarias para el controlador
@@ -81,7 +82,7 @@ public class LoginControlador {
 
     }
     public void ingresarApp(String email) throws IOException, SQLException {
-        String tipoUsuario= usuarioDao.getTipoUsuario(email);
+        tipoUsuario= usuarioDao.getTipoUsuario(email);
         System.out.println(tipoUsuario);
         if(tipoUsuario==null || tipoUsuario.equals("Sin rol")){
             Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("PantallaEspera.fxml")));
