@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="550.0" prefWidth="850.0" style="-fx-background-color: #082F32;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.proyecto.ListaProyectosController">
+<AnchorPane prefHeight="619.0" prefWidth="850.0" style="-fx-background-color: #082F32;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.proyecto.ListaProyectosController">
     <children>
-        <AnchorPane layoutX="22.0" layoutY="77.0" prefHeight="410.0" prefWidth="211.0" style="-fx-background-color: fff;">
+        <AnchorPane layoutX="22.0" layoutY="77.0" prefHeight="478.0" prefWidth="211.0" style="-fx-background-color: fff;">
             <children>
                 <Label layoutX="50.0" layoutY="22.0" style="-fx-font-weight: bold;" text="Edición Proyecto" textFill="#e84f31">
                     <font>
@@ -20,20 +20,28 @@
                 <TextField fx:id="txtCategoria" focusTraversable="false" layoutX="30.0" layoutY="136.0" promptText="Categoría" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 7px; -fx-background-color: fff; -fx-font-weight: bold; -fx-alignment: center;" />
                 <TextField fx:id="txtVersion" focusTraversable="false" layoutX="31.0" layoutY="190.0" promptText="Versión" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 7px; -fx-background-color: fff; -fx-font-weight: bold; -fx-alignment: center;" />
                 <TextField fx:id="txtRepositorio" focusTraversable="false" layoutX="30.0" layoutY="243.0" prefHeight="27.0" prefWidth="162.0" promptText="Link repositorio" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 7px; -fx-background-color: fff; -fx-font-weight: bold; -fx-alignment: center;" />
-                <Button fx:id="btnEditar" disable="true" layoutX="53.0" layoutY="320.0" mnemonicParsing="false" onAction="#EditarProyecto" prefWidth="115.0" style="-fx-font-weight: bold; -fx-background-color: #e84f31;" text="Editar proyecto" textFill="WHITE" AnchorPane.topAnchor="320.0" />
-                <Button fx:id="btnCancelar" layoutX="53.0" layoutY="357.0" mnemonicParsing="false" onAction="#Cancelar" prefWidth="115.0" style="-fx-font-weight: bold; -fx-background-color: #e84f31;" text="Cancelar edición" textFill="WHITE" />
+                <Button fx:id="btnEditar" disable="true" layoutX="48.0" layoutY="395.0" mnemonicParsing="false" onAction="#EditarProyecto" prefWidth="125.0" style="-fx-font-weight: bold; -fx-background-color: #e84f31;" text="Editar proyecto" textFill="WHITE" AnchorPane.topAnchor="395.0" />
+                <Button fx:id="btnCancelar" layoutX="48.0" layoutY="430.0" mnemonicParsing="false" onAction="#Cancelar" prefWidth="125.0" style="-fx-font-weight: bold; -fx-background-color: #e84f31;" text="Cancelar edición" textFill="WHITE" />
                 <Label layoutX="36.0" layoutY="63.0" style="-fx-font-weight: bold;" text="Nombre:" textFill="#082f32" />
                 <Label layoutX="35.0" layoutY="115.0" style="-fx-font-weight: bold;" text="Categoría:" textFill="#082f32" />
                 <Label layoutX="32.0" layoutY="172.0" style="-fx-font-weight: bold;" text="Versión:" textFill="#082f32" />
                 <Label layoutX="32.0" layoutY="225.0" style="-fx-font-weight: bold;" text="Repositorio:" textFill="#082f32" />
+            <Label fx:id="lblAgregarParticipante" layoutX="42.0" layoutY="280.0" style="-fx-font-weight: bold;" text="Agregar participante" textFill="#e84f31" visible="false">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtEmailParticipante" focusTraversable="false" layoutX="31.0" layoutY="326.0" promptText="Email participante" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 7px; -fx-background-color: fff; -fx-alignment: center; -fx-font-weight: bold;" visible="false" />
+            <Label fx:id="lblEmailParticpante" layoutX="32.0" layoutY="307.0" style="-fx-font-weight: bold;" text="Email participante:" textFill="#082f32" visible="false" />
+            <Button fx:id="btnAgregarParticipante" disable="true" layoutX="47.0" layoutY="361.0" mnemonicParsing="false" onAction="#AgregarParticipante" prefWidth="125.0" style="-fx-background-color: #e84f31; -fx-font-weight: bold;" text="Añadir participante" textFill="WHITE" visible="false" />
             </children>
         </AnchorPane>
-        <TableView fx:id="tbProyectos" layoutX="247.0" layoutY="77.0" prefHeight="410.0" prefWidth="570.0" style="-fx-background-color: fff;" AnchorPane.topAnchor="77.0" />
+        <TableView fx:id="tbProyectos" layoutX="247.0" layoutY="77.0" prefHeight="478.0" prefWidth="570.0" style="-fx-background-color: fff;" AnchorPane.topAnchor="77.0" />
         <Label layoutX="346.0" layoutY="23.0" style="-fx-border-color: fff; -fx-background-color: fff;" text="Lista Proyectos" textFill="#e84f31">
             <font>
                 <Font name="System Bold" size="24.0" />
             </font>
         </Label>
-        <Button fx:id="btnRegresar" layoutX="352.0" layoutY="502.0" mnemonicParsing="false" onAction="#Regresar" prefWidth="160.0" style="-fx-font-weight: bold; -fx-background-color: #e84f31;" text="Regresar menú principal" textFill="WHITE" />
+        <Button fx:id="btnRegresar" layoutX="352.0" layoutY="566.0" mnemonicParsing="false" onAction="#Regresar" prefWidth="160.0" style="-fx-font-weight: bold; -fx-background-color: #e84f31;" text="Regresar menú principal" textFill="WHITE" />
     </children>
 </AnchorPane>
