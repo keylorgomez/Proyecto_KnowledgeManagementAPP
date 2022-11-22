@@ -68,7 +68,6 @@ public class ProyectoDao {
             e.printStackTrace();
             return false;
         }
-
     }
     public int getUsuarioId(String email) throws SQLException {
         Connection connection=this.obtenerConexion.getConnection();
@@ -139,6 +138,36 @@ public class ProyectoDao {
             e.printStackTrace();
         }
         return listaProyecto;
+    }
+    public List<Proyecto> listarProyectosTemporales(){
+        List<Proyecto> listaProyectoTemporales=new ArrayList<>();
+        try {
+            String SQL="select idProyecto, nombre,categoria,numeroProyecto,repositorio,fechaCreacion,ultimaModificacion,estatus from proyectoModificado where estatus=0";
+            Connection connection=this.obtenerConexion.getConnection();
+            PreparedStatement sentencia=connection.prepareStatement(SQL);
+            ResultSet data=sentencia.executeQuery();
+            while (data.next()==true){
+                Proyecto proyecto=new Proyecto();
+                proyecto.setIdProyecto(data.getInt(1));
+                proyecto.setNombre(data.getString(2));
+                proyecto.setCategoria(data.getString(3));
+                proyecto.setNumeroProyecto(data.getString(4));
+                proyecto.setRepositorio(data.getString(5));
+                proyecto.setFechaCreacion(data.getString(6));
+                proyecto.setUltimaModificacion(data.getString(7));
+                data.getInt(8);
+
+                listaProyectoTemporales.add(proyecto);
+            }
+            data.close();
+            sentencia.close();
+        }catch (Exception e){
+            System.err.println("Ocurrió un error al listar los proyectos");
+            System.err.println("Mensaje del error: "+e.getMessage());
+            System.err.println("Detalle del error: ");
+            e.printStackTrace();
+        }
+        return listaProyectoTemporales;
     }
 
     public boolean editarProyecto(Proyecto proyecto){

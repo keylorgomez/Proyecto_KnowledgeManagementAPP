@@ -24,6 +24,18 @@ public class MenuInicialController {
     private Button btnEditarProyecto;
 
     @FXML
+    private Button btnProyectosTemporales;
+
+    @FXML
+    void IrCambiosPresentados(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("ListaProyectosTemporales.fxml")));
+        Stage window = (Stage) btnCerrarSesion.getScene().getWindow();
+        window.setScene(new Scene(root));
+
+
+    }
+
+    @FXML
     void CerrarSesion(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("Login.fxml")));
         Stage window = (Stage) btnCerrarSesion.getScene().getWindow();

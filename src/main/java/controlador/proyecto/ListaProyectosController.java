@@ -225,7 +225,6 @@ public class ListaProyectosController implements Initializable {
             String FechaModiString = FechaModi.toString();
             proyectoSelecionado.setUltimaModificacion(FechaModiString);
             proyectoSelecionado.getFechaCreacion();
-            proyectoSelecionado.getIdUsuario();
             proyectoSelecionado.getIdProyecto();
 
             boolean rsp = this.proyectoDao.editarProyectoTemporal(proyectoSelecionado);
@@ -307,7 +306,7 @@ public class ListaProyectosController implements Initializable {
             TableColumn nombreCol = new TableColumn("Nombre");
             nombreCol.setCellValueFactory(new PropertyValueFactory("nombre"));
 
-            TableColumn categoriaCol = new TableColumn("Categpría");
+            TableColumn categoriaCol = new TableColumn("Categoría");
             categoriaCol.setCellValueFactory(new PropertyValueFactory("categoria"));
 
             TableColumn numeroCol = new TableColumn("Versión");
