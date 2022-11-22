@@ -33,6 +33,8 @@ public class Proyecto {
         this.estatus = estatus;
     }
 
+
+
     /**
      * Constructores que recibem todos los atributos de la clase como parametros
      * @param idProyecto

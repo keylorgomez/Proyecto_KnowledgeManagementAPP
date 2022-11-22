@@ -208,7 +208,7 @@ public class ProyectoDao {
             sentencia.setString(5,proyecto.getNumeroProyecto());
             sentencia.setString(6,proyecto.getRepositorio());
             sentencia.setString(7,proyecto.getUltimaModificacion());
-            sentencia.setInt(8,0);
+            sentencia.setInt(8, proyecto.getEstatus());
             sentencia.executeUpdate();
             sentencia.close();
             return true;
