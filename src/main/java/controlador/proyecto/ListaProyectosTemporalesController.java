@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import modelo.Proyecto;
 import vista.Inicio;
 
@@ -51,9 +52,26 @@ public class ListaProyectosTemporalesController implements Initializable {
     void AceptarCambios(ActionEvent event) {
         if(proyectoTemporalSeleccionado!=null){
             if (rbtAprobar.isSelected()==true){
-
+                int estatus= 1;
+                proyectoTemporalSeleccionado.setEstatus(estatus);
+                proyectoDao.editarProyectoTemporal(proyectoTemporalSeleccionado);
+                proyectoDao.editarProyecto(proyectoTemporalSeleccionado);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Exito");
+                alert.setHeaderText(null);
+                alert.setContentText("Usted ha aceptado los cambios y se ha actualizado el proyecto seleccionado.");
+                alert.initStyle(StageStyle.UTILITY);
+                alert.showAndWait();
             }else if (rbtRechazar.isSelected()==true){
-
+                int estatus= 2;
+                proyectoTemporalSeleccionado.setEstatus(estatus);
+                proyectoDao.editarProyectoTemporal(proyectoTemporalSeleccionado);
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("IMPORTANTE");
+                alert.setHeaderText(null);
+                alert.setContentText("Usted no ha aceptado los cambios y serán eliminaodos.");
+                alert.initStyle(StageStyle.UTILITY);
+                alert.showAndWait();
             }
         }
 
