@@ -168,17 +168,18 @@ public class ProyectoDao {
 
     public boolean editarProyectoTemporal(Proyecto proyecto){
         try {
-            String SQL="insert into proyectoModificado(idProyecto, nombre,categoria,numeroProyecto,repositorio,ultimaModificacion)";
+            String SQL="insert into proyectoModificado(idProyecto, nombre,categoria,fechaCreacion, numeroProyecto,repositorio,ultimaModificacion, estatus)"+
+                    "values(?,?,?,?,?,?,?,?)";
             Connection connection=this.obtenerConexion.getConnection();
             PreparedStatement sentencia =connection.prepareStatement(SQL);
-            sentencia.setString(1,proyecto.getNombre());
-            sentencia.setString(2,proyecto.getCategoria());
-            sentencia.setString(3,proyecto.getNumeroProyecto());
-            sentencia.setString(4,proyecto.getRepositorio());
-            sentencia.setString(5,proyecto.getUltimaModificacion());
-
-            sentencia.setInt(6,proyecto.getIdProyecto());
-
+            sentencia.setInt(1,proyecto.getIdProyecto());
+            sentencia.setString(2,proyecto.getNombre());
+            sentencia.setString(3,proyecto.getCategoria());
+            sentencia.setString(4,proyecto.getFechaCreacion());
+            sentencia.setString(5,proyecto.getNumeroProyecto());
+            sentencia.setString(6,proyecto.getRepositorio());
+            sentencia.setString(7,proyecto.getUltimaModificacion());
+            sentencia.setInt(8,0);
             sentencia.executeUpdate();
             sentencia.close();
             return true;
