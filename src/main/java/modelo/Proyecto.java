@@ -7,22 +7,31 @@ public class Proyecto {
     /**
      * Atributos de la clase
      */
-    public int idProyecto;
+    private int idProyecto;
 
-    public String numeroProyecto;
-    public String categoria;
+    private String numeroProyecto;
+    private String categoria;
 
-    public String nombre;
+    private String nombre;
 
-    public String fechaCreacion;
+    private String fechaCreacion;
 
-    public String ultimaModificacion;
+    private String ultimaModificacion;
 
-    public String repositorio;
+    private String repositorio;
 
-    public int idCarpeta;
+    private int idCarpeta;
 
-    public int idUsuario;
+    private int idUsuario;
+    private int estatus;
+
+    public int getEstatus() {
+        return estatus;
+    }
+
+    public void setEstatus(int estatus) {
+        this.estatus = estatus;
+    }
 
     /**
      * Constructores que recibem todos los atributos de la clase como parametros
