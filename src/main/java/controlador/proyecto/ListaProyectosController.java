@@ -224,13 +224,16 @@ public class ListaProyectosController implements Initializable {
             FechaModi = LocalDate.now();
             String FechaModiString = FechaModi.toString();
             proyectoSelecionado.setUltimaModificacion(FechaModiString);
+            proyectoSelecionado.getFechaCreacion();
+            proyectoSelecionado.getIdUsuario();
+            proyectoSelecionado.getIdProyecto();
 
             boolean rsp = this.proyectoDao.editarProyectoTemporal(proyectoSelecionado);
             if (rsp == true) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Éxito");
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Espera");
                 alert.setHeaderText(null);
-                alert.setContentText("Se editó correctamente el proyecto.");
+                alert.setContentText("En espera que usuario gestor o lider acepten modificaciones");
                 alert.initStyle(StageStyle.UTILITY);
                 alert.showAndWait();
                 limpiarCampos();
