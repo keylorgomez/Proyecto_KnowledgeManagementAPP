@@ -226,6 +226,8 @@ public class ListaProyectosController implements Initializable {
             proyectoSelecionado.setUltimaModificacion(FechaModiString);
             proyectoSelecionado.getFechaCreacion();
             proyectoSelecionado.getIdProyecto();
+            int estatus= 0;
+            proyectoSelecionado.setEstatus(estatus);
 
             boolean rsp = this.proyectoDao.editarProyectoTemporal(proyectoSelecionado);
             if (rsp == true) {

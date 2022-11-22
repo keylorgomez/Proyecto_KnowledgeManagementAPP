@@ -29,7 +29,7 @@ public class MenuInicialController {
     @FXML
     void IrCambiosPresentados(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("ListaProyectosTemporales.fxml")));
-        Stage window = (Stage) btnCerrarSesion.getScene().getWindow();
+        Stage window = (Stage) btnProyectosTemporales.getScene().getWindow();
         window.setScene(new Scene(root));
 
 
