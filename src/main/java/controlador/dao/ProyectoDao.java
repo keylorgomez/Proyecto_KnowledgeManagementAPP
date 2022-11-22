@@ -195,7 +195,7 @@ public class ProyectoDao {
         }
     }
 
-    public boolean editarProyectoTemporal(Proyecto proyecto){
+    public boolean crearProyectoTemporal(Proyecto proyecto){
         try {
             String SQL="insert into proyectoModificado(idProyecto, nombre,categoria,fechaCreacion, numeroProyecto,repositorio,ultimaModificacion, estatus)"+
                     "values(?,?,?,?,?,?,?,?)";
@@ -209,6 +209,29 @@ public class ProyectoDao {
             sentencia.setString(6,proyecto.getRepositorio());
             sentencia.setString(7,proyecto.getUltimaModificacion());
             sentencia.setInt(8, proyecto.getEstatus());
+            sentencia.executeUpdate();
+            sentencia.close();
+            return true;
+        } catch (Exception e) {
+            System.err.println("Ocurrió un error al editar el proyecto");
+            System.err.println("Mensaje del error: "+e.getMessage());
+            System.err.println("Detalle del error: ");
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean editarProyectoTemporal(Proyecto proyecto){
+        try {
+            String SQL="update proyectoModificado set estatus=? WHERE idProyecto=? and nombre=? and categoria=? and numeroProyecto=? and repositorio=?";
+            Connection connection=this.obtenerConexion.getConnection();
+            PreparedStatement sentencia =connection.prepareStatement(SQL);
+            sentencia.setInt(1,proyecto.getEstatus());
+            sentencia.setInt(2,proyecto.getIdProyecto());
+            sentencia.setString(3,proyecto.getNombre());
+            sentencia.setString(4,proyecto.getCategoria());
+            sentencia.setString(5,proyecto.getNumeroProyecto());
+            sentencia.setString(6,proyecto.getRepositorio());
             sentencia.executeUpdate();
             sentencia.close();
             return true;

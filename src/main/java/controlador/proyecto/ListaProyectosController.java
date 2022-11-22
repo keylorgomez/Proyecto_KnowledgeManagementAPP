@@ -229,7 +229,7 @@ public class ListaProyectosController implements Initializable {
             int estatus= 0;
             proyectoSelecionado.setEstatus(estatus);
 
-            boolean rsp = this.proyectoDao.editarProyectoTemporal(proyectoSelecionado);
+            boolean rsp = this.proyectoDao.crearProyectoTemporal(proyectoSelecionado);
             if (rsp == true) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Espera");
