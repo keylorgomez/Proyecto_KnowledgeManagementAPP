@@ -4,6 +4,7 @@ import controlador.dao.ProyectoDao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -42,8 +43,19 @@ public class ListaProyectosTemporalesController implements Initializable {
     private TableView<Proyecto> tbProyectosTemporales;
     private ProyectoDao proyectoDao;
 
+    private ContextMenu cmOpciones;
+    private Proyecto proyectoTemporalSeleccionado;
+
+
     @FXML
     void AceptarCambios(ActionEvent event) {
+        if(proyectoTemporalSeleccionado!=null){
+            if (rbtAprobar.isSelected()==true){
+
+            }else if (rbtRechazar.isSelected()==true){
+
+            }
+        }
 
     }
 
@@ -66,6 +78,23 @@ public class ListaProyectosTemporalesController implements Initializable {
         rbtRechazar.setToggleGroup(group);
         this.proyectoDao= new ProyectoDao();
         CargarProyectosTemporales();
+        cmOpciones=new ContextMenu();
+
+        MenuItem gestionarCambios= new MenuItem("Gestionar cambios");
+        cmOpciones.getItems().addAll(gestionarCambios);
+        gestionarCambios.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                int index=tbProyectosTemporales.getSelectionModel().getSelectedIndex();
+                proyectoTemporalSeleccionado=tbProyectosTemporales.getItems().get(index);
+
+
+                btnAceptar.setDisable(false);
+                btnCancelar.setDisable(false);
+            }
+        });
+        tbProyectosTemporales.setContextMenu(cmOpciones);
+
     }
 
     public void CargarProyectosTemporales(){
