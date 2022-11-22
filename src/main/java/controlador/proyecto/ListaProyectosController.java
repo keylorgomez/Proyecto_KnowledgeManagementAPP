@@ -18,6 +18,7 @@ import vista.Inicio;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
@@ -62,6 +63,8 @@ public class ListaProyectosController implements Initializable {
     private ContextMenu cmOpciones;
     private Proyecto proyectoSelecionado;
 
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.proyectoDao = new ProyectoDao();
@@ -86,6 +89,7 @@ public class ListaProyectosController implements Initializable {
                     int index=tbProyectos.getSelectionModel().getSelectedIndex();
                     Proyecto agregarParticipanteProyecto=tbProyectos.getItems().get(index);
                     int idProyecto=agregarParticipanteProyecto.getIdProyecto();
+                    System.out.println(idProyecto);
                     btnAgregarParticipante.setDisable(false);
                     btnEditar.setDisable(true);
                     btnCancelar.setDisable(true);
@@ -319,8 +323,16 @@ public class ListaProyectosController implements Initializable {
             tbProyectos.getColumns().addAll(idCol, nombreCol, categoriaCol, numeroCol, repositorioCol, creacionCol, modificacionCol);
         }
     }
+
+
     @FXML
-    void AgregarParticipante(ActionEvent event) {
+    void AgregarParticipante(ActionEvent event) throws SQLException {
+        int index=tbProyectos.getSelectionModel().getSelectedIndex();
+        Proyecto agregarParticipanteProyecto=tbProyectos.getItems().get(index);
+        int idProyecto=agregarParticipanteProyecto.getIdProyecto();
+        String emailParticipante= txtEmailParticipante.getText();
+        proyectoDao.registrarProyectoxusuario(proyectoDao.getUsuarioId(emailParticipante), idProyecto);
+        System.out.println("Agregado con éxito");
 
     }
 }
