@@ -104,7 +104,6 @@ public class CrearProyectoControlador {
             return rsp=true;
         }
 
-
     }
     public void limpiarCampos(){
         txtNombrePoryecto.setText("");
