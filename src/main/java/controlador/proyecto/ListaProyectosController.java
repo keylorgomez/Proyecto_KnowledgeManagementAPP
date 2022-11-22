@@ -331,8 +331,22 @@ public class ListaProyectosController implements Initializable {
         Proyecto agregarParticipanteProyecto=tbProyectos.getItems().get(index);
         int idProyecto=agregarParticipanteProyecto.getIdProyecto();
         String emailParticipante= txtEmailParticipante.getText();
-        proyectoDao.registrarProyectoxusuario(proyectoDao.getUsuarioId(emailParticipante), idProyecto);
-        System.out.println("Agregado con éxito");
-
+        int idUsuario= proyectoDao.getUsuarioId(emailParticipante);
+        if(proyectoDao.getUsuarioId(emailParticipante)==0||emailParticipante.isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Se presentó un error con el correo ingresado.");
+            alert.initStyle(StageStyle.UTILITY);
+            alert.showAndWait();
+        } else{
+            proyectoDao.registrarProyectoxusuario(idUsuario, idProyecto);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Éxito");
+            alert.setHeaderText(null);
+            alert.setContentText("Se agrego correctamente el usuario al proyecto.");
+            alert.initStyle(StageStyle.UTILITY);
+            alert.showAndWait();
+        }
     }
 }
