@@ -114,7 +114,7 @@ public class ProyectoDao {
     public List<Proyecto> listarProyectosUsuarios(int idUsuario){
         List<Proyecto> listaProyecto=new ArrayList<>();
         try {
-            String SQL="select idProyecto, nombre,categoria,numeroProyecto,repositorio,fechaCreacion,ultimaModificacion from proyecto WHERE idUsuario="+"'" + idUsuario + "'";
+            String SQL="select proyectoxusuario.idProyecto, proyecto.nombre, proyecto.categoria, proyecto.numeroProyecto, proyecto.repositorio, proyecto.fechaCreacion, proyecto.ultimaModificacion from proyecto, proyectoxusuario  WHERE proyecto.idProyecto=proyectoxusuario.idProyecto and proyectoxusuario.idUsuario=" + idUsuario;
             Connection connection=this.obtenerConexion.getConnection();
             PreparedStatement sentencia=connection.prepareStatement(SQL);
             ResultSet data=sentencia.executeQuery();
