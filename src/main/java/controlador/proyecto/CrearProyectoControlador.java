@@ -76,6 +76,8 @@ public class CrearProyectoControlador {
         boolean respuestaValidacion= ValidarCampos(NombreProyecto,CategoriaProyecto,RepositorioProyecto,NumeroProyecto);
         if (respuestaValidacion==true){
             proyectoIdActivo= carpetaDao.getProyectoId(NumeroProyecto);
+            int IDUsuario=LoginControlador.UserIdActivo;
+            proyectoDao.registrarProyectoxusuario(IDUsuario, proyectoIdActivo);
             Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("Carpeta.fxml")));
             Stage window = (Stage) bntCrearCarpeta.getScene().getWindow();
             window.setScene(new Scene(root));
