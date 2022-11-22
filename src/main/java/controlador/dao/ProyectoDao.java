@@ -47,6 +47,29 @@ public class ProyectoDao {
         }
 
     }
+
+    public boolean registrarProyectoxusuario(int usuarioId, int proyectoId){
+        try {
+            String SQL = "insert into proyectoxusuario(idProyecto, idUsuario)" +
+                    "values(?,?)";
+            Connection connection = this.obtenerConexion.getConnection();
+            PreparedStatement sentencia = connection.prepareStatement(SQL);
+
+            sentencia.setInt(1, proyectoId);
+            sentencia.setInt(2, usuarioId);
+
+            sentencia.executeUpdate();
+            sentencia.close();
+            return true;
+        }catch (Exception e){
+            System.err.println("Ocurrió un error al registrar el proyecto");
+            System.err.println("Mensaje del error: "+e.getMessage());
+            System.err.println("Detalle del error: ");
+            e.printStackTrace();
+            return false;
+        }
+
+    }
     public int getUsuarioId(String email) throws SQLException {
         Connection connection=this.obtenerConexion.getConnection();
         String SQLidUser = "SELECT idUsuario FROM usuarios WHERE email = " + "'" + email + "'";
