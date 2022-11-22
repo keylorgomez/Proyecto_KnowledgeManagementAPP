@@ -225,7 +225,7 @@ public class ListaProyectosController implements Initializable {
             String FechaModiString = FechaModi.toString();
             proyectoSelecionado.setUltimaModificacion(FechaModiString);
 
-            boolean rsp = this.proyectoDao.editarProyecto(proyectoSelecionado);
+            boolean rsp = this.proyectoDao.editarProyectoTemporal(proyectoSelecionado);
             if (rsp == true) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Éxito");

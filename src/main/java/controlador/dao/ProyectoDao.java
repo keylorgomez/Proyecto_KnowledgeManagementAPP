@@ -165,6 +165,33 @@ public class ProyectoDao {
             return false;
         }
     }
+
+    public boolean editarProyectoTemporal(Proyecto proyecto){
+        try {
+            String SQL="insert into proyectoModificado(idProyecto, nombre,categoria,numeroProyecto,repositorio,ultimaModificacion)";
+            Connection connection=this.obtenerConexion.getConnection();
+            PreparedStatement sentencia =connection.prepareStatement(SQL);
+            sentencia.setString(1,proyecto.getNombre());
+            sentencia.setString(2,proyecto.getCategoria());
+            sentencia.setString(3,proyecto.getNumeroProyecto());
+            sentencia.setString(4,proyecto.getRepositorio());
+            sentencia.setString(5,proyecto.getUltimaModificacion());
+
+            sentencia.setInt(6,proyecto.getIdProyecto());
+
+            sentencia.executeUpdate();
+            sentencia.close();
+            return true;
+        } catch (Exception e) {
+            System.err.println("Ocurrió un error al editar el proyecto");
+            System.err.println("Mensaje del error: "+e.getMessage());
+            System.err.println("Detalle del error: ");
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
     public  boolean eliminarProyecto(int idProyecto){
         try {
             String SQL="delete from proyecto where idProyecto=?";
