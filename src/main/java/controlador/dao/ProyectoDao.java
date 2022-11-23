@@ -22,8 +22,8 @@ public class ProyectoDao {
     public boolean registrarProyecto(Proyecto proyecto){
         try {
             String SQL="insert into proyecto(nombre,categoria,fechaCreacion," +
-                    "ultimaModificacion,repositorio,idUsuario, numeroProyecto)"+
-                    "values(?,?,?,?,?,?,?)";
+                    "ultimaModificacion,repositorio,idUsuario, numeroProyecto, mostrar)"+
+                    "values(?,?,?,?,?,?,?,?)";
             Connection connection=this.obtenerConexion.getConnection();
             PreparedStatement sentencia= connection.prepareStatement(SQL);
 
@@ -34,6 +34,7 @@ public class ProyectoDao {
             sentencia.setString(5, proyecto.getRepositorio());
             sentencia.setInt(6,proyecto.getIdUsuario());
             sentencia.setString(7,proyecto.getNumeroProyecto());
+            sentencia.setInt(8, proyecto.getMostrar());
 
             sentencia.executeUpdate();
             sentencia.close();
@@ -81,10 +82,24 @@ public class ProyectoDao {
         }
         return idUsuario;
     }
+
+    public int getEstatus(int idProyecto) throws SQLException {
+        Connection connection=this.obtenerConexion.getConnection();
+        String SQLidUser = "SELECT estatus FROM proyectoModificado WHERE idProyecto = " + "'" + idProyecto + "'";
+        PreparedStatement sentencia2 = connection.prepareStatement(SQLidUser);
+        ResultSet rs = sentencia2.executeQuery();
+
+        int estatus=0;
+        if (rs.next()) {
+            estatus = rs.getInt("estatus");
+        }
+        return estatus;
+    }
+
     public List<Proyecto> listarProyectosGestor(){
         List<Proyecto> listaProyecto=new ArrayList<>();
         try {
-            String SQL="select idProyecto, nombre,categoria,numeroProyecto,repositorio,fechaCreacion,ultimaModificacion from proyecto";
+            String SQL="select idProyecto, nombre,categoria,numeroProyecto,repositorio,fechaCreacion,ultimaModificacion from proyecto where proyecto.mostrar=0";
             Connection connection=this.obtenerConexion.getConnection();
             PreparedStatement sentencia=connection.prepareStatement(SQL);
             ResultSet data=sentencia.executeQuery();
@@ -113,7 +128,7 @@ public class ProyectoDao {
     public List<Proyecto> listarProyectosUsuarios(int idUsuario){
         List<Proyecto> listaProyecto=new ArrayList<>();
         try {
-            String SQL="select proyectoxusuario.idProyecto, proyecto.nombre, proyecto.categoria, proyecto.numeroProyecto, proyecto.repositorio, proyecto.fechaCreacion, proyecto.ultimaModificacion from proyecto, proyectoxusuario  WHERE proyecto.idProyecto=proyectoxusuario.idProyecto and proyectoxusuario.idUsuario=" + idUsuario;
+            String SQL="select proyectoxusuario.idProyecto, proyecto.nombre, proyecto.categoria, proyecto.numeroProyecto, proyecto.repositorio, proyecto.fechaCreacion, proyecto.ultimaModificacion from proyecto, proyectoxusuario  WHERE proyecto.idProyecto=proyectoxusuario.idProyecto and proyecto.mostrar=0  and proyectoxusuario.idUsuario=" + idUsuario;
             Connection connection=this.obtenerConexion.getConnection();
             PreparedStatement sentencia=connection.prepareStatement(SQL);
             ResultSet data=sentencia.executeQuery();
@@ -142,7 +157,7 @@ public class ProyectoDao {
     public List<Proyecto> listarProyectosTemporales(){
         List<Proyecto> listaProyectoTemporales=new ArrayList<>();
         try {
-            String SQL="select idProyecto, nombre,categoria,numeroProyecto,repositorio,fechaCreacion,ultimaModificacion,estatus from proyectoModificado where estatus=0";
+            String SQL="select idProyecto, nombre,categoria,numeroProyecto,repositorio,fechaCreacion,ultimaModificacion,estatus from proyectoModificado where estatus=0 or estatus=3";
             Connection connection=this.obtenerConexion.getConnection();
             PreparedStatement sentencia=connection.prepareStatement(SQL);
             ResultSet data=sentencia.executeQuery();
@@ -182,6 +197,31 @@ public class ProyectoDao {
             sentencia.setString(5,proyecto.getUltimaModificacion());
 
             sentencia.setInt(6,proyecto.getIdProyecto());
+
+            sentencia.executeUpdate();
+            sentencia.close();
+            return true;
+        } catch (Exception e) {
+            System.err.println("Ocurrió un error al editar el proyecto");
+            System.err.println("Mensaje del error: "+e.getMessage());
+            System.err.println("Detalle del error: ");
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean ocultarProyecto(Proyecto proyecto){
+        try {
+            String SQL="update proyecto set nombre=?,categoria=?,numeroProyecto=?,repositorio=?,ultimaModificacion=?, mostrar=? WHERE idProyecto=?";
+            Connection connection=this.obtenerConexion.getConnection();
+            PreparedStatement sentencia =connection.prepareStatement(SQL);
+            sentencia.setString(1,proyecto.getNombre());
+            sentencia.setString(2,proyecto.getCategoria());
+            sentencia.setString(3,proyecto.getNumeroProyecto());
+            sentencia.setString(4,proyecto.getRepositorio());
+            sentencia.setString(5,proyecto.getUltimaModificacion());
+            sentencia.setInt(6, proyecto.getMostrar());
+            sentencia.setInt(7,proyecto.getIdProyecto());
 
             sentencia.executeUpdate();
             sentencia.close();
@@ -245,9 +285,9 @@ public class ProyectoDao {
     }
 
 
-    public  boolean eliminarProyecto(int idProyecto){
+    /*public  boolean eliminarProyecto(int idProyecto){
         try {
-            String SQL="delete from proyecto where idProyecto=?";
+            String SQL="select from proyecto where idProyecto=?";
             Connection connection=this.obtenerConexion.getConnection();
             PreparedStatement sentencia=connection.prepareStatement(SQL);
 
@@ -261,7 +301,7 @@ public class ProyectoDao {
             System.err.println("Detalle del error: ");
             e.printStackTrace();
             return false;
-        }
-    }
+        }*/
+
 
 }

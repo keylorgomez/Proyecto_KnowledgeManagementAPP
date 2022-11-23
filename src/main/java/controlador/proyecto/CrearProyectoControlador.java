@@ -101,7 +101,9 @@ public class CrearProyectoControlador {
             alert.showAndWait();
             return rsp=false;
         }else{
-            proyecto=new Proyecto(nombre,categoria,fechaCreacionString,fechaUltimaModificacionString,repositorio,IDUsuario,numero);
+            int mostrar= 0;
+            int estatus=0;
+            proyecto=new Proyecto(nombre,categoria,fechaCreacionString,fechaUltimaModificacionString,repositorio,IDUsuario,numero,mostrar);
             rsp=proyectoDao.registrarProyecto(proyecto);
             return rsp=true;
         }

@@ -25,6 +25,16 @@ public class Proyecto {
     private int idUsuario;
     private int estatus;
 
+    private int mostrar;
+
+    public int getMostrar() {
+        return mostrar;
+    }
+
+    public void setMostrar(int mostrar) {
+        this.mostrar = mostrar;
+    }
+
     public int getEstatus() {
         return estatus;
     }
@@ -85,6 +95,16 @@ public class Proyecto {
         this.idUsuario = idUsuario;
     }
 
+    public Proyecto(String nombre,String categoria, String fechaCreacion,String ultimaModificacion,String repositorio,int idUsuario,String numero, int mostrar) {
+        this.categoria = categoria;
+        this.numeroProyecto = numero;
+        this.nombre = nombre;
+        this.fechaCreacion = fechaCreacion;
+        this.ultimaModificacion = ultimaModificacion;
+        this.repositorio = repositorio;
+        this.idUsuario = idUsuario;
+        this.mostrar= mostrar;
+    }
     public String getNumeroProyecto() {
         return numeroProyecto;
     }
@@ -180,11 +200,13 @@ public class Proyecto {
                 ", numeroProyecto='" + numeroProyecto + '\'' +
                 ", categoria='" + categoria + '\'' +
                 ", nombre='" + nombre + '\'' +
-                ", fechaCreacion=" + fechaCreacion +
-                ", ultimaModificacion=" + ultimaModificacion +
+                ", fechaCreacion='" + fechaCreacion + '\'' +
+                ", ultimaModificacion='" + ultimaModificacion + '\'' +
                 ", repositorio='" + repositorio + '\'' +
                 ", idCarpeta=" + idCarpeta +
                 ", idUsuario=" + idUsuario +
+                ", estatus=" + estatus +
+                ", mostrar=" + mostrar +
                 '}';
     }
 }
