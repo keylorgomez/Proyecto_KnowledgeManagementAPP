@@ -51,28 +51,62 @@ public class ListaProyectosTemporalesController implements Initializable {
     @FXML
     void AceptarCambios(ActionEvent event) {
         if(proyectoTemporalSeleccionado!=null){
-            if (rbtAprobar.isSelected()==true){
-                int estatus= 1;
-                proyectoTemporalSeleccionado.setEstatus(estatus);
-                proyectoDao.editarProyectoTemporal(proyectoTemporalSeleccionado);
-                proyectoDao.editarProyecto(proyectoTemporalSeleccionado);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Exito");
-                alert.setHeaderText(null);
-                alert.setContentText("Usted ha aceptado los cambios y se ha actualizado el proyecto seleccionado.");
-                alert.initStyle(StageStyle.UTILITY);
-                alert.showAndWait();
-            }else if (rbtRechazar.isSelected()==true){
-                int estatus= 2;
-                proyectoTemporalSeleccionado.setEstatus(estatus);
-                proyectoDao.editarProyectoTemporal(proyectoTemporalSeleccionado);
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("IMPORTANTE");
-                alert.setHeaderText(null);
-                alert.setContentText("Usted no ha aceptado los cambios y serán eliminaodos.");
-                alert.initStyle(StageStyle.UTILITY);
-                alert.showAndWait();
+            System.out.println(proyectoTemporalSeleccionado);
+            if(proyectoTemporalSeleccionado.getEstatus()==0) {
+                if (rbtAprobar.isSelected() == true) {
+                    int estatus = 1;
+                    proyectoTemporalSeleccionado.setEstatus(estatus);
+                    proyectoDao.editarProyectoTemporal(proyectoTemporalSeleccionado);
+                    proyectoDao.editarProyecto(proyectoTemporalSeleccionado);
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Exito");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Usted ha aceptado los cambios y se ha actualizado el proyecto seleccionado.");
+                    alert.initStyle(StageStyle.UTILITY);
+                    alert.showAndWait();
+                } else if (rbtRechazar.isSelected() == true) {
+                    int estatus = 2;
+                    proyectoTemporalSeleccionado.setEstatus(estatus);
+                    proyectoDao.editarProyectoTemporal(proyectoTemporalSeleccionado);
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("IMPORTANTE");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Usted no ha aceptado los cambios y serán eliminaodos.");
+                    alert.initStyle(StageStyle.UTILITY);
+                    alert.showAndWait();
+                }
             }
+            if(proyectoTemporalSeleccionado.getEstatus()==3){
+                if (rbtAprobar.isSelected()==true){
+                    System.out.println("sin editar: "+proyectoTemporalSeleccionado);
+                    int estatus= 4;
+                    proyectoTemporalSeleccionado.setMostrar(1);
+                    proyectoTemporalSeleccionado.setEstatus(estatus);
+                    proyectoDao.editarProyectoTemporal(proyectoTemporalSeleccionado);
+                    proyectoDao.ocultarProyecto(proyectoTemporalSeleccionado);
+                    System.out.println("editado: "+proyectoTemporalSeleccionado);
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Exito");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Usted ha aceptado los cambios y se ha actualizado el proyecto seleccionado.");
+                    alert.initStyle(StageStyle.UTILITY);
+                    alert.showAndWait();
+                }else if (rbtRechazar.isSelected()==true){
+                    int estatus= 5;
+                    proyectoTemporalSeleccionado.setMostrar(0);
+                    proyectoTemporalSeleccionado.setEstatus(estatus);
+                    proyectoDao.editarProyectoTemporal(proyectoTemporalSeleccionado);
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("IMPORTANTE");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Usted no ha aceptado los cambios y serán eliminaodos.");
+                    alert.initStyle(StageStyle.UTILITY);
+                    alert.showAndWait();
+
+                }
+            }
+
+
         }
 
     }

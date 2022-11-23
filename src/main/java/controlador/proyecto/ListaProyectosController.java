@@ -14,6 +14,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import modelo.Proyecto;
+import modelo.ProyectoTemporal;
 import vista.Inicio;
 
 import java.io.IOException;
@@ -62,6 +63,7 @@ public class ListaProyectosController implements Initializable {
 
     private ContextMenu cmOpciones;
     private Proyecto proyectoSelecionado;
+    private ProyectoTemporal proyectoTemporal;
 
 
 
@@ -123,12 +125,22 @@ public class ListaProyectosController implements Initializable {
                     Optional<ButtonType> result = alert.showAndWait();
 
                     if (result.get() == ButtonType.OK) {
-                        boolean rsp = proyectoDao.eliminarProyecto(proyectoEliminar.getIdProyecto());
+                        proyectoEliminar.getIdProyecto();
+                        proyectoEliminar.getNombre();
+                        proyectoEliminar.getCategoria();
+                        proyectoEliminar.getFechaCreacion();
+                        proyectoEliminar.getNumeroProyecto();
+                        proyectoEliminar.getRepositorio();
+                        proyectoEliminar.getUltimaModificacion();
+                        int estatus= 3;
+                        proyectoEliminar.setEstatus(estatus);
+
+                        boolean rsp = proyectoDao.crearProyectoTemporal(proyectoEliminar);
                         if (rsp == true) {
                             Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
                             alert2.setTitle("Éxito");
                             alert2.setHeaderText(null);
-                            alert2.setContentText("Se eliminó correctamente el proyecto.");
+                            alert2.setContentText("Se debe esperar aprobación de usuario para borrar el proyecto.");
                             alert2.initStyle(StageStyle.UTILITY);
                             alert2.showAndWait();
                             CargarProyectos(tipoUsuario);
@@ -169,6 +181,7 @@ public class ListaProyectosController implements Initializable {
                 public void handle(ActionEvent event) {
                     int index = tbProyectos.getSelectionModel().getSelectedIndex();
                     Proyecto proyectoEliminar = tbProyectos.getItems().get(index);
+
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                     alert.setTitle("Confirmación");
                     alert.setHeaderText(null);
@@ -177,12 +190,22 @@ public class ListaProyectosController implements Initializable {
                     Optional<ButtonType> result = alert.showAndWait();
 
                     if (result.get() == ButtonType.OK) {
-                        boolean rsp = proyectoDao.eliminarProyecto(proyectoEliminar.getIdProyecto());
+                        proyectoEliminar.getIdProyecto();
+                        proyectoEliminar.getNombre();
+                        proyectoEliminar.getCategoria();
+                        proyectoEliminar.getFechaCreacion();
+                        proyectoEliminar.getNumeroProyecto();
+                        proyectoEliminar.getRepositorio();
+                        proyectoEliminar.getUltimaModificacion();
+                        int estatus= 3;
+                        proyectoEliminar.setEstatus(estatus);
+                        System.out.println(proyectoEliminar);
+                        boolean rsp = proyectoDao.crearProyectoTemporal(proyectoEliminar);
                         if (rsp == true) {
                             Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
                             alert2.setTitle("Éxito");
                             alert2.setHeaderText(null);
-                            alert2.setContentText("Se eliminó correctamente el proyecto.");
+                            alert2.setContentText("Se debe esperar aprobación del gestor para eliminar proyecto");
                             alert2.initStyle(StageStyle.UTILITY);
                             alert2.showAndWait();
                             CargarProyectos(tipoUsuario);
@@ -228,7 +251,7 @@ public class ListaProyectosController implements Initializable {
             proyectoSelecionado.getIdProyecto();
             int estatus= 0;
             proyectoSelecionado.setEstatus(estatus);
-
+            System.out.println(proyectoSelecionado);
             boolean rsp = this.proyectoDao.crearProyectoTemporal(proyectoSelecionado);
             if (rsp == true) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
