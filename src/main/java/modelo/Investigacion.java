@@ -8,32 +8,77 @@ public class Investigacion {
     /**
      * Atributos de la clase Investigacion
      */
-    private String tituloInvestigacion;
+    private int idInvestigacion;
+    private String fechaModificacion;
+    private String fechaInicio;
     private String CategoriaInvestigacion;
     private String tema;
     private String autor;
-    private LocalDate fechaInicio;
-    private LocalDate fechaModificacion;
+    private String tituloInvestigacion;
+    private String contenido1;
+    private String subTitulo1;
+    private String contenido2;
 
     public Investigacion() {
     }
 
-    public Investigacion(String tituloInvestigacion, String categoriaInvestigacion, String tema,
-                         String autor, LocalDate fechaInicio, LocalDate fechaModificacion) {
-        this.tituloInvestigacion = tituloInvestigacion;
+    public Investigacion(String fechaModificacion, String fechaInicio, String categoriaInvestigacion, String tema, String autor, String tituloInvestigacion, String subTitulo1) {
+        this.fechaModificacion = fechaModificacion;
+        this.fechaInicio = fechaInicio;
         CategoriaInvestigacion = categoriaInvestigacion;
         this.tema = tema;
         this.autor = autor;
+        this.tituloInvestigacion = tituloInvestigacion;
+        this.subTitulo1 = subTitulo1;
+    }
+
+    public Investigacion(String fechaModificacion, String fechaInicio, String categoriaInvestigacion, String tema, String autor, String tituloInvestigacion, String contenido1, String subTitulo1, String contenido2) {
+        this.fechaModificacion = fechaModificacion;
         this.fechaInicio = fechaInicio;
+        CategoriaInvestigacion = categoriaInvestigacion;
+        this.tema = tema;
+        this.autor = autor;
+        this.tituloInvestigacion = tituloInvestigacion;
+        this.contenido1 = contenido1;
+        this.subTitulo1 = subTitulo1;
+        this.contenido2 = contenido2;
+    }
+
+    public Investigacion(int idInvestigacion, String fechaModificacion, String fechaInicio, String categoriaInvestigacion, String tema, String autor, String tituloInvestigacion, String contenido1, String subTitulo1, String contenido2) {
+        this.idInvestigacion = idInvestigacion;
+        this.fechaModificacion = fechaModificacion;
+        this.fechaInicio = fechaInicio;
+        CategoriaInvestigacion = categoriaInvestigacion;
+        this.tema = tema;
+        this.autor = autor;
+        this.tituloInvestigacion = tituloInvestigacion;
+        this.contenido1 = contenido1;
+        this.subTitulo1 = subTitulo1;
+        this.contenido2 = contenido2;
+    }
+
+    public int getIdInvestigacion() {
+        return idInvestigacion;
+    }
+
+    public void setIdInvestigacion(int idInvestigacion) {
+        this.idInvestigacion = idInvestigacion;
+    }
+
+    public String getFechaModificacion() {
+        return fechaModificacion;
+    }
+
+    public void setFechaModificacion(String fechaModificacion) {
         this.fechaModificacion = fechaModificacion;
     }
 
-    public String getTituloInvestigacion() {
-        return tituloInvestigacion;
+    public String getFechaInicio() {
+        return fechaInicio;
     }
 
-    public void setTituloInvestigacion(String tituloInvestigacion) {
-        this.tituloInvestigacion = tituloInvestigacion;
+    public void setFechaInicio(String fechaInicio) {
+        this.fechaInicio = fechaInicio;
     }
 
     public String getCategoriaInvestigacion() {
@@ -60,20 +105,36 @@ public class Investigacion {
         this.autor = autor;
     }
 
-    public LocalDate getFechaInicio() {
-        return fechaInicio;
+    public String getTituloInvestigacion() {
+        return tituloInvestigacion;
     }
 
-    public void setFechaInicio(LocalDate fechaInicio) {
-        this.fechaInicio = fechaInicio;
+    public void setTituloInvestigacion(String tituloInvestigacion) {
+        this.tituloInvestigacion = tituloInvestigacion;
     }
 
-    public LocalDate getFechaModificacion() {
-        return fechaModificacion;
+    public String getContenido1() {
+        return contenido1;
     }
 
-    public void setFechaModificacion(LocalDate fechaModificacion) {
-        this.fechaModificacion = fechaModificacion;
+    public void setContenido1(String contenido1) {
+        this.contenido1 = contenido1;
+    }
+
+    public String getSubTitulo1() {
+        return subTitulo1;
+    }
+
+    public void setSubTitulo1(String subTitulo1) {
+        this.subTitulo1 = subTitulo1;
+    }
+
+    public String getContenido2() {
+        return contenido2;
+    }
+
+    public void setContenido2(String contenido2) {
+        this.contenido2 = contenido2;
     }
 
     @Override
@@ -81,18 +142,22 @@ public class Investigacion {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Investigacion that = (Investigacion) o;
-        return Objects.equals(tituloInvestigacion, that.tituloInvestigacion);
+        return idInvestigacion == that.idInvestigacion && Objects.equals(fechaModificacion, that.fechaModificacion) && Objects.equals(fechaInicio, that.fechaInicio) && Objects.equals(CategoriaInvestigacion, that.CategoriaInvestigacion) && Objects.equals(tema, that.tema) && Objects.equals(autor, that.autor) && Objects.equals(tituloInvestigacion, that.tituloInvestigacion) && Objects.equals(contenido1, that.contenido1) && Objects.equals(subTitulo1, that.subTitulo1) && Objects.equals(contenido2, that.contenido2);
     }
 
     @Override
     public String toString() {
         return "Investigacion{" +
-                "tituloInvestigacion='" + tituloInvestigacion + '\'' +
+                "idInvestigacion=" + idInvestigacion +
+                ", fechaModificacion='" + fechaModificacion + '\'' +
+                ", fechaInicio='" + fechaInicio + '\'' +
                 ", CategoriaInvestigacion='" + CategoriaInvestigacion + '\'' +
                 ", tema='" + tema + '\'' +
                 ", autor='" + autor + '\'' +
-                ", fechaInicio=" + fechaInicio +
-                ", fechaModificacion=" + fechaModificacion +
+                ", tituloInvestigacion='" + tituloInvestigacion + '\'' +
+                ", contenido1='" + contenido1 + '\'' +
+                ", subTitulo1='" + subTitulo1 + '\'' +
+                ", contenido2='" + contenido2 + '\'' +
                 '}';
     }
-}
+}// fin de clase

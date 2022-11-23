@@ -3,7 +3,6 @@ package controlador.proyecto;
 import java.io.*;
 
 public class DocumentoController {
-    private String rutaNombre;
 
     public DocumentoController() {
     }
