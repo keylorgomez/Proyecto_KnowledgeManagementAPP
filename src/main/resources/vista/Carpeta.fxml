@@ -16,7 +16,7 @@
             </Label>
             <Button fx:id="btnCrearCarpeta" layoutX="166.0" layoutY="168.0" mnemonicParsing="false" onAction="#crearProyecto" style="-fx-background-color: #E84F31; -fx-font-weight: bold;" text="Regresar Proyecto " textFill="WHITE" />
             <Button fx:id="btnMedia" layoutX="263.0" layoutY="105.0" mnemonicParsing="false" onAction="#irCrearMedia" prefHeight="27.0" prefWidth="147.0" style="-fx-background-color: #E84F31; -fx-font-weight: bold;" text="Agregar Media" textFill="WHITE" />
-            <Button fx:id="btnAgregarInvestigacion" layoutX="80.0" layoutY="105.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="147.0" style="-fx-background-color: #E84F31; -fx-font-weight: bold;" text="Agregar Investigación" textFill="WHITE" />
+            <Button fx:id="btnAgregarInvestigacion" layoutX="80.0" layoutY="105.0" mnemonicParsing="false" onAction="#irCrearInvestigacion" prefHeight="27.0" prefWidth="147.0" style="-fx-background-color: #E84F31; -fx-font-weight: bold;" text="Agregar Investigación" textFill="WHITE" />
          </children>
       </AnchorPane>
    </children>

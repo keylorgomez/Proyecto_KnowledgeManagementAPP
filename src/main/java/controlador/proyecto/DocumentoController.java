@@ -9,7 +9,7 @@ public class DocumentoController {
     }
 
     public static void crearDocumento(String fechaModificacion, String fechaInicial, String ruta, String categoria, String tema, String autor, String titulo,
-                                      String contenido1, String subTitulo, String contenido2){
+                                      String subTitulo, String contenido ){
         String  rutaNombre = ruta+"\\"+titulo+".rtf";
         File documento = new File(rutaNombre);
         try {
@@ -20,9 +20,9 @@ public class DocumentoController {
             salida.println("Tema:"+ tema);
             salida.println("Autor: "+autor+"\n");
             salida.println("\t\tTítulo: "+titulo+"\n");
-            salida.println(contenido1+"\n");
             salida.println("\tsubTitulo"+subTitulo+"\n");
-            salida.println(contenido2);
+            salida.println(contenido+"\n");
+
             salida.close();
             System.out.println("Se ha creado el archivo.");
         } catch (FileNotFoundException ex) {

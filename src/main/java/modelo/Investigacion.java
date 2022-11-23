@@ -1,31 +1,76 @@
 package modelo;
 
+import java.sql.Date;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class Investigacion {
     /**
      * Atributos de la clase Investigacion
      */
+
+    private int idInvestigacion;
     private String tituloInvestigacion;
-    private String CategoriaInvestigacion;
+    private String categoriaInvestigacion;
     private String tema;
     private String autor;
-    private LocalDate fechaInicio;
-    private LocalDate fechaModificacion;
+    private String fechaInicio;
+    private String fechaModificacion;
 
-    public Investigacion() {
-    }
+    private  String subtitulo;
+    private String contenido;
 
-    public Investigacion(String tituloInvestigacion, String categoriaInvestigacion, String tema,
-                         String autor, LocalDate fechaInicio, LocalDate fechaModificacion) {
+
+    public Investigacion(int idInvestigacion, String tituloInvestigacion, String categoriaInvestigacion, String tema, String autor, String fechaInicio, String fechaModificacion, String subtitulo, String contenido) {
+        this.idInvestigacion = idInvestigacion;
         this.tituloInvestigacion = tituloInvestigacion;
-        CategoriaInvestigacion = categoriaInvestigacion;
+        this.categoriaInvestigacion = categoriaInvestigacion;
         this.tema = tema;
         this.autor = autor;
         this.fechaInicio = fechaInicio;
         this.fechaModificacion = fechaModificacion;
+        this.subtitulo = subtitulo;
+        this.contenido = contenido;
+    }
+
+    public Investigacion(String tituloInvestigacion, String categoriaInvestigacion, String tema, String autor, String fechaInicio, String fechaModificacion, String subtitulo, String contenido) {
+        this.tituloInvestigacion = tituloInvestigacion;
+        this.categoriaInvestigacion = categoriaInvestigacion;
+        this.tema = tema;
+        this.autor = autor;
+        this.fechaInicio = fechaInicio;
+        this.fechaModificacion = fechaModificacion;
+        this.subtitulo = subtitulo;
+        this.contenido = contenido;
+    }
+
+    public String getContenido() {
+        return contenido;
+    }
+
+    public void setContenido(String contenido) {
+        this.contenido = contenido;
+    }
+
+    public Investigacion() {
+    }
+
+
+
+    public int getIdInvestigacion() {
+        return idInvestigacion;
+    }
+
+    public void setIdInvestigacion(int idInvestigacion) {
+        this.idInvestigacion = idInvestigacion;
+    }
+
+    public String getSubtitulo() {
+        return subtitulo;
+    }
+
+    public void setSubtitulo(String subtitulo) {
+        this.subtitulo = subtitulo;
     }
 
     public String getTituloInvestigacion() {
@@ -36,12 +81,12 @@ public class Investigacion {
         this.tituloInvestigacion = tituloInvestigacion;
     }
 
-    public String getCategoriaInvestigacion() {
-        return CategoriaInvestigacion;
+    public String getcategoriaInvestigacion() {
+        return categoriaInvestigacion;
     }
 
-    public void setCategoriaInvestigacion(String categoriaInvestigacion) {
-        CategoriaInvestigacion = categoriaInvestigacion;
+    public void setcategoriaInvestigacion(String categoriaInvestigacion) {
+        categoriaInvestigacion = categoriaInvestigacion;
     }
 
     public String getTema() {
@@ -60,21 +105,22 @@ public class Investigacion {
         this.autor = autor;
     }
 
-    public LocalDate getFechaInicio() {
+    public String getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(LocalDate fechaInicio) {
+    public void setFechaInicio(String fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public LocalDate getFechaModificacion() {
+    public String getFechaModificacion() {
         return fechaModificacion;
     }
 
-    public void setFechaModificacion(LocalDate fechaModificacion) {
+    public void setFechaModificacion(String fechaModificacion) {
         this.fechaModificacion = fechaModificacion;
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -88,7 +134,7 @@ public class Investigacion {
     public String toString() {
         return "Investigacion{" +
                 "tituloInvestigacion='" + tituloInvestigacion + '\'' +
-                ", CategoriaInvestigacion='" + CategoriaInvestigacion + '\'' +
+                ", CategoriaInvestigacion='" + categoriaInvestigacion + '\'' +
                 ", tema='" + tema + '\'' +
                 ", autor='" + autor + '\'' +
                 ", fechaInicio=" + fechaInicio +
