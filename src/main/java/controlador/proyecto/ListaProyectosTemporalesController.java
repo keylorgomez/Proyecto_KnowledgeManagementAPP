@@ -19,6 +19,7 @@ import vista.Inicio;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -49,10 +50,10 @@ public class ListaProyectosTemporalesController implements Initializable {
 
 
     @FXML
-    void AceptarCambios(ActionEvent event) {
+    void AceptarCambios(ActionEvent event) throws SQLException {
         if(proyectoTemporalSeleccionado!=null){
-            System.out.println(proyectoTemporalSeleccionado);
-            if(proyectoTemporalSeleccionado.getEstatus()==0) {
+            int estado= proyectoDao.getEstatus(proyectoTemporalSeleccionado.getIdProyecto());
+            if(estado==0) {
                 if (rbtAprobar.isSelected() == true) {
                     int estatus = 1;
                     proyectoTemporalSeleccionado.setEstatus(estatus);
@@ -75,8 +76,7 @@ public class ListaProyectosTemporalesController implements Initializable {
                     alert.initStyle(StageStyle.UTILITY);
                     alert.showAndWait();
                 }
-            }
-            if(proyectoTemporalSeleccionado.getEstatus()==3){
+            } else if(estado==3){
                 if (rbtAprobar.isSelected()==true){
                     System.out.println("sin editar: "+proyectoTemporalSeleccionado);
                     int estatus= 4;

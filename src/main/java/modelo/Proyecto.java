@@ -200,11 +200,13 @@ public class Proyecto {
                 ", numeroProyecto='" + numeroProyecto + '\'' +
                 ", categoria='" + categoria + '\'' +
                 ", nombre='" + nombre + '\'' +
-                ", fechaCreacion=" + fechaCreacion +
-                ", ultimaModificacion=" + ultimaModificacion +
+                ", fechaCreacion='" + fechaCreacion + '\'' +
+                ", ultimaModificacion='" + ultimaModificacion + '\'' +
                 ", repositorio='" + repositorio + '\'' +
                 ", idCarpeta=" + idCarpeta +
                 ", idUsuario=" + idUsuario +
+                ", estatus=" + estatus +
+                ", mostrar=" + mostrar +
                 '}';
     }
 }

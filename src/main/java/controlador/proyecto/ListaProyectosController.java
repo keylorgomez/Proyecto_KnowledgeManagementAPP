@@ -14,7 +14,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import modelo.Proyecto;
-import modelo.ProyectoTemporal;
 import vista.Inicio;
 
 import java.io.IOException;
@@ -63,7 +62,6 @@ public class ListaProyectosController implements Initializable {
 
     private ContextMenu cmOpciones;
     private Proyecto proyectoSelecionado;
-    private ProyectoTemporal proyectoTemporal;
 
 
 
@@ -117,6 +115,7 @@ public class ListaProyectosController implements Initializable {
                 public void handle(ActionEvent event) {
                     int index = tbProyectos.getSelectionModel().getSelectedIndex();
                     Proyecto proyectoEliminar = tbProyectos.getItems().get(index);
+
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                     alert.setTitle("Confirmación");
                     alert.setHeaderText(null);
@@ -134,7 +133,6 @@ public class ListaProyectosController implements Initializable {
                         proyectoEliminar.getUltimaModificacion();
                         int estatus= 3;
                         proyectoEliminar.setEstatus(estatus);
-
                         boolean rsp = proyectoDao.crearProyectoTemporal(proyectoEliminar);
                         if (rsp == true) {
                             Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
@@ -200,6 +198,7 @@ public class ListaProyectosController implements Initializable {
                         int estatus= 3;
                         proyectoEliminar.setEstatus(estatus);
                         System.out.println(proyectoEliminar);
+
                         boolean rsp = proyectoDao.crearProyectoTemporal(proyectoEliminar);
                         if (rsp == true) {
                             Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
@@ -252,6 +251,7 @@ public class ListaProyectosController implements Initializable {
             int estatus= 0;
             proyectoSelecionado.setEstatus(estatus);
             System.out.println(proyectoSelecionado);
+
             boolean rsp = this.proyectoDao.crearProyectoTemporal(proyectoSelecionado);
             if (rsp == true) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);

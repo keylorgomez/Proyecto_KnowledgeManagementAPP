@@ -22,8 +22,8 @@ public class ProyectoDao {
     public boolean registrarProyecto(Proyecto proyecto){
         try {
             String SQL="insert into proyecto(nombre,categoria,fechaCreacion," +
-                    "ultimaModificacion,repositorio,idUsuario, numeroProyecto, estatus, mostrar)"+
-                    "values(?,?,?,?,?,?,?,?,?)";
+                    "ultimaModificacion,repositorio,idUsuario, numeroProyecto, mostrar)"+
+                    "values(?,?,?,?,?,?,?,?)";
             Connection connection=this.obtenerConexion.getConnection();
             PreparedStatement sentencia= connection.prepareStatement(SQL);
 
@@ -34,8 +34,7 @@ public class ProyectoDao {
             sentencia.setString(5, proyecto.getRepositorio());
             sentencia.setInt(6,proyecto.getIdUsuario());
             sentencia.setString(7,proyecto.getNumeroProyecto());
-            sentencia.setInt(8, proyecto.getEstatus());
-            sentencia.setInt(9, proyecto.getMostrar());
+            sentencia.setInt(8, proyecto.getMostrar());
 
             sentencia.executeUpdate();
             sentencia.close();
@@ -83,6 +82,20 @@ public class ProyectoDao {
         }
         return idUsuario;
     }
+
+    public int getEstatus(int idProyecto) throws SQLException {
+        Connection connection=this.obtenerConexion.getConnection();
+        String SQLidUser = "SELECT estatus FROM proyectoModificado WHERE idProyecto = " + "'" + idProyecto + "'";
+        PreparedStatement sentencia2 = connection.prepareStatement(SQLidUser);
+        ResultSet rs = sentencia2.executeQuery();
+
+        int estatus=0;
+        if (rs.next()) {
+            estatus = rs.getInt("estatus");
+        }
+        return estatus;
+    }
+
     public List<Proyecto> listarProyectosGestor(){
         List<Proyecto> listaProyecto=new ArrayList<>();
         try {
