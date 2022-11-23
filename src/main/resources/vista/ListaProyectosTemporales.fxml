@@ -7,12 +7,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="520.0" prefWidth="860.0" style="-fx-background-color: #082F32;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.proyecto.ListaProyectosTemporalesController">
    <children>
       <AnchorPane layoutX="29.0" layoutY="163.0" prefHeight="223.0" prefWidth="211.0" style="-fx-background-color: fff; -fx-border-color: #e84f31; -fx-border-radius: 7px;">
          <children>
-            <Label layoutX="19.0" layoutY="31.0" style="-fx-font-weight: bold;" text="Apruebe o rechace los cambio!" />
+            <Label layoutX="19.0" layoutY="31.0" style="-fx-font-weight: bold;" text="Apruebe o rechace los cambios!" />
             <RadioButton fx:id="rbtAprobar" focusTraversable="false" layoutX="27.0" layoutY="73.0" mnemonicParsing="false" style="-fx-font-weight: bold;" text="Aprobar" />
             <RadioButton fx:id="rbtRechazar" focusTraversable="false" layoutX="111.0" layoutY="73.0" mnemonicParsing="false" style="-fx-font-weight: bold;" text="Rechazar" />
             <Button fx:id="btnAceptar" disable="true" layoutX="63.0" layoutY="126.0" mnemonicParsing="false" onAction="#AceptarCambios" prefWidth="85.0" style="-fx-font-weight: bold; -fx-background-color: #E84F31;" text="Aceptar" textFill="WHITE" />

@@ -5,18 +5,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="582.0" style="-fx-background-color: #082F32;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.proyecto.MenuInicialController">
+<AnchorPane prefHeight="430.0" prefWidth="582.0" style="-fx-background-color: #082F32;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.proyecto.MenuInicialController">
     <children>
-        <AnchorPane layoutX="75.0" layoutY="55.0" prefHeight="289.0" prefWidth="431.0" style="-fx-background-color: fff; -fx-border-color: #E84F31; -fx-border-radius: 7px;">
+        <AnchorPane layoutX="75.0" layoutY="55.0" prefHeight="334.0" prefWidth="449.0" style="-fx-background-color: fff; -fx-border-color: #E84F31; -fx-border-radius: 7px;">
             <children>
                 <Label layoutX="140.0" layoutY="32.0" text="Menú Inicial" textFill="#082f32">
                     <font>
                         <Font name="System Bold" size="26.0" />
                     </font>
                 </Label>
-            <Button fx:id="btnEditarProyecto" layoutX="14.0" layoutY="162.0" mnemonicParsing="false" onAction="#IrEditarProyecto" prefWidth="105.0" style="-fx-font-weight: bold; -fx-background-color: #E84F31;" text="Editar Proyecto" textFill="WHITE" />
-            <Button fx:id="btnCrearProyecto" layoutX="304.0" layoutY="162.0" mnemonicParsing="false" onAction="#IrCrearProyecto" prefWidth="105.0" style="-fx-font-weight: bold; -fx-background-color: #E84F31;" text="Crear Proyecto" textFill="WHITE" />
-            <Button fx:id="btnCerrarSesion" layoutX="167.0" layoutY="242.0" mnemonicParsing="false" onAction="#CerrarSesion" prefWidth="105.0" style="-fx-font-weight: bold; -fx-background-color: #E84F31;" text="Cerrar Sesión" textFill="WHITE" />
+            <Button fx:id="btnEditarProyecto" layoutX="14.0" layoutY="162.0" mnemonicParsing="false" onAction="#IrEditarProyecto" prefWidth="130.0" style="-fx-font-weight: bold; -fx-background-color: #E84F31;" text="Editar Proyecto" textFill="WHITE" />
+            <Button fx:id="btnCrearProyecto" layoutX="304.0" layoutY="162.0" mnemonicParsing="false" onAction="#IrCrearProyecto" prefWidth="130.0" style="-fx-font-weight: bold; -fx-background-color: #E84F31;" text="Crear Proyecto" textFill="WHITE" />
+            <Button fx:id="btnCerrarSesion" layoutX="171.0" layoutY="294.0" mnemonicParsing="false" onAction="#CerrarSesion" prefWidth="105.0" style="-fx-font-weight: bold; -fx-background-color: #E84F31;" text="Cerrar Sesión" textFill="WHITE" />
             <Label layoutX="31.0" layoutY="82.0" prefHeight="19.0" prefWidth="377.0" text="¡Bienvenido(a) a la plataforma Knowledge Management APP!">
                <font>
                   <Font name="System Bold Italic" size="13.0" />
@@ -27,7 +27,9 @@
                   <Font size="13.0" />
                </font>
             </Label>
-            <Button fx:id="btnProyectosTemporales" layoutX="154.0" layoutY="162.0" mnemonicParsing="false" onAction="#IrCambiosPresentados" text="Cambios presentados" />
+            <Button fx:id="btnProyectosTemporales" layoutX="122.0" layoutY="218.0" mnemonicParsing="false" onAction="#IrCambiosPresentados" prefWidth="205.0" style="-fx-font-weight: bold; -fx-background-color: #E84F31;" text="Solicitud cambios proyectos" textFill="WHITE" />
+            <Button fx:id="btnInvestigacionesTemporales" layoutX="122.0" layoutY="252.0" mnemonicParsing="false" onAction="#IrCambiosInvestigaciones" style="-fx-font-weight: bold; -fx-background-color: #E84F31;" text="Solicitud cambios investigaciones" textFill="WHITE" />
+            <Button fx:id="btnEditarInvestigacion" layoutX="162.0" layoutY="162.0" mnemonicParsing="false" onAction="#IrEditarInvestigacion" prefWidth="130.0" style="-fx-font-weight: bold; -fx-background-color: #E84F31;" text="Editar Investigación" textFill="WHITE" />
             </children>
         </AnchorPane>
     </children>
