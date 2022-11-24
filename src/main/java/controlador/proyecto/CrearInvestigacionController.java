@@ -4,15 +4,22 @@ import controlador.dao.CarpetaDao;
 import controlador.dao.InvestigacionDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import modelo.Investigacion;
 import modelo.Proyecto;
+import vista.Inicio;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class CrearInvestigacionController {
     private Investigacion investigacion;
@@ -57,7 +64,7 @@ public class CrearInvestigacionController {
     }
 
     @FXML
-    void crearInvestigacion(ActionEvent event) throws SQLException {
+    void crearInvestigacion(ActionEvent event) throws SQLException, IOException {
         String ultimaModificacion = LocalDate.now().toString();
         String fechaCreacion = LocalDate.now().toString();
         String ruta = txtRuta.getText();
@@ -86,10 +93,13 @@ public class CrearInvestigacionController {
                 Alert alert=new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Éxito");
                 alert.setHeaderText(null);
-                alert.setContentText("Se registró correctamente la investigación");
+                alert.setContentText("Se registró correctamente la investigación.");
                 alert.initStyle(StageStyle.UTILITY);
                 alert.showAndWait();
                 limpiarCampos();
+                Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("CrearProyecto.fxml")));
+                Stage window = (Stage) btnGuardarInvestigacion.getScene().getWindow();
+                window.setScene(new Scene(root));
             }else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);

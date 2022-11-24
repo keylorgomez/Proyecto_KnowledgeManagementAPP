@@ -75,7 +75,7 @@ public class InvestigacionDao {
     public List<Investigacion>listarInvestigacionGestor(){
         List<Investigacion> listaInvestigacion= new ArrayList<>();
         try{
-            String SQL="select idInvestigacion,titulo,tema,categoria,subtitulo,fechaInicio,fechaModificacion from investigacion";
+            String SQL="select idInvestigacion,titulo,tema,categoria,nombreAutor,subtitulo,fechaInicio,fechaModificacion from investigacion";
             Connection connection=this.obtenerConexion.getConnection();
             PreparedStatement sentencia=connection.prepareStatement(SQL);
             ResultSet data=sentencia.executeQuery();
@@ -85,9 +85,10 @@ public class InvestigacionDao {
                 investigacion.setTituloInvestigacion(data.getString(2));
                 investigacion.setTema(data.getString(3));
                 investigacion.setCategoriaInvestigacion(data.getString(4));
-                investigacion.setSubTitulo1(data.getString(5));
-                investigacion.setFechaInicio(data.getString(6));
-                investigacion.setFechaModificacion(data.getString(7));
+                investigacion.setAutor(data.getString(5));
+                investigacion.setSubTitulo1(data.getString(6));
+                investigacion.setFechaInicio(data.getString(7));
+                investigacion.setFechaModificacion(data.getString(8));
 
                 listaInvestigacion.add(investigacion);
 
@@ -106,20 +107,20 @@ public class InvestigacionDao {
     public List<Investigacion> listarInvestigacionesUsuarios(int idUsuario){
         List<Investigacion> listaInvestigacion=new ArrayList<>();
         try {
-            String SQL="select investigacion.idProyecto, investigacion.categoria, investigacion.tema, investigacion.nombreAutor, investigacion.titulo, investigacion.subtitulo, investigacion.fechaModificacion, investigacion.fechaInicio from investigacion  WHERE  investigacion.mostrar=0  and investigacion.idUsuario=" + idUsuario;
+            String SQL="select investigacion.idProyecto,investigacion.titulo, investigacion.tema,investigacion.categoria,  investigacion.nombreAutor,  investigacion.subtitulo, investigacion.fechaInicio,investigacion.fechaModificacion  from investigacion  WHERE  investigacion.mostrar=0  and investigacion.idUsuario=" + idUsuario;
             Connection connection=this.obtenerConexion.getConnection();
             PreparedStatement sentencia=connection.prepareStatement(SQL);
             ResultSet data=sentencia.executeQuery();
             while (data.next()==true){
                 Investigacion investigacion= new Investigacion();
                 investigacion.setIdInvestigacion(data.getInt(1));
-                investigacion.setCategoriaInvestigacion(data.getString(2));
+                investigacion.setTituloInvestigacion(data.getString(2));
                 investigacion.setTema(data.getString(3));
-                investigacion.setAutor(data.getString(4));
-                investigacion.setTituloInvestigacion(data.getString(5));
+                investigacion.setCategoriaInvestigacion(data.getString(4));
+                investigacion.setAutor(data.getString(5));
                 investigacion.setSubTitulo1(data.getString(6));
-                investigacion.setFechaModificacion(data.getString(7));
-                investigacion.setFechaInicio(data.getString(8));
+                investigacion.setFechaInicio(data.getString(7));
+                investigacion.setFechaModificacion(data.getString(8));
 
 
                 listaInvestigacion.add(investigacion);
@@ -160,6 +161,109 @@ public class InvestigacionDao {
             return false;
         }
     }
+    public List<Investigacion>listarInvestigacionesTemporales(){
+        List<Investigacion> listaInvestigacionTemporales= new ArrayList<>();
+        try{
+            String SQL="select idInvestigacion,titulo,tema,categoria,nombreAutor,subtitulo,fechaInicio,fechaModificacion, estatus from investigacionModificado where estatus=0 or estatus=3";
+            Connection connection=this.obtenerConexion.getConnection();
+            PreparedStatement sentencia=connection.prepareStatement(SQL);
+            ResultSet data=sentencia.executeQuery();
+            while (data.next()==true){
+                Investigacion investigacion=new Investigacion();
+                investigacion.setIdInvestigacion(data.getInt(1));
+                investigacion.setTituloInvestigacion(data.getString(2));
+                investigacion.setTema(data.getString(3));
+                investigacion.setCategoriaInvestigacion(data.getString(4));
+                investigacion.setAutor(data.getString(5));
+                investigacion.setSubTitulo1(data.getString(6));
+                investigacion.setFechaInicio(data.getString(7));
+                investigacion.setFechaModificacion(data.getString(8));
+                investigacion.setEstatus(data.getInt(9));
+
+                listaInvestigacionTemporales.add(investigacion);
+
+            }
+            data.close();
+            sentencia.close();
+
+        }catch (Exception e){
+            System.err.println("Ocurrió un error al listar las investigaciones");
+            System.err.println("Mensaje del error: "+e.getMessage());
+            System.err.println("Detalle del error: ");
+            e.printStackTrace();
+        }
+        return listaInvestigacionTemporales;
+    }
+
+    public int getEstatus(int idInvestigacion) throws SQLException {
+        Connection connection=this.obtenerConexion.getConnection();
+        String SQLidUser = "SELECT estatus FROM investigacionModificado WHERE idInvestigacion = " + "'" + idInvestigacion + "'";
+        PreparedStatement sentencia2 = connection.prepareStatement(SQLidUser);
+        ResultSet rs = sentencia2.executeQuery();
+
+        int estatus=0;
+        if (rs.next()) {
+            estatus = rs.getInt("estatus");
+        }
+        return estatus;
+    }
+
+    public boolean editarInvestigacion(Investigacion investigacion){
+        try {
+            String SQL="update investigacion set tema=?,categoria=?,nombreAutor=?,titulo=?,subtitulo=?,fechaModificacion=? WHERE idInvestigacion=?";
+            Connection connection=this.obtenerConexion.getConnection();
+            PreparedStatement sentencia =connection.prepareStatement(SQL);
+            sentencia.setString(1, investigacion.getTema());
+            sentencia.setString(2,investigacion.getCategoriaInvestigacion());
+            sentencia.setString(3,investigacion.getAutor());
+            sentencia.setString(4, investigacion.getTituloInvestigacion());
+
+            sentencia.setString(5, investigacion.getSubTitulo1());
+
+            sentencia.setString(6, investigacion.getFechaModificacion());
+
+            sentencia.setInt(7,investigacion.getIdInvestigacion());
+
+            sentencia.executeUpdate();
+            sentencia.close();
+            return true;
+        } catch (Exception e) {
+            System.err.println("Ocurrió un error al editar el investigacion");
+            System.err.println("Mensaje del error: "+e.getMessage());
+            System.err.println("Detalle del error: ");
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean ocultarInvestigacion(Investigacion investigacion){
+        try {
+            String SQL="update investigacion set tema=?,categoria=?,nombreAutor=?,titulo=?,subtitulo=?,ultimaModificacion=?, mostrar=? WHERE idInvestigacion=?";
+            Connection connection=this.obtenerConexion.getConnection();
+            PreparedStatement sentencia =connection.prepareStatement(SQL);
+
+            sentencia.setString(1, investigacion.getTema());
+            sentencia.setString(2,investigacion.getCategoriaInvestigacion());
+            sentencia.setString(3,investigacion.getAutor());
+            sentencia.setString(4, investigacion.getTituloInvestigacion());
+            sentencia.setString(5, investigacion.getSubTitulo1());
+            sentencia.setString(6, investigacion.getFechaModificacion());
+            sentencia.setInt(7, investigacion.getMostrar());
+            sentencia.setInt(8,investigacion.getIdInvestigacion());
+
+            sentencia.executeUpdate();
+            sentencia.close();
+            return true;
+        } catch (Exception e) {
+            System.err.println("Ocurrió un error al eliminar investigacion");
+            System.err.println("Mensaje del error: "+e.getMessage());
+            System.err.println("Detalle del error: ");
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+
     public boolean editarInvestigacionTemporal(Investigacion investigacion){
         try {
             String SQL="update investigacionModificado set estatus=? WHERE idInvestigacion=? and tema=? and categoria=? and nombreAutor=? and titulo=? and subtitulo=?";

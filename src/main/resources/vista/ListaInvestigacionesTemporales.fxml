@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="520.0" prefWidth="860.0" style="-fx-background-color: #082F32;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.proyecto.ListaInvestigacionesTemporalesController">
+   <children>
+      <AnchorPane layoutX="29.0" layoutY="134.0" prefHeight="223.0" prefWidth="211.0" style="-fx-background-color: fff; -fx-border-radius: 7px; -fx-border-color: #e84f31;">
+         <children>
+            <Label layoutX="16.0" layoutY="23.0" style="-fx-font-weight: bold;" text="Apruebe o rechace los cambios!" />
+            <RadioButton fx:id="rbtAprobar" focusTraversable="false" layoutX="28.0" layoutY="68.0" mnemonicParsing="false" style="-fx-font-weight: bold;" text="Aprobar" />
+            <RadioButton fx:id="rbtRechazar" focusTraversable="false" layoutX="106.0" layoutY="68.0" mnemonicParsing="false" style="-fx-font-weight: bold;" text="Rechazar" />
+            <Button fx:id="btnAceptar" disable="true" layoutX="62.0" layoutY="121.0" mnemonicParsing="false" onAction="#AceptarCambios" prefWidth="85.0" style="-fx-font-weight: bold; -fx-background-color: #E84F31;" text="Aceptar" textFill="WHITE" />
+            <Button fx:id="btnCancelar" disable="true" layoutX="62.0" layoutY="167.0" mnemonicParsing="false" onAction="#Cancelar" prefWidth="85.0" style="-fx-font-weight: bold; -fx-background-color: #E84F31;" text="Cancelar" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+      <TableView fx:id="tbListaInvestigacionesTemporales" layoutX="255.0" layoutY="89.0" prefHeight="366.0" prefWidth="570.0" />
+      <Label layoutX="241.0" layoutY="32.0" prefHeight="38.0" prefWidth="386.0" style="-fx-background-color: fff; -fx-border-color: #e84f31; -fx-alignment: center;" text="Aceptación o rechazo de cambios" textFill="#e84f31">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnRegresar" layoutX="365.0" layoutY="468.0" mnemonicParsing="false" onAction="#Regresar" style="-fx-font-weight: bold; -fx-background-color: #E84F31;" text="Regresar menu inicial" textFill="WHITE" />
+   </children>
+</AnchorPane>
