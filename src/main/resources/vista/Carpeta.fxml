@@ -9,14 +9,14 @@
    <children>
       <AnchorPane layoutX="55.0" layoutY="55.0" prefHeight="290.0" prefWidth="489.0" style="-fx-background-color: fff; -fx-border-color: #E84F31; -fx-border-radius: 4px;">
          <children>
-            <Label layoutX="132.0" layoutY="44.0" prefHeight="27.0" prefWidth="248.0" text="Añadir Carpeta al Proyecto" textFill="#082f32">
+            <Label layoutX="103.0" layoutY="39.0" prefHeight="27.0" prefWidth="283.0" text="Añadir componentes al proyecto" textFill="#082f32">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Button fx:id="btnCrearCarpeta" layoutX="166.0" layoutY="168.0" mnemonicParsing="false" onAction="#crearProyecto" style="-fx-background-color: #E84F31; -fx-font-weight: bold;" text="Regresar Proyecto " textFill="WHITE" />
-            <Button fx:id="btnMedia" layoutX="263.0" layoutY="105.0" mnemonicParsing="false" onAction="#irCrearMedia" prefHeight="27.0" prefWidth="147.0" style="-fx-background-color: #E84F31; -fx-font-weight: bold;" text="Agregar Media" textFill="WHITE" />
-            <Button fx:id="btnAgregarInvestigacion" layoutX="80.0" layoutY="105.0" mnemonicParsing="false" onAction="#crearInvestigacion" prefHeight="27.0" prefWidth="147.0" style="-fx-background-color: #E84F31; -fx-font-weight: bold;" text="Agregar Investigación" textFill="WHITE" />
+            <Button fx:id="btnCrearCarpeta" layoutX="174.0" layoutY="190.0" mnemonicParsing="false" onAction="#crearProyecto" style="-fx-background-color: #E84F31; -fx-font-weight: bold;" text=" Regresar menu inicial" textFill="WHITE" />
+            <Button fx:id="btnMedia" layoutX="293.0" layoutY="105.0" mnemonicParsing="false" onAction="#irCrearMedia" prefHeight="27.0" prefWidth="147.0" style="-fx-background-color: #E84F31; -fx-font-weight: bold;" text="Agregar Media" textFill="WHITE" />
+            <Button fx:id="btnAgregarInvestigacion" layoutX="58.0" layoutY="105.0" mnemonicParsing="false" onAction="#crearInvestigacion" prefHeight="27.0" prefWidth="147.0" style="-fx-background-color: #E84F31; -fx-font-weight: bold;" text="Agregar Investigación" textFill="WHITE" />
          </children>
       </AnchorPane>
    </children>

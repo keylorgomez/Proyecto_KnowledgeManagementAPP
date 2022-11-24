@@ -97,7 +97,7 @@ public class CrearInvestigacionController {
                 alert.initStyle(StageStyle.UTILITY);
                 alert.showAndWait();
                 limpiarCampos();
-                Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("CrearProyecto.fxml")));
+                Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("Carpeta.fxml")));
                 Stage window = (Stage) btnGuardarInvestigacion.getScene().getWindow();
                 window.setScene(new Scene(root));
             }else {
