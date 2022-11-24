@@ -38,7 +38,7 @@ public class CrearCarpetaControlador {
 
     @FXML
     void crearProyecto(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("CrearProyecto.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("MenuInicial.fxml")));
         Stage window = (Stage) btnCrearCarpeta.getScene().getWindow();
         window.setScene(new Scene(root));
     }
