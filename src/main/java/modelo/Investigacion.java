@@ -19,6 +19,15 @@ public class Investigacion {
     private String subTitulo1;
     private String contenido2;
     private int mostrar;
+    private int idIvestigacionModi;
+
+    public int getIdIvestigacionModi() {
+        return idIvestigacionModi;
+    }
+
+    public void setIdIvestigacionModi(int idIvestigacionModi) {
+        this.idIvestigacionModi = idIvestigacionModi;
+    }
 
     private int estatus;
 

@@ -7,6 +7,7 @@ public class Proyecto {
     /**
      * Atributos de la clase
      */
+
     private int idProyecto;
 
     private String numeroProyecto;
@@ -26,6 +27,15 @@ public class Proyecto {
     private int estatus;
 
     private int mostrar;
+    private int idProyectoModi;
+
+    public int getIdProyectoModi() {
+        return idProyectoModi;
+    }
+
+    public void setIdProyectoModi(int idProyectoModi) {
+        this.idProyectoModi = idProyectoModi;
+    }
 
     public int getMostrar() {
         return mostrar;

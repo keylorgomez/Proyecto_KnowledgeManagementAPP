@@ -52,7 +52,7 @@ public class ListaProyectosTemporalesController implements Initializable {
     @FXML
     void AceptarCambios(ActionEvent event) throws SQLException {
         if(proyectoTemporalSeleccionado!=null){
-            int estado= proyectoDao.getEstatus(proyectoTemporalSeleccionado.getIdProyecto());
+            int estado= proyectoDao.getEstatus(proyectoTemporalSeleccionado.getIdProyecto(), proyectoTemporalSeleccionado.getIdProyectoModi());
             if(estado==0) {
                 if (rbtAprobar.isSelected() == true) {
                     int estatus = 1;
@@ -194,7 +194,10 @@ public class ListaProyectosTemporalesController implements Initializable {
         TableColumn estatusCol= new TableColumn("Estatus");
         estatusCol.setCellValueFactory(new PropertyValueFactory("estatus"));
 
+        TableColumn idModiCol= new TableColumn("Id Modificado");
+        idModiCol.setCellValueFactory(new PropertyValueFactory("idProyectoModi"));
+
         tbProyectosTemporales.setItems(data);
-        tbProyectosTemporales.getColumns().addAll(idCol, nombreCol, categoriaCol, numeroCol, repositorioCol, creacionCol, modificacionCol,estatusCol);
+        tbProyectosTemporales.getColumns().addAll(idCol, nombreCol, categoriaCol, numeroCol, repositorioCol, creacionCol, modificacionCol,estatusCol,idModiCol);
     }
 }
