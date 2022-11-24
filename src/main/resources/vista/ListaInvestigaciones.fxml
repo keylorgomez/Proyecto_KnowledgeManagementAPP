@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="619.0" prefWidth="850.0" style="-fx-background-color: #082F32;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.proyecto.ListaInvestigacionesController">
    <children>
       <AnchorPane layoutX="33.0" layoutY="70.0" prefHeight="480.0" prefWidth="211.0" style="-fx-background-color: fff;">
@@ -37,5 +36,6 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
+      <Button fx:id="btnRegresar" layoutX="355.0" layoutY="565.0" mnemonicParsing="false" onAction="#Regresar" prefWidth="140.0" style="-fx-font-weight: bold; -fx-background-color: #E84F31;" text="Regresar menú inicial" textFill="WHITE" />
    </children>
 </AnchorPane>

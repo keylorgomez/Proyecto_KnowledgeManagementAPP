@@ -65,6 +65,9 @@ public class ListaProyectosTemporalesController implements Initializable {
                     alert.setContentText("Usted ha aceptado los cambios y se ha actualizado el proyecto seleccionado.");
                     alert.initStyle(StageStyle.UTILITY);
                     alert.showAndWait();
+                    CargarProyectosTemporales();
+                    rbtRechazar.setSelected(false);
+                    rbtAprobar.setSelected(false);
                 } else if (rbtRechazar.isSelected() == true) {
                     int estatus = 2;
                     proyectoTemporalSeleccionado.setEstatus(estatus);
@@ -75,6 +78,9 @@ public class ListaProyectosTemporalesController implements Initializable {
                     alert.setContentText("Usted no ha aceptado los cambios y serán eliminaodos.");
                     alert.initStyle(StageStyle.UTILITY);
                     alert.showAndWait();
+                    CargarProyectosTemporales();
+                    rbtRechazar.setSelected(false);
+                    rbtAprobar.setSelected(false);
                 }
             } else if(estado==3){
                 if (rbtAprobar.isSelected()==true){
@@ -91,6 +97,9 @@ public class ListaProyectosTemporalesController implements Initializable {
                     alert.setContentText("Usted ha aceptado los cambios y se ha actualizado el proyecto seleccionado.");
                     alert.initStyle(StageStyle.UTILITY);
                     alert.showAndWait();
+                    CargarProyectosTemporales();
+                    rbtRechazar.setSelected(false);
+                    rbtAprobar.setSelected(false);
                 }else if (rbtRechazar.isSelected()==true){
                     int estatus= 5;
                     proyectoTemporalSeleccionado.setMostrar(0);
@@ -102,7 +111,9 @@ public class ListaProyectosTemporalesController implements Initializable {
                     alert.setContentText("Usted no ha aceptado los cambios y serán eliminaodos.");
                     alert.initStyle(StageStyle.UTILITY);
                     alert.showAndWait();
-
+                    CargarProyectosTemporales();
+                    rbtRechazar.setSelected(false);
+                    rbtAprobar.setSelected(false);
                 }
             }
 
@@ -113,6 +124,11 @@ public class ListaProyectosTemporalesController implements Initializable {
 
     @FXML
     void Cancelar(ActionEvent event) {
+        proyectoTemporalSeleccionado=null;
+        rbtRechazar.setSelected(false);
+        rbtAprobar.setSelected(false);
+        btnCancelar.setDisable(true);
+        btnAceptar.setDisable(true);
 
     }
 

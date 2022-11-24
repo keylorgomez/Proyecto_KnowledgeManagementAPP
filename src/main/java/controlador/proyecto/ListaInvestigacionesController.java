@@ -5,16 +5,23 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import modelo.Investigacion;
-import modelo.Proyecto;
+import vista.Inicio;
 
+
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -42,10 +49,21 @@ public class ListaInvestigacionesController implements Initializable {
     private TextField txtTema;
 
     @FXML
+    private Button btnRegresar;
+
+    @FXML
     private TextField txtTitulo;
     private InvestigacionDao investigacionDao;
     private ContextMenu cmOpciones;
     private Investigacion investigacionSeleccionada;
+
+    @FXML
+    void Regresar(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("MenuInicial.fxml")));
+        Stage window = (Stage) btnRegresar.getScene().getWindow();
+        window.setScene(new Scene(root));
+
+    }
 
     @FXML
     void Cancelar(ActionEvent event) {
@@ -86,7 +104,7 @@ public class ListaInvestigacionesController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Espera");
                 alert.setHeaderText(null);
-                alert.setContentText("En espera que usuario gestor o lider acepten modificaciones");
+                alert.setContentText("En espera a que el usuario gestor o líder acepten las modificaciones.");
                 alert.initStyle(StageStyle.UTILITY);
                 alert.showAndWait();
                 limpiarCampos();
@@ -141,7 +159,7 @@ public class ListaInvestigacionesController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Confirmación");
                 alert.setHeaderText(null);
-                alert.setContentText("¿Seguro que desea eliminar el proyeto: " + investigacionEliminar.getTema() + "?");
+                alert.setContentText("¿Seguro que desea eliminar la investigación: " + investigacionEliminar.getTema() + "?");
                 alert.initStyle(StageStyle.UTILITY);
                 Optional<ButtonType> result = alert.showAndWait();
 
@@ -161,7 +179,7 @@ public class ListaInvestigacionesController implements Initializable {
                         Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
                         alert2.setTitle("Éxito");
                         alert2.setHeaderText(null);
-                        alert2.setContentText("Se debe esperar aprobación de usuario para borrar la investigacion.");
+                        alert2.setContentText("Se debe esperar aprobación del usuario gestor o líder para borrar la investigación.");
                         alert2.initStyle(StageStyle.UTILITY);
                         alert2.showAndWait();
                         CargarInvestigaciones(tipoUsuario);
@@ -169,7 +187,7 @@ public class ListaInvestigacionesController implements Initializable {
                         Alert alert2 = new Alert(Alert.AlertType.ERROR);
                         alert2.setTitle("Error");
                         alert2.setHeaderText(null);
-                        alert2.setContentText("Se presentó un error y no se logró eliminar la investigacion.");
+                        alert2.setContentText("Se presentó un error y no se logró eliminar la investigación.");
                         alert2.initStyle(StageStyle.UTILITY);
                         alert2.showAndWait();
                     }

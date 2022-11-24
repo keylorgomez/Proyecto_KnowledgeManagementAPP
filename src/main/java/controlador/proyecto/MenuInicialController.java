@@ -75,7 +75,10 @@ public class MenuInicialController implements Initializable {
         window.setScene(new Scene(root));
     }
     @FXML
-    void IrCambiosInvestigaciones(ActionEvent event) {
+    void IrCambiosInvestigaciones(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("ListaInvestigacionesTemporales.fxml")));
+        Stage window = (Stage) btnInvestigacionesTemporales.getScene().getWindow();
+        window.setScene(new Scene(root));
 
     }
 
