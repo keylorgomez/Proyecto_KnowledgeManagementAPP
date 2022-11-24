@@ -75,7 +75,7 @@ public class InvestigacionDao {
     public List<Investigacion>listarInvestigacionGestor(){
         List<Investigacion> listaInvestigacion= new ArrayList<>();
         try{
-            String SQL="select idInvestigacion,titulo,tema,categoria,nombreAutor,subtitulo,fechaInicio,fechaModificacion from investigacion";
+            String SQL="select idInvestigacion,titulo,tema,categoria,nombreAutor,subtitulo,fechaInicio,fechaModificacion from investigacion WHERE investigacion.mostrar=0";
             Connection connection=this.obtenerConexion.getConnection();
             PreparedStatement sentencia=connection.prepareStatement(SQL);
             ResultSet data=sentencia.executeQuery();
@@ -164,7 +164,7 @@ public class InvestigacionDao {
     public List<Investigacion>listarInvestigacionesTemporales(){
         List<Investigacion> listaInvestigacionTemporales= new ArrayList<>();
         try{
-            String SQL="select idInvestigacion,titulo,tema,categoria,nombreAutor,subtitulo,fechaInicio,fechaModificacion, estatus from investigacionModificado where estatus=0 or estatus=3";
+            String SQL="select idInvestigacion,titulo,tema,categoria,nombreAutor,subtitulo,fechaInicio,fechaModificacion, estatus,idIvestigacionModi from investigacionModificado where estatus=0 or estatus=3";
             Connection connection=this.obtenerConexion.getConnection();
             PreparedStatement sentencia=connection.prepareStatement(SQL);
             ResultSet data=sentencia.executeQuery();
@@ -179,6 +179,7 @@ public class InvestigacionDao {
                 investigacion.setFechaInicio(data.getString(7));
                 investigacion.setFechaModificacion(data.getString(8));
                 investigacion.setEstatus(data.getInt(9));
+                investigacion.setIdIvestigacionModi(data.getInt(10));
 
                 listaInvestigacionTemporales.add(investigacion);
 
@@ -195,9 +196,9 @@ public class InvestigacionDao {
         return listaInvestigacionTemporales;
     }
 
-    public int getEstatus(int idInvestigacion) throws SQLException {
+    public int getEstatus(int idInvestigacion, int idIvestigacionModi) throws SQLException {
         Connection connection=this.obtenerConexion.getConnection();
-        String SQLidUser = "SELECT estatus FROM investigacionModificado WHERE idInvestigacion = " + "'" + idInvestigacion + "'";
+        String SQLidUser = "SELECT estatus FROM investigacionModificado WHERE idInvestigacion = " + "'" + idInvestigacion + "'"+"and idIvestigacionModi="+"'" + idIvestigacionModi + "'";
         PreparedStatement sentencia2 = connection.prepareStatement(SQLidUser);
         ResultSet rs = sentencia2.executeQuery();
 
@@ -237,7 +238,7 @@ public class InvestigacionDao {
     }
     public boolean ocultarInvestigacion(Investigacion investigacion){
         try {
-            String SQL="update investigacion set tema=?,categoria=?,nombreAutor=?,titulo=?,subtitulo=?,ultimaModificacion=?, mostrar=? WHERE idInvestigacion=?";
+            String SQL="update investigacion set tema=?,categoria=?,nombreAutor=?,titulo=?,subtitulo=?,fechaModificacion=?, mostrar=? WHERE idInvestigacion=?";
             Connection connection=this.obtenerConexion.getConnection();
             PreparedStatement sentencia =connection.prepareStatement(SQL);
 
@@ -266,16 +267,17 @@ public class InvestigacionDao {
 
     public boolean editarInvestigacionTemporal(Investigacion investigacion){
         try {
-            String SQL="update investigacionModificado set estatus=? WHERE idInvestigacion=? and tema=? and categoria=? and nombreAutor=? and titulo=? and subtitulo=?";
+            String SQL="update investigacionModificado set estatus=? WHERE idIvestigacionModi=? and idInvestigacion=? and tema=? and categoria=? and nombreAutor=? and titulo=? and subtitulo=?";
             Connection connection=this.obtenerConexion.getConnection();
             PreparedStatement sentencia =connection.prepareStatement(SQL);
             sentencia.setInt(1,investigacion.getEstatus());
-            sentencia.setInt(2,investigacion.getIdInvestigacion());
-            sentencia.setString(3, investigacion.getTema());
-            sentencia.setString(4,investigacion.getCategoriaInvestigacion());
-            sentencia.setString(5,investigacion.getAutor());
-            sentencia.setString(6, investigacion.getTituloInvestigacion());
-            sentencia.setString(7, investigacion.getSubTitulo1());
+            sentencia.setInt(2,investigacion.getIdIvestigacionModi());
+            sentencia.setInt(3,investigacion.getIdInvestigacion());
+            sentencia.setString(4, investigacion.getTema());
+            sentencia.setString(5,investigacion.getCategoriaInvestigacion());
+            sentencia.setString(6,investigacion.getAutor());
+            sentencia.setString(7, investigacion.getTituloInvestigacion());
+            sentencia.setString(8, investigacion.getSubTitulo1());
             sentencia.executeUpdate();
             sentencia.close();
             return true;

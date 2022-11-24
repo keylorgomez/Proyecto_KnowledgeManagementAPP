@@ -51,7 +51,7 @@ public class ListaInvestigacionesTemporalesController implements Initializable {
     @FXML
     void AceptarCambios(ActionEvent event) throws SQLException {
         if (investigacionTemporalSeleccionado!=null){
-            int estado=investigacionDao.getEstatus(investigacionTemporalSeleccionado.getIdInvestigacion());
+            int estado=investigacionDao.getEstatus(investigacionTemporalSeleccionado.getIdInvestigacion(),investigacionTemporalSeleccionado.getIdIvestigacionModi());
             if (estado==0) {
                 if (rbtAprobar.isSelected() == true) {
                     int estatus = 1;
@@ -191,8 +191,11 @@ public class ListaInvestigacionesTemporalesController implements Initializable {
         TableColumn estatusCol=new TableColumn<>("Estatus");
         estatusCol.setCellValueFactory(new PropertyValueFactory("estatus"));
 
+        TableColumn idModiCol=new TableColumn<>("Id Modificado");
+        idModiCol.setCellValueFactory(new PropertyValueFactory("idIvestigacionModi"));
+
         tbListaInvestigacionesTemporales.setItems(data);
-        tbListaInvestigacionesTemporales.getColumns().addAll(idCol,tituloCol,temaCol,categoriaCol,nombreCol,subtituloCol,fechaCreacioCol,fechaModifiCol,estatusCol);
+        tbListaInvestigacionesTemporales.getColumns().addAll(idCol,tituloCol,temaCol,categoriaCol,nombreCol,subtituloCol,fechaCreacioCol,fechaModifiCol,estatusCol,idModiCol);
 
     }
 }

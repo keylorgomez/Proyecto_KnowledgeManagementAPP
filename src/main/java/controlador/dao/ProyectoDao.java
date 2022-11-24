@@ -83,9 +83,9 @@ public class ProyectoDao {
         return idUsuario;
     }
 
-    public int getEstatus(int idProyecto) throws SQLException {
+    public int getEstatus(int idProyecto, int idproyectoModi) throws SQLException {
         Connection connection=this.obtenerConexion.getConnection();
-        String SQLidUser = "SELECT estatus FROM proyectoModificado WHERE idProyecto = " + "'" + idProyecto + "'";
+        String SQLidUser = "SELECT estatus FROM proyectoModificado WHERE idProyecto = " + "'" + idProyecto + "'"+"and idproyectoModi="+"'" + idproyectoModi + "'";
         PreparedStatement sentencia2 = connection.prepareStatement(SQLidUser);
         ResultSet rs = sentencia2.executeQuery();
 
@@ -157,7 +157,7 @@ public class ProyectoDao {
     public List<Proyecto> listarProyectosTemporales(){
         List<Proyecto> listaProyectoTemporales=new ArrayList<>();
         try {
-            String SQL="select idProyecto, nombre,categoria,numeroProyecto,repositorio,fechaCreacion,ultimaModificacion,estatus from proyectoModificado where estatus=0 or estatus=3";
+            String SQL="select idProyecto, nombre,categoria,numeroProyecto,repositorio,fechaCreacion,ultimaModificacion,estatus,idproyectoModi from proyectoModificado where estatus=0 or estatus=3";
             Connection connection=this.obtenerConexion.getConnection();
             PreparedStatement sentencia=connection.prepareStatement(SQL);
             ResultSet data=sentencia.executeQuery();
@@ -170,7 +170,8 @@ public class ProyectoDao {
                 proyecto.setRepositorio(data.getString(5));
                 proyecto.setFechaCreacion(data.getString(6));
                 proyecto.setUltimaModificacion(data.getString(7));
-                data.getInt(8);
+                proyecto.setEstatus(data.getInt(8));
+                proyecto.setIdProyectoModi(data.getInt(9));
 
                 listaProyectoTemporales.add(proyecto);
             }
@@ -263,15 +264,18 @@ public class ProyectoDao {
 
     public boolean editarProyectoTemporal(Proyecto proyecto){
         try {
-            String SQL="update proyectoModificado set estatus=? WHERE idProyecto=? and nombre=? and categoria=? and numeroProyecto=? and repositorio=?";
+            String SQL="update proyectoModificado set estatus=? WHERE idproyectoModi=? and idProyecto=? and nombre=? and categoria=? and numeroProyecto=? and repositorio=?";
             Connection connection=this.obtenerConexion.getConnection();
             PreparedStatement sentencia =connection.prepareStatement(SQL);
+
             sentencia.setInt(1,proyecto.getEstatus());
-            sentencia.setInt(2,proyecto.getIdProyecto());
-            sentencia.setString(3,proyecto.getNombre());
-            sentencia.setString(4,proyecto.getCategoria());
-            sentencia.setString(5,proyecto.getNumeroProyecto());
-            sentencia.setString(6,proyecto.getRepositorio());
+            sentencia.setInt(2,proyecto.getIdProyectoModi());
+            sentencia.setInt(3,proyecto.getIdProyecto());
+            sentencia.setString(4,proyecto.getNombre());
+            sentencia.setString(5,proyecto.getCategoria());
+            sentencia.setString(6,proyecto.getNumeroProyecto());
+            sentencia.setString(7,proyecto.getRepositorio());
+
             sentencia.executeUpdate();
             sentencia.close();
             return true;
