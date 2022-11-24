@@ -274,9 +274,7 @@ public class ListaProyectosController implements Initializable {
                 alert.showAndWait();
             }
         }
-
     }
-
     public void limpiarCampos() {
         txtNombre.setText("");
         txtCategoria.setText("");

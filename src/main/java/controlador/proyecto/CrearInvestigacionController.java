@@ -1,5 +1,6 @@
 package controlador.proyecto;
 
+import controlador.dao.CarpetaDao;
 import controlador.dao.InvestigacionDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,7 +9,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.StageStyle;
 import modelo.Investigacion;
+import modelo.Proyecto;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class CrearInvestigacionController {
@@ -43,17 +46,18 @@ public class CrearInvestigacionController {
     @FXML
     private TextField txtTitulo;
 
+    private Proyecto proyecto;
     public CrearInvestigacionController() {
         investigacion = new Investigacion();
         investigacionDao= new InvestigacionDao();
         carpeta=new CrearCarpetaController();
         documento=new DocumentoController();
-
+        proyecto= new Proyecto();
 
     }
 
     @FXML
-    void crearInvestigacion(ActionEvent event) {
+    void crearInvestigacion(ActionEvent event) throws SQLException {
         String ultimaModificacion = LocalDate.now().toString();
         String fechaCreacion = LocalDate.now().toString();
         String ruta = txtRuta.getText();
@@ -65,8 +69,14 @@ public class CrearInvestigacionController {
         String subTitulo = txtSubTitulo.getText();
         String contenido2 = txtContenido2.getText();
         if (validarCampos(categoria, tema, autor, titulo, subTitulo)==true){
-            Investigacion investigacion = new Investigacion(ultimaModificacion, fechaCreacion, categoria,tema, autor,titulo, subTitulo);
-            boolean rsp = investigacionDao.registrarInvestigacion(investigacion);
+            int idProyecto=CrearProyectoControlador.proyectoIdActivo;
+            System.out.println(idProyecto);
+            int idUsuario= LoginControlador.UserIdActivo;
+            System.out.println(idUsuario);
+            int mostrar= 0;
+            int estatus=0;
+            Investigacion investigacion = new Investigacion(ultimaModificacion, fechaCreacion, categoria,tema, autor,titulo, subTitulo, mostrar, estatus);
+            boolean rsp = investigacionDao.registrarInvestigacion(investigacion, idUsuario, idProyecto);
             if (rsp==true){
 
                 carpeta.crearCarpeta(ruta, titulo);

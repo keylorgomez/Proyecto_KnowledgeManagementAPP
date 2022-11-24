@@ -18,11 +18,14 @@ public class Investigacion {
     private String contenido1;
     private String subTitulo1;
     private String contenido2;
+    private int mostrar;
+
+    private int estatus;
 
     public Investigacion() {
     }
 
-    public Investigacion(String fechaModificacion, String fechaInicio, String categoriaInvestigacion, String tema, String autor, String tituloInvestigacion, String subTitulo1) {
+    public Investigacion(String fechaModificacion, String fechaInicio, String categoriaInvestigacion, String tema, String autor, String tituloInvestigacion, String subTitulo1, int mostrar, int estatus) {
         this.fechaModificacion = fechaModificacion;
         this.fechaInicio = fechaInicio;
         CategoriaInvestigacion = categoriaInvestigacion;
@@ -30,6 +33,8 @@ public class Investigacion {
         this.autor = autor;
         this.tituloInvestigacion = tituloInvestigacion;
         this.subTitulo1 = subTitulo1;
+        this.mostrar= mostrar;
+        this.estatus= estatus;
     }
 
     public Investigacion(String fechaModificacion, String fechaInicio, String categoriaInvestigacion, String tema, String autor, String tituloInvestigacion, String contenido1, String subTitulo1, String contenido2) {
@@ -55,6 +60,14 @@ public class Investigacion {
         this.contenido1 = contenido1;
         this.subTitulo1 = subTitulo1;
         this.contenido2 = contenido2;
+    }
+
+    public int getEstatus() {
+        return estatus;
+    }
+
+    public void setEstatus(int estatus) {
+        this.estatus = estatus;
     }
 
     public int getIdInvestigacion() {
@@ -87,6 +100,14 @@ public class Investigacion {
 
     public void setCategoriaInvestigacion(String categoriaInvestigacion) {
         CategoriaInvestigacion = categoriaInvestigacion;
+    }
+
+    public int getMostrar() {
+        return mostrar;
+    }
+
+    public void setMostrar(int mostrar) {
+        this.mostrar = mostrar;
     }
 
     public String getTema() {
