@@ -49,21 +49,22 @@ public class ProyectoDao {
 
     }
 
-    public boolean registrarProyectoxusuario(int usuarioId, int proyectoId){
+    public boolean registrarProyectoxusuario(int usuarioId, int proyectoId, String tipo){
         try {
-            String SQL = "insert into proyectoxusuario(idProyecto, idUsuario)" +
-                    "values(?,?)";
+            String SQL = "insert into proyectoxusuario(idProyecto, idUsuario,tipo)" +
+                    "values(?,?,?)";
             Connection connection = this.obtenerConexion.getConnection();
             PreparedStatement sentencia = connection.prepareStatement(SQL);
 
             sentencia.setInt(1, proyectoId);
             sentencia.setInt(2, usuarioId);
+            sentencia.setString(3,tipo);
 
             sentencia.executeUpdate();
             sentencia.close();
             return true;
         }catch (Exception e){
-            System.err.println("Ocurrió un error al registrar el proyecto");
+            System.err.println("Ocurrió un error al registrar el usuario al proyecto");
             System.err.println("Mensaje del error: "+e.getMessage());
             System.err.println("Detalle del error: ");
             e.printStackTrace();

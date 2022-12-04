@@ -71,7 +71,7 @@
             <TextArea fx:id="txtRepositorio" focusTraversable="false" prefHeight="28.0" prefWidth="459.0" promptText="Dirección del repositorio" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 4px; -fx-background-color: fff; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <HBox prefHeight="30.0" prefWidth="438.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                <children>
-                  <Button fx:id="bntCrearCarpeta" mnemonicParsing="false" onAction="#crearCarpeta" style="-fx-background-color: #E84F31;" text="Añadir Carpeta" textFill="WHITE">
+                  <Button fx:id="bntCrearCarpeta" mnemonicParsing="false" onAction="#crearCarpeta" style="-fx-background-color: #E84F31;" text="Añadir Investigación" textFill="WHITE">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>

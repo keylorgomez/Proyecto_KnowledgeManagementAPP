@@ -77,7 +77,14 @@ public class CrearProyectoControlador {
         if (respuestaValidacion==true){
             proyectoIdActivo= carpetaDao.getProyectoId(NumeroProyecto);
             int IDUsuario=LoginControlador.UserIdActivo;
-            proyectoDao.registrarProyectoxusuario(IDUsuario, proyectoIdActivo);
+            String rol=LoginControlador.tipoUsuario;
+            String tipo;
+            if (rol.equals("Líder")){
+                tipo="Líder";
+            }else{
+                tipo="Participante";
+            }
+            proyectoDao.registrarProyectoxusuario(IDUsuario, proyectoIdActivo,tipo);
             Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("CrearInvestigacion.fxml")));
             Stage window = (Stage) bntCrearCarpeta.getScene().getWindow();
             window.setScene(new Scene(root));

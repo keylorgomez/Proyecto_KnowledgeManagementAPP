@@ -83,7 +83,6 @@ public class LoginControlador {
     }
     public void ingresarApp(String email) throws IOException, SQLException {
         tipoUsuario= usuarioDao.getTipoUsuario(email);
-        System.out.println(tipoUsuario);
         if(tipoUsuario==null || tipoUsuario.equals("Sin rol")){
             Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("PantallaEspera.fxml")));
             Stage window = (Stage) btnIniciar.getScene().getWindow();

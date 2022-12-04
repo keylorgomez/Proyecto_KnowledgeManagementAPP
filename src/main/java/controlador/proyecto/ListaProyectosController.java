@@ -1,5 +1,6 @@
 package controlador.proyecto;
 import controlador.dao.ProyectoDao;
+import controlador.dao.UsuarioDao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import modelo.Proyecto;
@@ -57,8 +59,19 @@ public class ListaProyectosController implements Initializable {
     private Label lblEmailParticpante;
     @FXML
     private TextField txtEmailParticipante;
+    @FXML
+    private AnchorPane anchorAñadir;
+    @FXML
+    private Button btnAgregarLider;
+    @FXML
+    private Label lblEmailLider;
+    @FXML
+    private Label lblLider;
+    @FXML
+    private TextField txtEmailLider;
 
     private ProyectoDao proyectoDao;
+    private UsuarioDao usuarioDao;
 
     private ContextMenu cmOpciones;
     private Proyecto proyectoSelecionado;
@@ -68,15 +81,17 @@ public class ListaProyectosController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.proyectoDao = new ProyectoDao();
-        btnCancelar.setDisable(true);
+        this.usuarioDao=new UsuarioDao();
         String tipoUsuario = LoginControlador.tipoUsuario;
         CargarProyectos(tipoUsuario);
 
-        if(tipoUsuario.equals("Gestor") || tipoUsuario.equals("Líder")){
+        if(tipoUsuario.equals("Líder")){
+            anchorAñadir.setVisible(true);
             btnAgregarParticipante.setVisible(true);
             lblAgregarParticipante.setVisible(true);
             lblEmailParticpante.setVisible(true);
             txtEmailParticipante.setVisible(true);
+
             cmOpciones = new ContextMenu();
 
             MenuItem editarProyecto = new MenuItem("Editar Proyecto");
@@ -89,10 +104,14 @@ public class ListaProyectosController implements Initializable {
                     int index=tbProyectos.getSelectionModel().getSelectedIndex();
                     Proyecto agregarParticipanteProyecto=tbProyectos.getItems().get(index);
                     int idProyecto=agregarParticipanteProyecto.getIdProyecto();
-                    System.out.println(idProyecto);
-                    btnAgregarParticipante.setDisable(false);
                     btnEditar.setDisable(true);
                     btnCancelar.setDisable(true);
+                    txtNombre.setDisable(true);
+                    txtVersion.setDisable(true);
+                    txtCategoria.setDisable(true);
+                    txtRepositorio.setDisable(true);
+                    txtEmailParticipante.setDisable(false);
+                    btnAgregarParticipante.setDisable(false);
                 }
             });
             editarProyecto.setOnAction(new EventHandler<ActionEvent>() {
@@ -107,6 +126,11 @@ public class ListaProyectosController implements Initializable {
 
                     btnCancelar.setDisable(false);
                     btnEditar.setDisable(false);
+                    txtNombre.setDisable(false);
+                    txtVersion.setDisable(false);
+                    txtCategoria.setDisable(false);
+                    txtRepositorio.setDisable(false);
+                    txtEmailParticipante.setDisable(true);
                     btnAgregarParticipante.setDisable(true);
                 }
             });
@@ -115,6 +139,14 @@ public class ListaProyectosController implements Initializable {
                 public void handle(ActionEvent event) {
                     int index = tbProyectos.getSelectionModel().getSelectedIndex();
                     Proyecto proyectoEliminar = tbProyectos.getItems().get(index);
+                    btnCancelar.setDisable(true);
+                    btnEditar.setDisable(true);
+                    txtNombre.setDisable(true);
+                    txtVersion.setDisable(true);
+                    txtCategoria.setDisable(true);
+                    txtRepositorio.setDisable(true);
+                    txtEmailParticipante.setDisable(true);
+                    btnAgregarParticipante.setDisable(true);
 
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                     alert.setTitle("Confirmación");
@@ -138,7 +170,7 @@ public class ListaProyectosController implements Initializable {
                             Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
                             alert2.setTitle("Éxito");
                             alert2.setHeaderText(null);
-                            alert2.setContentText("Se debe esperar aprobación de usuario para borrar el proyecto.");
+                            alert2.setContentText("Se debe esperar aprobación del usuario Gestor o Líder para borrar el proyecto.");
                             alert2.initStyle(StageStyle.UTILITY);
                             alert2.showAndWait();
                             CargarProyectos(tipoUsuario);
@@ -154,7 +186,145 @@ public class ListaProyectosController implements Initializable {
                 }
             });
             tbProyectos.setContextMenu(cmOpciones);
-        }else {
+        } else if (tipoUsuario.equals("Gestor")) {
+            anchorAñadir.setVisible(true);
+            btnAgregarParticipante.setVisible(true);
+            lblAgregarParticipante.setVisible(true);
+            lblEmailParticpante.setVisible(true);
+            txtEmailParticipante.setVisible(true);
+            btnAgregarLider.setVisible(true);
+            lblEmailLider.setVisible(true);
+            lblLider.setVisible(true);
+            txtEmailLider.setVisible(true);
+            cmOpciones = new ContextMenu();
+
+            MenuItem editarProyecto = new MenuItem("Editar Proyecto");
+            MenuItem eliminarProyecto = new MenuItem("Eliminar Proyecto");
+            MenuItem agregarParticipante=new MenuItem("Añadir Participante");
+            MenuItem agregarLider=new MenuItem("Añadir Líder");
+            cmOpciones.getItems().addAll(editarProyecto, eliminarProyecto,agregarParticipante,agregarLider);
+            agregarLider.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    int index=tbProyectos.getSelectionModel().getSelectedIndex();
+                    Proyecto agregarLiderProyecto=tbProyectos.getItems().get(index);
+                    int idProyecto=agregarLiderProyecto.getIdProyecto();
+                    btnAgregarLider.setDisable(false);
+                    txtEmailLider.setDisable(false);
+                    txtNombre.setDisable(true);
+                    txtCategoria.setDisable(true);
+                    txtVersion.setDisable(true);
+                    txtRepositorio.setDisable(true);
+                    btnEditar.setDisable(true);
+                    btnCancelar.setDisable(true);
+                    txtEmailParticipante.setDisable(true);
+                    btnAgregarParticipante.setDisable(true);
+                }
+            });
+            agregarParticipante.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    int index=tbProyectos.getSelectionModel().getSelectedIndex();
+                    Proyecto agregarParticipanteProyecto=tbProyectos.getItems().get(index);
+                    int idProyecto=agregarParticipanteProyecto.getIdProyecto();
+                    btnAgregarLider.setDisable(true);
+                    txtEmailLider.setDisable(true);
+                    txtNombre.setDisable(true);
+                    txtCategoria.setDisable(true);
+                    txtVersion.setDisable(true);
+                    txtRepositorio.setDisable(true);
+                    btnEditar.setDisable(true);
+                    btnCancelar.setDisable(true);
+                    txtEmailParticipante.setDisable(false);
+                    btnAgregarParticipante.setDisable(false);
+                }
+            });
+            editarProyecto.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    int index = tbProyectos.getSelectionModel().getSelectedIndex();
+                    proyectoSelecionado = tbProyectos.getItems().get(index);
+                    txtNombre.setText(proyectoSelecionado.getNombre());
+                    txtCategoria.setText(proyectoSelecionado.getCategoria());
+                    txtVersion.setText(proyectoSelecionado.getNumeroProyecto());
+                    txtRepositorio.setText(proyectoSelecionado.getRepositorio());
+
+                    btnAgregarLider.setDisable(true);
+                    txtEmailLider.setDisable(true);
+                    txtNombre.setDisable(false);
+                    txtCategoria.setDisable(false);
+                    txtVersion.setDisable(false);
+                    txtRepositorio.setDisable(false);
+                    btnEditar.setDisable(false);
+                    btnCancelar.setDisable(false);
+                    txtEmailParticipante.setDisable(true);
+                    btnAgregarParticipante.setDisable(true);
+                }
+            });
+            eliminarProyecto.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    int index = tbProyectos.getSelectionModel().getSelectedIndex();
+                    Proyecto proyectoEliminar = tbProyectos.getItems().get(index);
+                    btnAgregarLider.setDisable(true);
+                    txtEmailLider.setDisable(true);
+                    txtNombre.setDisable(true);
+                    txtCategoria.setDisable(true);
+                    txtVersion.setDisable(true);
+                    txtRepositorio.setDisable(true);
+                    btnEditar.setDisable(true);
+                    btnCancelar.setDisable(true);
+                    txtEmailParticipante.setDisable(true);
+                    btnAgregarParticipante.setDisable(true);
+
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Confirmación");
+                    alert.setHeaderText(null);
+                    alert.setContentText("¿Seguro que desea eliminar el proyeto: " + proyectoEliminar.getNombre() + "?");
+                    alert.initStyle(StageStyle.UTILITY);
+                    Optional<ButtonType> result = alert.showAndWait();
+
+                    if (result.get() == ButtonType.OK) {
+                        proyectoEliminar.getIdProyecto();
+                        proyectoEliminar.getNombre();
+                        proyectoEliminar.getCategoria();
+                        proyectoEliminar.getFechaCreacion();
+                        proyectoEliminar.getNumeroProyecto();
+                        proyectoEliminar.getRepositorio();
+                        proyectoEliminar.getUltimaModificacion();
+                        int estatus= 3;
+                        proyectoEliminar.setEstatus(estatus);
+                        boolean rsp = proyectoDao.crearProyectoTemporal(proyectoEliminar);
+                        if (rsp == true) {
+                            Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+                            alert2.setTitle("Éxito");
+                            alert2.setHeaderText(null);
+                            alert2.setContentText("Se debe esperar aprobación del usuario Gestor o Líder para borrar el proyecto.");
+                            alert2.initStyle(StageStyle.UTILITY);
+                            alert2.showAndWait();
+                            CargarProyectos(tipoUsuario);
+                        } else {
+                            Alert alert2 = new Alert(Alert.AlertType.ERROR);
+                            alert2.setTitle("Error");
+                            alert2.setHeaderText(null);
+                            alert2.setContentText("Se presentó un error y no se logró eliminar el proyecto.");
+                            alert2.initStyle(StageStyle.UTILITY);
+                            alert2.showAndWait();
+                        }
+                    }
+                }
+            });
+            tbProyectos.setContextMenu(cmOpciones);
+        } else {
+            anchorAñadir.setVisible(false);
+            btnAgregarParticipante.setVisible(false);
+            lblAgregarParticipante.setVisible(false);
+            lblEmailParticpante.setVisible(false);
+            txtEmailParticipante.setVisible(false);
+            btnAgregarLider.setVisible(false);
+            lblEmailLider.setVisible(false);
+            lblLider.setVisible(false);
+            txtEmailLider.setVisible(false);
             cmOpciones = new ContextMenu();
 
             MenuItem editarProyecto = new MenuItem("Editar Proyecto");
@@ -165,6 +335,10 @@ public class ListaProyectosController implements Initializable {
                 public void handle(ActionEvent event) {
                     int index = tbProyectos.getSelectionModel().getSelectedIndex();
                     proyectoSelecionado = tbProyectos.getItems().get(index);
+                    txtNombre.setDisable(false);
+                    txtCategoria.setDisable(false);
+                    txtVersion.setDisable(false);
+                    txtRepositorio.setDisable(false);
                     txtNombre.setText(proyectoSelecionado.getNombre());
                     txtCategoria.setText(proyectoSelecionado.getCategoria());
                     txtVersion.setText(proyectoSelecionado.getNumeroProyecto());
@@ -179,7 +353,12 @@ public class ListaProyectosController implements Initializable {
                 public void handle(ActionEvent event) {
                     int index = tbProyectos.getSelectionModel().getSelectedIndex();
                     Proyecto proyectoEliminar = tbProyectos.getItems().get(index);
-
+                    txtNombre.setDisable(true);
+                    txtCategoria.setDisable(true);
+                    txtVersion.setDisable(true);
+                    txtRepositorio.setDisable(true);
+                    btnCancelar.setDisable(true);
+                    btnEditar.setDisable(true);
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                     alert.setTitle("Confirmación");
                     alert.setHeaderText(null);
@@ -204,7 +383,7 @@ public class ListaProyectosController implements Initializable {
                             Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
                             alert2.setTitle("Éxito");
                             alert2.setHeaderText(null);
-                            alert2.setContentText("Se debe esperar aprobación del gestor para eliminar proyecto");
+                            alert2.setContentText("Se debe esperar aprobación del usuario Gestor o Líder  para eliminar proyecto");
                             alert2.initStyle(StageStyle.UTILITY);
                             alert2.showAndWait();
                             CargarProyectos(tipoUsuario);
@@ -221,7 +400,6 @@ public class ListaProyectosController implements Initializable {
             });
             tbProyectos.setContextMenu(cmOpciones);
         }
-
 
 
     }
@@ -257,7 +435,7 @@ public class ListaProyectosController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Espera");
                 alert.setHeaderText(null);
-                alert.setContentText("En espera que usuario gestor o lider acepten modificaciones");
+                alert.setContentText("En espera que usuario Gestor o lider acepten modificaciones");
                 alert.initStyle(StageStyle.UTILITY);
                 alert.showAndWait();
                 limpiarCampos();
@@ -357,6 +535,7 @@ public class ListaProyectosController implements Initializable {
         int idProyecto=agregarParticipanteProyecto.getIdProyecto();
         String emailParticipante= txtEmailParticipante.getText();
         int idUsuario= proyectoDao.getUsuarioId(emailParticipante);
+        String tipo="Participante";
         if(proyectoDao.getUsuarioId(emailParticipante)==0||emailParticipante.isEmpty()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -365,13 +544,51 @@ public class ListaProyectosController implements Initializable {
             alert.initStyle(StageStyle.UTILITY);
             alert.showAndWait();
         } else{
-            proyectoDao.registrarProyectoxusuario(idUsuario, idProyecto);
+            proyectoDao.registrarProyectoxusuario(idUsuario, idProyecto,tipo);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Éxito");
             alert.setHeaderText(null);
             alert.setContentText("Se agrego correctamente el usuario al proyecto.");
             alert.initStyle(StageStyle.UTILITY);
             alert.showAndWait();
+            txtEmailParticipante.setText("");
+        }
+    }
+    @FXML
+    void AgregarLider(ActionEvent event) throws SQLException {
+        int index=tbProyectos.getSelectionModel().getSelectedIndex();
+        Proyecto agregarLiderProyecto=tbProyectos.getItems().get(index);
+        int idProyecto=agregarLiderProyecto.getIdProyecto();
+        String emailLider= txtEmailLider.getText();
+        int idUsuario= proyectoDao.getUsuarioId(emailLider);
+        String tipo="Líder";
+        if(proyectoDao.getUsuarioId(emailLider)==0||emailLider.isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Se presentó un error con el correo ingresado.");
+            alert.initStyle(StageStyle.UTILITY);
+            alert.showAndWait();
+        } else{
+            String rol= usuarioDao.getTipoUsuario(emailLider);
+            System.out.println(rol);
+            if (rol.equals("Líder")){
+                proyectoDao.registrarProyectoxusuario(idUsuario, idProyecto,tipo);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Éxito");
+                alert.setHeaderText(null);
+                alert.setContentText("Se agrego correctamente el usuario al proyecto.");
+                alert.initStyle(StageStyle.UTILITY);
+                alert.showAndWait();
+                txtEmailLider.setText("");
+            }else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("El usuario ingresado no posee rol Líder en el sistema.");
+                alert.initStyle(StageStyle.UTILITY);
+                alert.showAndWait();
+            }
         }
     }
 }
