@@ -10,12 +10,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import modelo.Investigacion;
 import modelo.Proyecto;
 import vista.Inicio;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -65,6 +67,16 @@ public class CrearInvestigacionController {
 
     @FXML
     void crearInvestigacion(ActionEvent event) throws SQLException, IOException {
+
+        DirectoryChooser selectorCarpeta = new DirectoryChooser();
+        selectorCarpeta.setInitialDirectory(new File("."));
+        selectorCarpeta.setTitle("Seleccione la carpeta para guardar la investigación.");
+
+
+        File file = selectorCarpeta.showDialog(null);
+
+        String RutaDirectorio=file.getPath().toString();
+
         String ultimaModificacion = LocalDate.now().toString();
         String fechaCreacion = LocalDate.now().toString();
         String ruta = txtRuta.getText();
@@ -77,17 +89,16 @@ public class CrearInvestigacionController {
         String contenido2 = txtContenido2.getText();
         if (validarCampos(categoria, tema, autor, titulo, subTitulo)==true){
             int idProyecto=CrearProyectoControlador.proyectoIdActivo;
-            System.out.println(idProyecto);
             int idUsuario= LoginControlador.UserIdActivo;
-            System.out.println(idUsuario);
             int mostrar= 0;
             int estatus=0;
             Investigacion investigacion = new Investigacion(ultimaModificacion, fechaCreacion, categoria,tema, autor,titulo, subTitulo, mostrar, estatus);
-            boolean rsp = investigacionDao.registrarInvestigacion(investigacion, idUsuario, idProyecto);
+
+            boolean rsp = investigacionDao.registrarInvestigacion(investigacion,idProyecto, idUsuario);
             if (rsp==true){
 
-                carpeta.crearCarpeta(ruta, titulo);
-                String nuevaRuta =ruta+"\\"+titulo;
+                carpeta.crearCarpeta(RutaDirectorio, titulo);
+                String nuevaRuta =RutaDirectorio+"\\"+titulo;
                 documento.crearDocumento(ultimaModificacion, fechaCreacion, nuevaRuta, categoria,tema,autor,titulo,contenido1,subTitulo,contenido2);
                 carpeta.crearCarpeta(nuevaRuta, "Media");
                 Alert alert=new Alert(Alert.AlertType.INFORMATION);
