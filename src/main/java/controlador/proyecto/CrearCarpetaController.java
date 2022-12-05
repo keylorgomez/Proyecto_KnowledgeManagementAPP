@@ -38,9 +38,9 @@ public class CrearCarpetaController {
         rutaNombreCarpeta = ruta+"\\"+nombre;
         File crearCarpeta = new File(rutaNombreCarpeta);
         if (crearCarpeta.mkdir()){
-            System.out.println("carpeta crada con exito");
+            System.out.println("Carpeta creada con éxito");
         }else {
-            System.out.println("no se pudo crear carpeta");
+            System.out.println("No se pudo crear carpeta");
         }
     }
 
