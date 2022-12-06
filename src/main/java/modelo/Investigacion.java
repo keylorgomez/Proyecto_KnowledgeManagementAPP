@@ -25,6 +25,9 @@ public class Investigacion {
 
     private int totalPalabras;
 
+    public Investigacion(Investigacion investigacion) {
+    }
+
     public String getRuta() {
         return ruta;
     }

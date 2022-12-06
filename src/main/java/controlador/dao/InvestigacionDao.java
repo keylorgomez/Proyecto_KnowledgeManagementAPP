@@ -333,5 +333,22 @@ public class InvestigacionDao {
         return investigacion;
     }
 
-
+    public boolean editarTotalPalabras(int totalPalabras, int idInvestigacion){
+        try {
+            String SQL="update investigacion set totalPalabras=? WHERE idInvestigacion = ?";
+            Connection connection=this.obtenerConexion.getConnection();
+            PreparedStatement sentencia =connection.prepareStatement(SQL);
+            sentencia.setInt(1,totalPalabras);
+            sentencia.setInt(2,idInvestigacion);
+            sentencia.executeUpdate();
+            sentencia.close();
+            return true;
+        } catch (Exception e) {
+            System.err.println("Ocurrió un error al editar el proyecto");
+            System.err.println("Mensaje del error: "+e.getMessage());
+            System.err.println("Detalle del error: ");
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
