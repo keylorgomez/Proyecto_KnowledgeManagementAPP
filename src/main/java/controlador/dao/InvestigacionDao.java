@@ -2,15 +2,12 @@ package controlador.dao;
 
 import controlador.database.Conexion;
 import modelo.Investigacion;
-import modelo.Proyecto;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class InvestigacionDao {
     private Conexion obtenerConexion;
@@ -21,8 +18,8 @@ public class InvestigacionDao {
 
     public boolean registrarInvestigacion (Investigacion investigacion, int proyectoId, int usuarioId){
         try{
-            String SQL="insert into investigacion(fechaModificacion,fechaInicio,categoria,tema, nombreAutor,titulo,subtitulo, idUsuario, idProyecto, mostrar)"+
-                    "values(?,?,?,?,?,?,?,?,?,?)";
+            String SQL="insert into investigacion(fechaModificacion,fechaInicio,categoria,tema, nombreAutor,titulo,subtitulo, idUsuario, idProyecto, mostrar, totalPalabras, ruta, contenido1, contenido2)"+
+                    "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             Connection connection=this.obtenerConexion.getConnection();
             PreparedStatement sentencia= connection.prepareStatement(SQL);
 
@@ -36,6 +33,10 @@ public class InvestigacionDao {
             sentencia.setInt(8, usuarioId);
             sentencia.setInt(9, proyectoId);
             sentencia.setInt(10,investigacion.getMostrar());
+            sentencia.setInt(11, investigacion.getTotalPalabras());
+            sentencia.setString(12,investigacion.getRuta());
+            sentencia.setString(13,investigacion.getContenido1());
+            sentencia.setString(14,investigacion.getContenido2());
             sentencia.executeUpdate();
             sentencia.close();
             return true;
@@ -107,7 +108,7 @@ public class InvestigacionDao {
     public List<Investigacion> listarInvestigacionesUsuarios(int idUsuario){
         List<Investigacion> listaInvestigacion=new ArrayList<>();
         try {
-            String SQL="select investigacion.idProyecto,investigacion.titulo, investigacion.tema,investigacion.categoria,  investigacion.nombreAutor,  investigacion.subtitulo, investigacion.fechaInicio,investigacion.fechaModificacion  from investigacion  WHERE  investigacion.mostrar=0  and investigacion.idUsuario=" + idUsuario;
+            String SQL="select investigacion.idInvestigacion,investigacion.titulo, investigacion.tema,investigacion.categoria,  investigacion.nombreAutor,  investigacion.subtitulo, investigacion.fechaInicio,investigacion.fechaModificacion  from investigacion  WHERE  investigacion.mostrar=0  and investigacion.idUsuario=" + idUsuario;
             Connection connection=this.obtenerConexion.getConnection();
             PreparedStatement sentencia=connection.prepareStatement(SQL);
             ResultSet data=sentencia.executeQuery();
@@ -289,5 +290,48 @@ public class InvestigacionDao {
             return false;
         }
     }
+
+    public String getRuta(int idInvestigacion) throws SQLException {
+        Connection connection=this.obtenerConexion.getConnection();
+        String SQLidUser = "SELECT ruta FROM investigacion WHERE idInvestigacion = " + "'" + idInvestigacion + "'";
+        PreparedStatement sentencia2 = connection.prepareStatement(SQLidUser);
+        ResultSet rs = sentencia2.executeQuery();
+
+        String ruta="";
+        if (rs.next()) {
+            ruta = rs.getString("ruta");
+        }
+        return ruta;
+    }
+
+
+    public Investigacion Investigacion(int idInvestigacion) throws SQLException {
+        Investigacion investigacion= null;
+        Connection connection = this.obtenerConexion.getConnection();
+        String SQLModificar = "SELECT fechaModificacion,fechaInicio, categoria, tema, nombreAutor, titulo, contenido1, subtitulo, contenido2 FROM investigacion WHERE idInvestigacion = " + "'" + idInvestigacion + "'";
+        PreparedStatement sentencia2 = connection.prepareStatement(SQLModificar);
+        ResultSet rs = sentencia2.executeQuery();
+
+
+        if (rs.next()) {
+            String fechaModificacion = rs.getString("fechaModificacion");
+            String fechaInicio = rs.getString("fechaInicio");
+            String categoria = rs.getString("categoria");
+            String tema = rs.getString("tema");
+            String nombreAutor = rs.getString("nombreAutor");
+            String titulo = rs.getString("titulo");
+            String contenido1 = rs.getString("contenido1");
+            String subtitulo = rs.getString("subtitulo");
+            String contenido2 = rs.getString("contenido2");
+            DateTimeFormatter JEFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate modificacion = LocalDate.parse(fechaModificacion, JEFormatter);
+            LocalDate inicio = LocalDate.parse(fechaInicio, JEFormatter);
+
+            investigacion = new Investigacion(fechaModificacion, fechaInicio, categoria,tema, nombreAutor, titulo, contenido1, subtitulo, contenido2);
+
+        }
+        return investigacion;
+    }
+
 
 }
