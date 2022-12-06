@@ -153,6 +153,20 @@ public class UsuarioDao {
             return false;
         }
     }
+    public Usuario Usuario(int idUsuario) throws SQLException {
+        Usuario usuario=null;
+        Connection connection=this.obtenerConexion.getConnection();
+        String SQLNombreApellido = "select nombre, apellido FROM usuarios WHERE idUsuario = " + "'" + idUsuario + "'";
+        PreparedStatement sentencia = connection.prepareStatement(SQLNombreApellido);
+        ResultSet rs = sentencia.executeQuery();
+
+        if (rs.next()) {
+            String nombreUsuario = rs.getString("nombre");
+            String apellido=rs.getString("apellido");
+            usuario = new Usuario(nombreUsuario,apellido);
+        }
+        return usuario;
+    }
 }
 
 

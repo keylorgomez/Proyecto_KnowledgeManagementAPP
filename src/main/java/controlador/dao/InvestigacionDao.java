@@ -266,19 +266,20 @@ public class InvestigacionDao {
 
 
 
-    public boolean editarInvestigacionTemporal(Investigacion investigacion){
+    public boolean editarInvestigacionTemporal(Investigacion investigacion, int idUsuario){
         try {
-            String SQL="update investigacionModificado set estatus=? WHERE idIvestigacionModi=? and idInvestigacion=? and tema=? and categoria=? and nombreAutor=? and titulo=? and subtitulo=?";
+            String SQL="update investigacionModificado set estatus=?, idUsuario=? WHERE idIvestigacionModi=? and idInvestigacion=? and tema=? and categoria=? and nombreAutor=? and titulo=? and subtitulo=?";
             Connection connection=this.obtenerConexion.getConnection();
             PreparedStatement sentencia =connection.prepareStatement(SQL);
             sentencia.setInt(1,investigacion.getEstatus());
-            sentencia.setInt(2,investigacion.getIdIvestigacionModi());
-            sentencia.setInt(3,investigacion.getIdInvestigacion());
-            sentencia.setString(4, investigacion.getTema());
-            sentencia.setString(5,investigacion.getCategoriaInvestigacion());
-            sentencia.setString(6,investigacion.getAutor());
-            sentencia.setString(7, investigacion.getTituloInvestigacion());
-            sentencia.setString(8, investigacion.getSubTitulo1());
+            sentencia.setInt(2,idUsuario);
+            sentencia.setInt(3,investigacion.getIdIvestigacionModi());
+            sentencia.setInt(4,investigacion.getIdInvestigacion());
+            sentencia.setString(5, investigacion.getTema());
+            sentencia.setString(6,investigacion.getCategoriaInvestigacion());
+            sentencia.setString(7,investigacion.getAutor());
+            sentencia.setString(8, investigacion.getTituloInvestigacion());
+            sentencia.setString(9, investigacion.getSubTitulo1());
             sentencia.executeUpdate();
             sentencia.close();
             return true;
@@ -362,5 +363,41 @@ public class InvestigacionDao {
             id = rs.getInt("idInvestigacion");
         }
         return id;
+    }
+    public int UsuarioMasInvest() throws SQLException {
+        Connection connection=this.obtenerConexion.getConnection();
+        String SQLMasInvest = "select idUsuario from investigacion group by idUsuario order by count(idUsuario) desc limit 1";
+        PreparedStatement sentencia2 = connection.prepareStatement(SQLMasInvest);
+        ResultSet rs = sentencia2.executeQuery();
+
+        int idUsuario=0;
+        if (rs.next()) {
+            idUsuario = rs.getInt("idUsuario");
+        }
+        return idUsuario;
+    }
+    public int LiderMasAceptadas() throws SQLException {
+        Connection connection=this.obtenerConexion.getConnection();
+        String SQLMasAceptadas = "select idUsuario from investigacionModificado where investigacionModificado.estatus=1 group by idUsuario order by count(idUsuario) desc limit 1";
+        PreparedStatement sentencia2 = connection.prepareStatement(SQLMasAceptadas);
+        ResultSet rs = sentencia2.executeQuery();
+
+        int idUsuario=0;
+        if (rs.next()) {
+            idUsuario = rs.getInt("idUsuario");
+        }
+        return idUsuario;
+    }
+    public int InvestExtensa() throws SQLException {
+        Connection connection=this.obtenerConexion.getConnection();
+        String SQLExtensa = "select idUsuario from investigacion where investigacionModificado.estatus=1 group by idUsuario order by totalPalabras desc limit 1;";
+        PreparedStatement sentencia2 = connection.prepareStatement(SQLExtensa);
+        ResultSet rs = sentencia2.executeQuery();
+
+        int idUsuario=0;
+        if (rs.next()) {
+            idUsuario = rs.getInt("idUsuario");
+        }
+        return idUsuario;
     }
 }
