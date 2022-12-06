@@ -99,7 +99,7 @@ public class CrearInvestigacionController {
                 String nuevaRuta =RutaDirectorio+"\\"+titulo;
                 File docInvestigacion = documento.crearDocumento(ultimaModificacion, fechaCreacion, nuevaRuta, categoria,tema,autor,titulo,contenido1,subTitulo,contenido2);
                 int totalPalabras = documento.contarPalabras(docInvestigacion);
-                System.out.println("la cantidad de palabras es: "+totalPalabras);
+                System.out.println("La cantidad de palabras totales es: "+totalPalabras);
                 int id= investigacionDao.getIdUltimo();
                 investigacionDao.editarTotalPalabras(totalPalabras, id);
                 carpeta.crearCarpeta(nuevaRuta, "Media");

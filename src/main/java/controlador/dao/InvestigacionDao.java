@@ -264,8 +264,6 @@ public class InvestigacionDao {
         }
     }
 
-
-
     public boolean editarInvestigacionTemporal(Investigacion investigacion, int idUsuario){
         try {
             String SQL="update investigacionModificado set estatus=?, idUsuario=? WHERE idIvestigacionModi=? and idInvestigacion=? and tema=? and categoria=? and nombreAutor=? and titulo=? and subtitulo=?";

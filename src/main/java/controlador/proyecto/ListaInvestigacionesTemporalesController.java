@@ -45,6 +45,7 @@ public class ListaInvestigacionesTemporalesController implements Initializable {
     @FXML
     private TableView<Investigacion> tbListaInvestigacionesTemporales;
     private InvestigacionDao investigacionDao;
+    private DocumentoController documento;
 
     private ContextMenu cmOpciones;
     private Investigacion investigacionTemporalSeleccionado;
@@ -57,13 +58,24 @@ public class ListaInvestigacionesTemporalesController implements Initializable {
                 if (rbtAprobar.isSelected() == true) {
                     int estatus = 1;
                     int idUsuario=LoginControlador.UserIdActivo;
+                    String nombreRuta = investigacionDao.getRuta(investigacionTemporalSeleccionado.getIdInvestigacion());
+                    String tituloDocumento = investigacionDao.getTitulo(investigacionTemporalSeleccionado.getIdInvestigacion());
+                    System.out.println(nombreRuta+" mas "+tituloDocumento);
                     investigacionTemporalSeleccionado.setEstatus(estatus);
                     investigacionDao.editarInvestigacionTemporal(investigacionTemporalSeleccionado,idUsuario);
                     investigacionDao.editarInvestigacion(investigacionTemporalSeleccionado);
-                    investigacionDao.getRuta(investigacionTemporalSeleccionado.getIdInvestigacion());
                     int idInvest=investigacionTemporalSeleccionado.getIdInvestigacion();
                     Investigacion modificacion= investigacionDao.Investigacion(idInvest);
-                    //Funcion para sobreescribir documento
+                    String ultimaModificacion = modificacion.getFechaModificacion();
+                    String fechaInicio = modificacion.getFechaInicio();
+                    String categoria = modificacion.getCategoriaInvestigacion();
+                    String tema = modificacion.getTema();
+                    String autor = modificacion.getAutor();
+                    String titulo = modificacion.getTituloInvestigacion();
+                    String contenido1 = modificacion.getContenido1();
+                    String subTitulo = modificacion.getSubTitulo1();
+                    String contenido2 = modificacion.getContenido2();
+                    documento.escribirArchivo(nombreRuta, tituloDocumento, ultimaModificacion,fechaInicio,categoria,tema,autor,titulo,contenido1,subTitulo,contenido2);
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Exito");
                     alert.setHeaderText(null);
