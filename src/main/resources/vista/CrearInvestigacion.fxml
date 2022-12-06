@@ -80,7 +80,7 @@
                 <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
             </padding>
             <children>
-                <Label text="Formulario Creación de Investigación" textAlignment="CENTER">
+                <Label text="Formulario Creación Investigación" textAlignment="CENTER">
                     <font>
                         <Font name="System Bold" size="18.0" />
                     </font>
