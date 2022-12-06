@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="619.0" prefWidth="850.0" style="-fx-background-color: #082F32;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.proyecto.ListaInvestigacionesController">
    <children>
@@ -19,15 +20,16 @@
             <TextField fx:id="txtTema" focusTraversable="false" layoutX="26.0" layoutY="75.0" promptText="Tema" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 7px; -fx-background-color: fff; -fx-font-weight: bold; -fx-alignment: center;" />
             <TextField fx:id="txtCategoria" focusTraversable="false" layoutX="25.0" layoutY="130.0" promptText="Categoría" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 7px; -fx-background-color: fff; -fx-font-weight: bold; -fx-alignment: center;" />
             <TextField fx:id="txtAutor" focusTraversable="false" layoutX="26.0" layoutY="184.0" promptText="Autor" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 7px; -fx-background-color: fff; -fx-font-weight: bold; -fx-alignment: center;" />
-            <TextField fx:id="txtTitulo" focusTraversable="false" layoutX="25.0" layoutY="237.0" prefHeight="27.0" prefWidth="162.0" promptText="Título" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 7px; -fx-background-color: fff; -fx-font-weight: bold; -fx-alignment: center;" />
+            <TextField fx:id="txtTitulo" editable="false" focusTraversable="false" layoutX="25.0" layoutY="237.0" prefHeight="27.0" prefWidth="162.0" promptText="Título" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 7px; -fx-background-color: fff; -fx-font-weight: bold; -fx-alignment: center;" />
             <Button fx:id="btnEditar" disable="true" layoutX="37.0" layoutY="389.0" mnemonicParsing="false" onAction="#EditarProyecto" prefWidth="135.0" style="-fx-font-weight: bold; -fx-background-color: #e84f31;" text="Editar investigación" textFill="WHITE" />
             <Button fx:id="btnCancelar" layoutX="37.0" layoutY="424.0" mnemonicParsing="false" onAction="#Cancelar" prefWidth="135.0" style="-fx-font-weight: bold; -fx-background-color: #e84f31;" text="Cancelar edición" textFill="WHITE" />
             <Label layoutX="31.0" layoutY="57.0" style="-fx-font-weight: bold;" text="Tema" textFill="#082f32" />
             <Label layoutX="30.0" layoutY="109.0" style="-fx-font-weight: bold;" text="Categoría:" textFill="#082f32" />
             <Label layoutX="27.0" layoutY="166.0" style="-fx-font-weight: bold;" text="Nombre Autor:" textFill="#082f32" />
             <Label layoutX="27.0" layoutY="219.0" style="-fx-font-weight: bold;" text="Título:" textFill="#082f32" />
-            <TextField fx:id="txtSubtitulo" focusTraversable="false" layoutX="25.0" layoutY="290.0" prefHeight="27.0" prefWidth="162.0" promptText="Subtítulo" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 7px; -fx-background-color: fff; -fx-font-weight: bold; -fx-alignment: center;" />
-            <Label layoutX="27.0" layoutY="272.0" style="-fx-font-weight: bold;" text="Subtítulo:" textFill="#082f32" />
+            <TextField fx:id="txtSubtitulo" focusTraversable="false" layoutX="25.0" layoutY="318.0" prefHeight="27.0" prefWidth="162.0" promptText="Subtítulo" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 7px; -fx-background-color: fff; -fx-font-weight: bold; -fx-alignment: center;" />
+            <Label layoutX="27.0" layoutY="300.0" style="-fx-font-weight: bold;" text="Subtítulo:" textFill="#082f32" />
+            <Text fill="#ee0000" layoutX="39.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="No puede ser modificado" />
          </children>
       </AnchorPane>
       <TableView fx:id="tbInvestigaciones" layoutX="255.0" layoutY="70.0" prefHeight="480.0" prefWidth="570.0" />

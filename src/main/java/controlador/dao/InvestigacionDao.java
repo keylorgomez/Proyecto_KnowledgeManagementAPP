@@ -292,15 +292,32 @@ public class InvestigacionDao {
 
     public String getRuta(int idInvestigacion) throws SQLException {
         Connection connection=this.obtenerConexion.getConnection();
-        String SQLidUser = "SELECT ruta FROM investigacion WHERE idInvestigacion = " + "'" + idInvestigacion + "'";
+        String SQLidUser = "SELECT ruta,titulo FROM investigacion WHERE idInvestigacion = " + "'" + idInvestigacion + "'";
         PreparedStatement sentencia2 = connection.prepareStatement(SQLidUser);
         ResultSet rs = sentencia2.executeQuery();
 
         String ruta="";
+        String titulo="";
+        String rutanombre="";
         if (rs.next()) {
             ruta = rs.getString("ruta");
+            titulo = rs.getString("titulo");
         }
-        return ruta;
+        rutanombre=ruta+"\\"+titulo;
+        return rutanombre;
+    }
+
+    public String getTitulo(int idInvestigacion) throws SQLException {
+        Connection connection = this.obtenerConexion.getConnection();
+        String SQLidUser = "SELECT titulo FROM investigacion WHERE idInvestigacion = " + "'" + idInvestigacion + "'";
+        PreparedStatement sentencia2 = connection.prepareStatement(SQLidUser);
+        ResultSet rs = sentencia2.executeQuery();
+
+        String titulo = "";
+        if (rs.next()) {
+            titulo = rs.getString("titulo");
+        }
+        return titulo;
     }
 
 
