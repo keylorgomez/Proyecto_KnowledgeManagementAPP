@@ -17,11 +17,11 @@ public class DocumentoController {
             salida.println("Última modificación: "+fechaModificacion);
             salida.println("Inicio de Investigación :"+fechaInicial);
             salida.println("Categoria: "+ categoria);
-            salida.println("Tema:"+ tema);
+            salida.println("Tema: "+ tema);
             salida.println("Autor: "+autor+"\n");
             salida.println("\t\tTítulo: "+titulo+"\n");
             salida.println(contenido1+"\n");
-            salida.println("\tsubTitulo"+subTitulo+"\n");
+            salida.println("\tsubTitulo: "+subTitulo+"\n");
             salida.println(contenido2);
             salida.close();
             System.out.println("Se ha creado el archivo.");
@@ -33,7 +33,7 @@ public class DocumentoController {
 
     public static int contarPalabras(File docInvestigacion) throws IOException {
         int palabrasTotales=0;
-        File documento = new File(docInvestigacion.toURI());
+        File documento = new File(String.valueOf(docInvestigacion));
         try {
             if (documento.exists()){
                 BufferedReader archivoLeer = new BufferedReader(new FileReader(documento));
@@ -69,5 +69,29 @@ public class DocumentoController {
             ex.printStackTrace(System.out);
         }
     }
+
+    public static void escribirArchivo( String nombreRuta, String tituloDocumento, String ultimaModificacion,String fechaInicio, String categoria,
+                                        String tema,String autor,String titulo,String contenido1, String subTitulo,String contenido2){
+        String nuevoNombre = nombreRuta+"\\"+tituloDocumento+".rtf";
+        File documento = new File(nuevoNombre);
+        try {
+            PrintWriter salida = new PrintWriter(documento);
+            salida.println("Última modificación: "+ultimaModificacion);
+            salida.println("Inicio de Investigación :"+fechaInicio);
+            salida.println("Categoria: "+ categoria);
+            salida.println("Tema: "+ tema);
+            salida.println("Autor: "+autor+"\n");
+            salida.println("\t\tTítulo: "+titulo+"\n");
+            salida.println(contenido1+"\n");
+            salida.println("\tsubTitulo: "+subTitulo+"\n");
+            salida.println(contenido2);
+            salida.close();
+            System.out.println("Se abrió documento y se escribió como si fuera primer vez.\n Si había algo se sobre escribió");
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace(System.out);
+        }
+    }
+
+
 }// fin de la clase
 
