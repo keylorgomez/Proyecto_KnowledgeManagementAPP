@@ -44,9 +44,6 @@ public class CrearInvestigacionController {
     private TextField txtContenido2;
 
     @FXML
-    private TextField txtRuta;
-
-    @FXML
     private TextField txtSubTitulo;
 
     @FXML
@@ -79,7 +76,6 @@ public class CrearInvestigacionController {
 
         String ultimaModificacion = LocalDate.now().toString();
         String fechaCreacion = LocalDate.now().toString();
-        String ruta = txtRuta.getText();
         String categoria = txtCategoria.getText();
         String tema = txtTema.getText();
         String autor = txtAutor.getText();
@@ -99,7 +95,10 @@ public class CrearInvestigacionController {
 
                 carpeta.crearCarpeta(RutaDirectorio, titulo);
                 String nuevaRuta =RutaDirectorio+"\\"+titulo;
-                documento.crearDocumento(ultimaModificacion, fechaCreacion, nuevaRuta, categoria,tema,autor,titulo,contenido1,subTitulo,contenido2);
+                File docInvestigacion = documento.crearDocumento(ultimaModificacion, fechaCreacion, nuevaRuta, categoria,tema,autor,titulo,contenido1,subTitulo,contenido2);
+                int totalPalabras = documento.contarPalabras(docInvestigacion);
+                System.out.println("la cantidad de palabras es: "+totalPalabras);
+                // para borrar documento.crearDocumento(ultimaModificacion, fechaCreacion, nuevaRuta, categoria,tema,autor,titulo,contenido1,subTitulo,contenido2);
                 carpeta.crearCarpeta(nuevaRuta, "Media");
                 Alert alert=new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Éxito");
@@ -121,7 +120,6 @@ public class CrearInvestigacionController {
         }
     }
     private void limpiarCampos() {
-        txtRuta.setText("");
         txtCategoria.setText("");
         txtTema.setText("");
         txtAutor.setText("");
