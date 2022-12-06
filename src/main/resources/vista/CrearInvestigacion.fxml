@@ -19,7 +19,6 @@
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="394.0" minWidth="10.0" prefWidth="360.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints maxHeight="32.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="47.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="76.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="84.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
@@ -32,54 +31,48 @@
                 <Insets bottom="10.0" left="25.0" right="25.0" top="10.0" />
             </padding>
             <children>
-                <Label alignment="TOP_RIGHT" text="Ruta" textFill="#082f32">
+                <Label alignment="TOP_RIGHT" text="Categoría" textFill="#082f32">
                     <font>
                         <Font name="System Bold" size="11.0" />
                     </font>
                 </Label>
-                <Label alignment="TOP_RIGHT" text="Categoría" textFill="#082f32" GridPane.rowIndex="1">
+                <Label alignment="TOP_RIGHT" text="Tema" textFill="#082f32" GridPane.rowIndex="1">
                     <font>
                         <Font name="System Bold" size="11.0" />
                     </font>
                 </Label>
-                <Label alignment="TOP_RIGHT" text="Tema" textFill="#082f32" GridPane.rowIndex="2">
+                <Label alignment="TOP_RIGHT" text="Autor" textFill="#082f32" GridPane.rowIndex="2">
                     <font>
                         <Font name="System Bold" size="11.0" />
                     </font>
                 </Label>
-                <Label alignment="TOP_RIGHT" text="Autor" textFill="#082f32" GridPane.rowIndex="3">
+                <Label alignment="TOP_RIGHT" text="Titulo" textFill="#082f32" GridPane.rowIndex="3">
                     <font>
                         <Font name="System Bold" size="11.0" />
                     </font>
                 </Label>
-                <Label alignment="TOP_RIGHT" text="Titulo" textFill="#082f32" GridPane.rowIndex="4">
+                <Label alignment="TOP_RIGHT" text="Primer parrafo" textFill="#082f32" GridPane.rowIndex="4">
                     <font>
                         <Font name="System Bold" size="11.0" />
                     </font>
                 </Label>
-                <Label alignment="TOP_RIGHT" text="Primer parrafo" textFill="#082f32" GridPane.rowIndex="5">
+                <Label alignment="TOP_RIGHT" text="Subtitulo" textFill="#082f32" GridPane.rowIndex="5">
                     <font>
                         <Font name="System Bold" size="11.0" />
                     </font>
                 </Label>
-                <Label alignment="TOP_RIGHT" text="Subtitulo" textFill="#082f32" GridPane.rowIndex="6">
+                <Label alignment="TOP_RIGHT" text="Texto secundario" textFill="#082f32" GridPane.rowIndex="6">
                     <font>
                         <Font name="System Bold" size="11.0" />
                     </font>
                 </Label>
-                <Label alignment="TOP_RIGHT" text="Texto secundario" textFill="#082f32" GridPane.rowIndex="7">
-                    <font>
-                        <Font name="System Bold" size="11.0" />
-                    </font>
-                </Label>
-                <TextField fx:id="txtRuta" promptText="Ruta o direccion donde guardará investigación" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 10px; -fx-background-color: ffff; -fx-font-weight: bold;" GridPane.columnIndex="1" />
-                <TextField fx:id="txtCategoria" promptText="Categoría" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 10px; -fx-background-color: ffff; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <TextField fx:id="txtTema" promptText="Tema de investigación" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 10px; -fx-background-color: ffff; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                <TextField fx:id="txtAutor" promptText="Autor de investigación" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 10px; -fx-background-color: ffff; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                <TextField fx:id="txtTitulo" promptText="Título de investigación" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 10px; -fx-background-color: ffff; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                <TextField fx:id="txtContenido1" promptText="Primer parrafó" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 10px; -fx-background-color: ffff; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                <TextField fx:id="txtSubTitulo" promptText="Primer Subtitulo" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 10px; -fx-background-color: ffff; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                <TextField fx:id="txtContenido2" promptText="Segundo párrado" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 10px; -fx-background-color: ffff; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                <TextField fx:id="txtCategoria" promptText="Categoría" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 10px; -fx-background-color: ffff; -fx-font-weight: bold;" GridPane.columnIndex="1" />
+                <TextField fx:id="txtTema" promptText="Tema de investigación" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 10px; -fx-background-color: ffff; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextField fx:id="txtAutor" promptText="Autor de investigación" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 10px; -fx-background-color: ffff; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <TextField fx:id="txtTitulo" promptText="Título de investigación" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 10px; -fx-background-color: ffff; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <TextField fx:id="txtContenido1" promptText="Primer parrafó" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 10px; -fx-background-color: ffff; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <TextField fx:id="txtSubTitulo" promptText="Primer Subtitulo" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 10px; -fx-background-color: ffff; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                <TextField fx:id="txtContenido2" promptText="Segundo párrado" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 10px; -fx-background-color: ffff; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             </children>
         </GridPane>
         <HBox alignment="CENTER" layoutX="40.0" layoutY="14.0" prefHeight="40.0" prefWidth="530.0" style="-fx-background-color: fff; -fx-border-color: #E84F31; -fx-border-radius: 4px;">
@@ -87,7 +80,7 @@
                 <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
             </padding>
             <children>
-                <Label text="Formulario Creación Investigación" textAlignment="CENTER">
+                <Label text="Formulario Creación de Investigación" textAlignment="CENTER">
                     <font>
                         <Font name="System Bold" size="18.0" />
                     </font>
