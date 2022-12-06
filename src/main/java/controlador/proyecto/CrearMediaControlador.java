@@ -70,7 +70,8 @@ public class CrearMediaControlador {
             alert.setContentText("Se registro exitosamente la media");
             alert.showAndWait();
             media=new Media(autor,foto,fechaCreacion);
-            rsp= mediaDao.registrarMedia(media);
+            int IDUsuario=LoginControlador.UserIdActivo;
+            rsp= mediaDao.registrarMedia(media, IDUsuario);
             return rsp=true;
 
         }

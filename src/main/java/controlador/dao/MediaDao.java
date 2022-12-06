@@ -15,16 +15,17 @@ public class MediaDao {
         this.obtenerConexion=new Conexion();
     }
 
-    public boolean registrarMedia(Media media){
+    public boolean registrarMedia(Media media, int idUsuario){
         try {
-            String SQL="insert into media(nombreArchivo,autor,fechaCreacion)"+
-                    "values(?,?,?)";
+            String SQL="insert into media(nombreArchivo,autor,fechaCreacion, idUsuario)"+
+                    "values(?,?,?,?)";
             Connection connection=this.obtenerConexion.getConnection();
             PreparedStatement sentencia= connection.prepareStatement(SQL);
 
             sentencia.setString(1,media.getNombreArchivo());
             sentencia.setString(2, media.getAutor());
             sentencia.setString(3,String.valueOf(media.getFechaCreacion()));
+            sentencia.setInt(4,idUsuario);
 
 
             sentencia.executeUpdate();
