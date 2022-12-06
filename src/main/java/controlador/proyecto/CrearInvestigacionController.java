@@ -100,6 +100,8 @@ public class CrearInvestigacionController {
                 File docInvestigacion = documento.crearDocumento(ultimaModificacion, fechaCreacion, nuevaRuta, categoria,tema,autor,titulo,contenido1,subTitulo,contenido2);
                 int totalPalabras = documento.contarPalabras(docInvestigacion);
                 System.out.println("la cantidad de palabras es: "+totalPalabras);
+                int id= investigacionDao.getIdUltimo();
+                investigacionDao.editarTotalPalabras(totalPalabras, id);
                 carpeta.crearCarpeta(nuevaRuta, "Media");
                 Alert alert=new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Éxito");

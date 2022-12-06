@@ -351,4 +351,16 @@ public class InvestigacionDao {
             return false;
         }
     }
+
+    public int getIdUltimo() throws SQLException {
+        Connection connection = this.obtenerConexion.getConnection();
+        String SQLgetId = "select idInvestigacion from investigacion order by idInvestigacion desc limit 1";
+        PreparedStatement sentencia2 = connection.prepareStatement(SQLgetId);
+        ResultSet rs = sentencia2.executeQuery();
+        int id= 0;
+        if (rs.next()) {
+            id = rs.getInt("idInvestigacion");
+        }
+        return id;
+    }
 }
