@@ -37,6 +37,24 @@ public class MenuInicialController implements Initializable {
     private Button btnInvestigacionesTemporales;
 
     @FXML
+    private Button btnBusquedaContenido;
+
+    @FXML
+    private Button btnEstadisticas;
+
+    @FXML
+    void BusquedaContenido(ActionEvent event) {
+
+    }
+    @FXML
+    void Estadisticas(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("Estadisticas.fxml")));
+        Stage window = (Stage) btnEstadisticas.getScene().getWindow();
+        window.setScene(new Scene(root));
+
+    }
+
+    @FXML
     void IrCambiosPresentados(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("ListaProyectosTemporales.fxml")));
         Stage window = (Stage) btnProyectosTemporales.getScene().getWindow();
@@ -86,8 +104,13 @@ public class MenuInicialController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         btnProyectosTemporales.setVisible(false);
         btnInvestigacionesTemporales.setVisible(false);
+        btnEstadisticas.setVisible(false);
         String TipoUsuario=LoginControlador.tipoUsuario;
-        if (TipoUsuario.equals("Gestor") || TipoUsuario.equals("Líder")){
+        if (TipoUsuario.equals("Gestor")){
+            btnProyectosTemporales.setVisible(true);
+            btnInvestigacionesTemporales.setVisible(true);
+            btnEstadisticas.setVisible(true);
+        } else if (TipoUsuario.equals("Líder")) {
             btnProyectosTemporales.setVisible(true);
             btnInvestigacionesTemporales.setVisible(true);
         }

@@ -30,8 +30,8 @@
             <Button fx:id="btnProyectosTemporales" layoutX="11.0" layoutY="171.0" mnemonicParsing="false" onAction="#IrCambiosPresentados" prefWidth="205.0" style="-fx-font-weight: bold; -fx-background-color: #E84F31;" text="Solicitud cambios proyectos" textFill="WHITE" />
             <Button fx:id="btnInvestigacionesTemporales" layoutX="229.0" layoutY="171.0" mnemonicParsing="false" onAction="#IrCambiosInvestigaciones" style="-fx-font-weight: bold; -fx-background-color: #E84F31;" text="Solicitud cambios investigaciones" textFill="WHITE" />
             <Button fx:id="btnEditarInvestigacion" layoutX="161.0" layoutY="121.0" mnemonicParsing="false" onAction="#IrEditarInvestigacion" prefWidth="130.0" style="-fx-font-weight: bold; -fx-background-color: #E84F31;" text="Editar Investigación" textFill="WHITE" />
-            <Button fx:id="btnEstadisticas" layoutX="176.0" layoutY="256.0" mnemonicParsing="false" style="-fx-font-weight: bold; -fx-background-color: #E84F31;" text="Estadisticas" textFill="WHITE" />
-            <Button fx:id="btnBusquedaContenido" layoutX="144.0" layoutY="218.0" mnemonicParsing="false" style="-fx-font-weight: bold; -fx-background-color: #E84F31;" text="Búsqueda de contenido" textFill="WHITE" />
+            <Button fx:id="btnEstadisticas" layoutX="176.0" layoutY="256.0" mnemonicParsing="false" onAction="#Estadisticas" style="-fx-font-weight: bold; -fx-background-color: #E84F31;" text="Estadisticas" textFill="WHITE" />
+            <Button fx:id="btnBusquedaContenido" layoutX="144.0" layoutY="218.0" mnemonicParsing="false" onAction="#BusquedaContenido" style="-fx-font-weight: bold; -fx-background-color: #E84F31;" text="Búsqueda de contenido" textFill="WHITE" />
             </children>
         </AnchorPane>
     </children>

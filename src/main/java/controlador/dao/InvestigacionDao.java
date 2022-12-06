@@ -378,7 +378,7 @@ public class InvestigacionDao {
     }
     public int LiderMasAceptadas() throws SQLException {
         Connection connection=this.obtenerConexion.getConnection();
-        String SQLMasAceptadas = "select idUsuario from investigacionModificado where investigacionModificado.estatus=1 group by idUsuario order by count(idUsuario) desc limit 1";
+        String SQLMasAceptadas = "select idUsuario from investigacionModificado where estatus=1 group by idUsuario order by count(idUsuario) desc limit 1";
         PreparedStatement sentencia2 = connection.prepareStatement(SQLMasAceptadas);
         ResultSet rs = sentencia2.executeQuery();
 
@@ -390,7 +390,7 @@ public class InvestigacionDao {
     }
     public int InvestExtensa() throws SQLException {
         Connection connection=this.obtenerConexion.getConnection();
-        String SQLExtensa = "select idUsuario from investigacion where investigacionModificado.estatus=1 group by idUsuario order by totalPalabras desc limit 1;";
+        String SQLExtensa = "select idUsuario from investigacion group by idUsuario order by totalPalabras desc limit 1;";
         PreparedStatement sentencia2 = connection.prepareStatement(SQLExtensa);
         ResultSet rs = sentencia2.executeQuery();
 
