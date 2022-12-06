@@ -21,6 +21,26 @@ public class Investigacion {
     private int mostrar;
     private int idIvestigacionModi;
 
+    private String ruta;
+
+    private int totalPalabras;
+
+    public String getRuta() {
+        return ruta;
+    }
+
+    public void setRuta(String ruta) {
+        this.ruta = ruta;
+    }
+
+    public int getTotalPalabras() {
+        return totalPalabras;
+    }
+
+    public void setTotalPalabras(int totalPalabras) {
+        this.totalPalabras = totalPalabras;
+    }
+
     public int getIdIvestigacionModi() {
         return idIvestigacionModi;
     }
@@ -34,7 +54,7 @@ public class Investigacion {
     public Investigacion() {
     }
 
-    public Investigacion(String fechaModificacion, String fechaInicio, String categoriaInvestigacion, String tema, String autor, String tituloInvestigacion, String subTitulo1, int mostrar, int estatus) {
+    public Investigacion(String fechaModificacion, String fechaInicio, String categoriaInvestigacion, String tema, String autor, String tituloInvestigacion, String subTitulo1, int mostrar, int estatus, int totalPalabras, String ruta, String contenido1, String contenido2) {
         this.fechaModificacion = fechaModificacion;
         this.fechaInicio = fechaInicio;
         CategoriaInvestigacion = categoriaInvestigacion;
@@ -44,6 +64,10 @@ public class Investigacion {
         this.subTitulo1 = subTitulo1;
         this.mostrar= mostrar;
         this.estatus= estatus;
+        this.totalPalabras= totalPalabras;
+        this.ruta= ruta;
+        this.contenido1= contenido1;
+        this.contenido2= contenido2;
     }
 
     public Investigacion(String fechaModificacion, String fechaInicio, String categoriaInvestigacion, String tema, String autor, String tituloInvestigacion, String contenido1, String subTitulo1, String contenido2) {
@@ -70,6 +94,7 @@ public class Investigacion {
         this.subTitulo1 = subTitulo1;
         this.contenido2 = contenido2;
     }
+
 
     public int getEstatus() {
         return estatus;

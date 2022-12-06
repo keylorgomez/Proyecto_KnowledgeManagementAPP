@@ -83,13 +83,15 @@ public class CrearInvestigacionController {
         String contenido1 = txtContenido1.getText();
         String subTitulo = txtSubTitulo.getText();
         String contenido2 = txtContenido2.getText();
+
         if (validarCampos(categoria, tema, autor, titulo, subTitulo)==true){
             int idProyecto=CrearProyectoControlador.proyectoIdActivo;
             int idUsuario= LoginControlador.UserIdActivo;
             int mostrar= 0;
             int estatus=0;
-            Investigacion investigacion = new Investigacion(ultimaModificacion, fechaCreacion, categoria,tema, autor,titulo, subTitulo, mostrar, estatus);
-
+            int palabras=0;
+            Investigacion investigacion = new Investigacion(ultimaModificacion, fechaCreacion, categoria,tema, autor,titulo, subTitulo, mostrar, estatus, palabras, RutaDirectorio, contenido1, contenido2);
+            System.out.println(investigacion);
             boolean rsp = investigacionDao.registrarInvestigacion(investigacion,idProyecto, idUsuario);
             if (rsp==true){
 

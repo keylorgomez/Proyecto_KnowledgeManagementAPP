@@ -14,6 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import modelo.Documento;
 import modelo.Investigacion;
 import vista.Inicio;
 
@@ -58,6 +59,8 @@ public class ListaInvestigacionesTemporalesController implements Initializable {
                     investigacionTemporalSeleccionado.setEstatus(estatus);
                     investigacionDao.editarInvestigacionTemporal(investigacionTemporalSeleccionado);
                     investigacionDao.editarInvestigacion(investigacionTemporalSeleccionado);
+                    investigacionDao.getRuta(investigacionTemporalSeleccionado.getIdInvestigacion());
+
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Exito");
                     alert.setHeaderText(null);
