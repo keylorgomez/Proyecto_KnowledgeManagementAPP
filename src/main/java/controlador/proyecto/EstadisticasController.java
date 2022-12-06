@@ -70,22 +70,26 @@ public class EstadisticasController implements Initializable {
 
         int idMasInvest=investigacionDao.UsuarioMasInvest();
         Usuario usuarioMasInvest=usuarioDao.Usuario(idMasInvest);
-        String usuarioMasInvestgaciones=usuarioMasInvest.getNombre()+" "+usuarioMasInvest.getApellido();
-        txtMasInvestigaciones.setText(usuarioMasInvestgaciones);
+        String usuarioMasInvestigaciones="";
+        usuarioMasInvestigaciones=usuarioMasInvest.getNombre()+" "+usuarioMasInvest.getApellido();
+        txtMasInvestigaciones.setText(usuarioMasInvestigaciones);
 
         int idLiderAceptada=investigacionDao.LiderMasAceptadas();
         Usuario usuarioLider=usuarioDao.Usuario(idLiderAceptada);
-        String usuarioLiderAceptadas=usuarioLider.getNombre()+" "+usuarioLider.getApellido();
+        String usuarioLiderAceptadas="";
+        usuarioLiderAceptadas=usuarioLider.getNombre()+" "+usuarioLider.getApellido();
         txtLiderAceptados.setText(usuarioLiderAceptadas);
 
         int idInvestMasGrande=investigacionDao.InvestExtensa();
         Usuario usuarioInvestMasGrande=usuarioDao.Usuario(idInvestMasGrande);
-        String usuarioInvestigacionMasGrande=usuarioInvestMasGrande.getNombre()+" "+usuarioInvestMasGrande.getApellido();
+        String usuarioInvestigacionMasGrande="";
+        usuarioInvestigacionMasGrande=usuarioInvestMasGrande.getNombre()+" "+usuarioInvestMasGrande.getApellido();
         txtInvestigacionMasGrande.setText(usuarioInvestigacionMasGrande);
 
         int idMasMedia= mediaDao.UsuarioMasMedia();
         Usuario usuarioMasMedia=usuarioDao.Usuario(idMasMedia);
-        String usuarioMasMediaa=usuarioMasMedia.getNombre()+" "+usuarioMasMedia.getApellido();
+        String usuarioMasMediaa="";
+        usuarioMasMediaa=usuarioMasMedia.getNombre()+" "+usuarioMasMedia.getApellido();
         txtMasMedia.setText(usuarioMasMediaa);
 
 
