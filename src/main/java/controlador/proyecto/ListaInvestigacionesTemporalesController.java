@@ -56,8 +56,9 @@ public class ListaInvestigacionesTemporalesController implements Initializable {
             if (estado==0) {
                 if (rbtAprobar.isSelected() == true) {
                     int estatus = 1;
+                    int idUsuario=LoginControlador.UserIdActivo;
                     investigacionTemporalSeleccionado.setEstatus(estatus);
-                    investigacionDao.editarInvestigacionTemporal(investigacionTemporalSeleccionado);
+                    investigacionDao.editarInvestigacionTemporal(investigacionTemporalSeleccionado,idUsuario);
                     investigacionDao.editarInvestigacion(investigacionTemporalSeleccionado);
                     investigacionDao.getRuta(investigacionTemporalSeleccionado.getIdInvestigacion());
                     int idInvest=investigacionTemporalSeleccionado.getIdInvestigacion();
@@ -74,8 +75,9 @@ public class ListaInvestigacionesTemporalesController implements Initializable {
                     rbtAprobar.setSelected(false);
                 }else if (rbtRechazar.isSelected() == true) {
                     int estatus = 2;
+                    int idUsuario=LoginControlador.UserIdActivo;
                     investigacionTemporalSeleccionado.setEstatus(estatus);
-                    investigacionDao.editarInvestigacionTemporal(investigacionTemporalSeleccionado);
+                    investigacionDao.editarInvestigacionTemporal(investigacionTemporalSeleccionado,idUsuario);
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("IMPORTANTE");
                     alert.setHeaderText(null);
@@ -89,9 +91,10 @@ public class ListaInvestigacionesTemporalesController implements Initializable {
             } else if(estado==3){
                 if (rbtAprobar.isSelected()==true){
                     int estatus= 4;
+                    int idUsuario=LoginControlador.UserIdActivo;
                     investigacionTemporalSeleccionado.setMostrar(1);
                     investigacionTemporalSeleccionado.setEstatus(estatus);
-                    investigacionDao.editarInvestigacionTemporal(investigacionTemporalSeleccionado);
+                    investigacionDao.editarInvestigacionTemporal(investigacionTemporalSeleccionado,idUsuario);
                     investigacionDao.ocultarInvestigacion (investigacionTemporalSeleccionado);
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Exito");
@@ -104,9 +107,10 @@ public class ListaInvestigacionesTemporalesController implements Initializable {
                     rbtAprobar.setSelected(false);
                 }else if (rbtRechazar.isSelected()==true){
                     int estatus= 5;
+                    int idUsuario=LoginControlador.UserIdActivo;
                     investigacionTemporalSeleccionado.setMostrar(0);
                     investigacionTemporalSeleccionado.setEstatus(estatus);
-                    investigacionDao.editarInvestigacionTemporal(investigacionTemporalSeleccionado);
+                    investigacionDao.editarInvestigacionTemporal(investigacionTemporalSeleccionado,idUsuario);
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("IMPORTANTE");
                     alert.setHeaderText(null);
