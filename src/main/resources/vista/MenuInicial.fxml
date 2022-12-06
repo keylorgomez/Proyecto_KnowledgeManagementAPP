@@ -9,27 +9,29 @@
     <children>
         <AnchorPane layoutX="75.0" layoutY="55.0" prefHeight="334.0" prefWidth="449.0" style="-fx-background-color: fff; -fx-border-color: #E84F31; -fx-border-radius: 7px;">
             <children>
-                <Label layoutX="140.0" layoutY="32.0" text="Menú Inicial" textFill="#082f32">
+                <Label layoutX="140.0" layoutY="12.0" text="Menú Inicial" textFill="#082f32">
                     <font>
                         <Font name="System Bold" size="26.0" />
                     </font>
                 </Label>
-            <Button fx:id="btnEditarProyecto" layoutX="14.0" layoutY="162.0" mnemonicParsing="false" onAction="#IrEditarProyecto" prefWidth="130.0" style="-fx-font-weight: bold; -fx-background-color: #E84F31;" text="Editar Proyecto" textFill="WHITE" />
-            <Button fx:id="btnCrearProyecto" layoutX="304.0" layoutY="162.0" mnemonicParsing="false" onAction="#IrCrearProyecto" prefWidth="130.0" style="-fx-font-weight: bold; -fx-background-color: #E84F31;" text="Crear Proyecto" textFill="WHITE" />
-            <Button fx:id="btnCerrarSesion" layoutX="171.0" layoutY="294.0" mnemonicParsing="false" onAction="#CerrarSesion" prefWidth="105.0" style="-fx-font-weight: bold; -fx-background-color: #E84F31;" text="Cerrar Sesión" textFill="WHITE" />
-            <Label layoutX="31.0" layoutY="82.0" prefHeight="19.0" prefWidth="377.0" text="¡Bienvenido(a) a la plataforma Knowledge Management APP!">
+            <Button fx:id="btnEditarProyecto" layoutX="14.0" layoutY="120.0" mnemonicParsing="false" onAction="#IrEditarProyecto" prefWidth="130.0" style="-fx-font-weight: bold; -fx-background-color: #E84F31;" text="Editar Proyecto" textFill="WHITE" />
+            <Button fx:id="btnCrearProyecto" layoutX="304.0" layoutY="123.0" mnemonicParsing="false" onAction="#IrCrearProyecto" prefWidth="130.0" style="-fx-font-weight: bold; -fx-background-color: #E84F31;" text="Crear Proyecto" textFill="WHITE" />
+            <Button fx:id="btnCerrarSesion" layoutX="165.0" layoutY="296.0" mnemonicParsing="false" onAction="#CerrarSesion" prefWidth="105.0" style="-fx-font-weight: bold; -fx-background-color: #E84F31;" text="Cerrar Sesión" textFill="WHITE" />
+            <Label layoutX="31.0" layoutY="58.0" prefHeight="19.0" prefWidth="377.0" text="¡Bienvenido(a) a la plataforma Knowledge Management APP!">
                <font>
                   <Font name="System Bold Italic" size="13.0" />
                </font>
             </Label>
-            <Label layoutX="83.0" layoutY="113.0" style="-fx-font-style: italic; -fx-font-weight: bold;" text="Seleccione alguna de las siguientes opciones:">
+            <Label layoutX="83.0" layoutY="85.0" style="-fx-font-style: italic; -fx-font-weight: bold;" text="Seleccione alguna de las siguientes opciones:">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
-            <Button fx:id="btnProyectosTemporales" layoutX="122.0" layoutY="218.0" mnemonicParsing="false" onAction="#IrCambiosPresentados" prefWidth="205.0" style="-fx-font-weight: bold; -fx-background-color: #E84F31;" text="Solicitud cambios proyectos" textFill="WHITE" />
-            <Button fx:id="btnInvestigacionesTemporales" layoutX="122.0" layoutY="252.0" mnemonicParsing="false" onAction="#IrCambiosInvestigaciones" style="-fx-font-weight: bold; -fx-background-color: #E84F31;" text="Solicitud cambios investigaciones" textFill="WHITE" />
-            <Button fx:id="btnEditarInvestigacion" layoutX="162.0" layoutY="162.0" mnemonicParsing="false" onAction="#IrEditarInvestigacion" prefWidth="130.0" style="-fx-font-weight: bold; -fx-background-color: #E84F31;" text="Editar Investigación" textFill="WHITE" />
+            <Button fx:id="btnProyectosTemporales" layoutX="11.0" layoutY="171.0" mnemonicParsing="false" onAction="#IrCambiosPresentados" prefWidth="205.0" style="-fx-font-weight: bold; -fx-background-color: #E84F31;" text="Solicitud cambios proyectos" textFill="WHITE" />
+            <Button fx:id="btnInvestigacionesTemporales" layoutX="229.0" layoutY="171.0" mnemonicParsing="false" onAction="#IrCambiosInvestigaciones" style="-fx-font-weight: bold; -fx-background-color: #E84F31;" text="Solicitud cambios investigaciones" textFill="WHITE" />
+            <Button fx:id="btnEditarInvestigacion" layoutX="161.0" layoutY="121.0" mnemonicParsing="false" onAction="#IrEditarInvestigacion" prefWidth="130.0" style="-fx-font-weight: bold; -fx-background-color: #E84F31;" text="Editar Investigación" textFill="WHITE" />
+            <Button fx:id="btnEstadisticas" layoutX="176.0" layoutY="256.0" mnemonicParsing="false" style="-fx-font-weight: bold; -fx-background-color: #E84F31;" text="Estadisticas" textFill="WHITE" />
+            <Button fx:id="btnBusquedaContenido" layoutX="144.0" layoutY="218.0" mnemonicParsing="false" style="-fx-font-weight: bold; -fx-background-color: #E84F31;" text="Búsqueda de contenido" textFill="WHITE" />
             </children>
         </AnchorPane>
     </children>
