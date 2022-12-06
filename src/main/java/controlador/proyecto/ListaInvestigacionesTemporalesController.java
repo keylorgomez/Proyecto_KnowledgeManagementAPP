@@ -60,7 +60,9 @@ public class ListaInvestigacionesTemporalesController implements Initializable {
                     investigacionDao.editarInvestigacionTemporal(investigacionTemporalSeleccionado);
                     investigacionDao.editarInvestigacion(investigacionTemporalSeleccionado);
                     investigacionDao.getRuta(investigacionTemporalSeleccionado.getIdInvestigacion());
-
+                    int idInvest=investigacionTemporalSeleccionado.getIdInvestigacion();
+                    Investigacion modificacion= investigacionDao.Investigacion(idInvest);
+                    //Funcion para sobreescribir documento
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Exito");
                     alert.setHeaderText(null);
