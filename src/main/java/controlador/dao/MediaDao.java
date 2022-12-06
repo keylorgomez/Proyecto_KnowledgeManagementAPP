@@ -7,6 +7,8 @@ import modelo.Usuario;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class MediaDao {
     private Conexion obtenerConexion;
@@ -39,5 +41,17 @@ public class MediaDao {
             return false;
         }
 
+    }
+    public int UsuarioMasMedia() throws SQLException {
+        Connection connection=this.obtenerConexion.getConnection();
+        String SQLMasMedia = "select idUsuario from media group by idUsuario order by count(idUsuario) desc limit 1";
+        PreparedStatement sentencia2 = connection.prepareStatement(SQLMasMedia);
+        ResultSet rs = sentencia2.executeQuery();
+
+        int idUsuario=0;
+        if (rs.next()) {
+            idUsuario = rs.getInt("idUsuario");
+        }
+        return idUsuario;
     }
 }
