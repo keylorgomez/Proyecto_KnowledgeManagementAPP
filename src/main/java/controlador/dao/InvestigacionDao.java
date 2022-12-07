@@ -307,6 +307,23 @@ public class InvestigacionDao {
         return rutanombre;
     }
 
+    public String getRuta2(int idInvestigacion) throws SQLException {
+        Connection connection=this.obtenerConexion.getConnection();
+        String SQLidUser = "SELECT ruta,titulo FROM investigacion WHERE idInvestigacion = " + "'" + idInvestigacion + "'";
+        PreparedStatement sentencia2 = connection.prepareStatement(SQLidUser);
+        ResultSet rs = sentencia2.executeQuery();
+
+        String ruta="";
+        String titulo="";
+        String rutanombre="";
+        if (rs.next()) {
+            ruta = rs.getString("ruta");
+            titulo = rs.getString("titulo");
+        }
+        rutanombre=ruta+"\\"+titulo+"\\"+titulo;
+        return rutanombre;
+    }
+
 
     public String getTitulo(int idInvestigacion) throws SQLException {
         Connection connection = this.obtenerConexion.getConnection();
@@ -472,5 +489,18 @@ public class InvestigacionDao {
         return listaInvestigacion;
     }
 
+    public int idProyecto(int idInvestigacion) throws SQLException {
+        Connection connection=this.obtenerConexion.getConnection();
+        String SQLidUser = "SELECT idProyecto FROM investigacion WHERE idInvestigacion = " + "'" + idInvestigacion + "'";
+        PreparedStatement sentencia2 = connection.prepareStatement(SQLidUser);
+        ResultSet rs = sentencia2.executeQuery();
+
+        int idProyecto=0;
+        if (rs.next()) {
+            idProyecto =rs.getInt("idProyecto");
+
+        }
+        return idProyecto;
+    }
 }
 

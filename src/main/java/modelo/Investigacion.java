@@ -25,6 +25,16 @@ public class Investigacion {
 
     private int totalPalabras;
 
+    private int linea;
+
+    public int getLinea() {
+        return linea;
+    }
+
+    public void setLinea(int linea) {
+        this.linea = linea;
+    }
+
     public Investigacion(Investigacion investigacion) {
     }
 
