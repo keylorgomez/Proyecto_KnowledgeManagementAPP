@@ -72,25 +72,45 @@ public class EstadisticasController implements Initializable {
         Usuario usuarioMasInvest=usuarioDao.Usuario(idMasInvest);
         String usuarioMasInvestigaciones="";
         usuarioMasInvestigaciones=usuarioMasInvest.getNombre()+" "+usuarioMasInvest.getApellido();
-        txtMasInvestigaciones.setText(usuarioMasInvestigaciones);
+        if (usuarioMasInvestigaciones.isEmpty()){
+            txtMasInvestigaciones.setText("Sin resultados");
+        }else {
+            txtMasInvestigaciones.setText(usuarioMasInvestigaciones);
+        }
+
 
         int idLiderAceptada=investigacionDao.LiderMasAceptadas();
         Usuario usuarioLider=usuarioDao.Usuario(idLiderAceptada);
         String usuarioLiderAceptadas="";
         usuarioLiderAceptadas=usuarioLider.getNombre()+" "+usuarioLider.getApellido();
-        txtLiderAceptados.setText(usuarioLiderAceptadas);
+        if (usuarioLiderAceptadas.isEmpty()){
+            txtLiderAceptados.setText("Sin resultados");
+        }else{
+            txtLiderAceptados.setText(usuarioLiderAceptadas);
+        }
+
 
         int idInvestMasGrande=investigacionDao.InvestExtensa();
         Usuario usuarioInvestMasGrande=usuarioDao.Usuario(idInvestMasGrande);
         String usuarioInvestigacionMasGrande="";
         usuarioInvestigacionMasGrande=usuarioInvestMasGrande.getNombre()+" "+usuarioInvestMasGrande.getApellido();
-        txtInvestigacionMasGrande.setText(usuarioInvestigacionMasGrande);
+        if (usuarioInvestigacionMasGrande.isEmpty()){
+            txtInvestigacionMasGrande.setText("Sin resultados");
+        }else{
+            txtInvestigacionMasGrande.setText(usuarioInvestigacionMasGrande);
+        }
+
 
         int idMasMedia= mediaDao.UsuarioMasMedia();
         Usuario usuarioMasMedia=usuarioDao.Usuario(idMasMedia);
         String usuarioMasMediaa="";
         usuarioMasMediaa=usuarioMasMedia.getNombre()+" "+usuarioMasMedia.getApellido();
-        txtMasMedia.setText(usuarioMasMediaa);
+        if (usuarioMasMediaa.isEmpty()){
+            txtMasMedia.setText("Sin resultados");
+        }else {
+            txtMasMedia.setText(usuarioMasMediaa);
+        }
+
 
 
     }
