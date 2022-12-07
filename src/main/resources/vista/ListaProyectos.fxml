@@ -7,16 +7,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="745.0" prefWidth="851.0" style="-fx-background-color: #082F32;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.proyecto.ListaProyectosController">
+<AnchorPane prefHeight="707.0" prefWidth="851.0" style="-fx-background-color: #082F32;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.proyecto.ListaProyectosController">
     <children>
-        <TableView fx:id="tbProyectos" layoutX="247.0" layoutY="77.0" prefHeight="613.0" prefWidth="570.0" style="-fx-background-color: fff;" AnchorPane.topAnchor="77.0" />
+        <TableView fx:id="tbProyectos" layoutX="253.0" layoutY="68.0" prefHeight="527.0" prefWidth="570.0" style="-fx-background-color: fff;" AnchorPane.topAnchor="68.0" />
         <Label layoutX="346.0" layoutY="23.0" style="-fx-border-color: fff; -fx-background-color: fff;" text="Lista Proyectos" textFill="#e84f31">
             <font>
                 <Font name="System Bold" size="24.0" />
             </font>
         </Label>
-        <Button fx:id="btnRegresar" layoutX="335.0" layoutY="707.0" mnemonicParsing="false" onAction="#Regresar" prefWidth="160.0" style="-fx-font-weight: bold; -fx-background-color: #e84f31;" text="Regresar menú principal" textFill="WHITE" />
-        <AnchorPane layoutX="21.0" layoutY="89.0" prefHeight="353.0" prefWidth="211.0" style="-fx-background-color: fff; -fx-border-color: #E84F31; -fx-border-radius: 3px;">
+        <Button fx:id="btnRegresar" layoutX="352.0" layoutY="623.0" mnemonicParsing="false" onAction="#Regresar" prefWidth="160.0" style="-fx-font-weight: bold; -fx-background-color: #e84f31;" text="Regresar menú principal" textFill="WHITE" />
+        <AnchorPane layoutX="27.0" layoutY="69.0" prefHeight="353.0" prefWidth="211.0" style="-fx-background-color: fff; -fx-border-color: #E84F31; -fx-border-radius: 3px;">
             <children>
                 <Label layoutX="50.0" layoutY="22.0" style="-fx-font-weight: bold;" text="Edición Proyecto" textFill="#e84f31">
                     <font>
@@ -40,7 +40,7 @@
             </Label>
             </children>
         </AnchorPane>
-      <AnchorPane fx:id="anchorAñadir" layoutX="21.0" layoutY="455.0" prefHeight="235.0" prefWidth="211.0" style="-fx-background-color: fff; -fx-border-color: #E84F31; -fx-border-radius: 3px;" visible="false">
+      <AnchorPane fx:id="anchorAñadir" layoutX="28.0" layoutY="433.0" prefHeight="235.0" prefWidth="211.0" style="-fx-background-color: fff; -fx-border-color: #E84F31; -fx-border-radius: 3px;" visible="false">
          <children>
             <TextField fx:id="txtEmailParticipante" disable="true" focusTraversable="false" layoutX="25.0" layoutY="59.0" promptText="Email participante" style="-fx-border-style: solid; -fx-border-color: #E84F31; -fx-border-radius: 7px; -fx-background-color: fff; -fx-alignment: center; -fx-font-weight: bold;" visible="false" />
             <Label fx:id="lblEmailParticpante" layoutX="26.0" layoutY="40.0" style="-fx-font-weight: bold;" text="Email participante:" textFill="#082f32" visible="false" />

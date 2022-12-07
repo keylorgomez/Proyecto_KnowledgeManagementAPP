@@ -307,6 +307,7 @@ public class InvestigacionDao {
         return rutanombre;
     }
 
+
     public String getTitulo(int idInvestigacion) throws SQLException {
         Connection connection = this.obtenerConexion.getConnection();
         String SQLidUser = "SELECT titulo FROM investigacion WHERE idInvestigacion = " + "'" + idInvestigacion + "'";
@@ -432,6 +433,32 @@ public class InvestigacionDao {
                 investigacion.setTema(data.getString(4));
 
 
+                listaInvestigacion.add(investigacion);
+            }
+            data.close();
+            sentencia.close();
+        }catch (Exception e){
+            System.err.println("Ocurrió un error al listar las investigaciones");
+            System.err.println("Mensaje del error: "+e.getMessage());
+            System.err.println("Detalle del error: ");
+            e.printStackTrace();
+        }
+        return listaInvestigacion;
+    }
+    public List<Investigacion> BusquedaxContenido(String palabra) throws SQLException {
+        List<Investigacion> listaInvestigacion=new ArrayList<>();
+        try {
+            String SQL="SELECT * from investigacion WHERE titulo = " + "'" + palabra + "'"+"or subtitulo="+ "'" + palabra+"'"+ "or contenido1= "+ "'" + palabra+ "'"+ "or contenido2= "+ "'" + palabra+ "'";
+            Connection connection=this.obtenerConexion.getConnection();
+            PreparedStatement sentencia=connection.prepareStatement(SQL);
+            ResultSet data=sentencia.executeQuery();
+            while (data.next()==true){
+                Investigacion investigacion=new Investigacion();
+                investigacion.setIdInvestigacion(data.getInt(1));
+                investigacion.setTituloInvestigacion(data.getString(7));
+                investigacion.setSubTitulo1(data.getString(8));
+                investigacion.setContenido1(data.getString(14));
+                investigacion.setContenido2(data.getString(15));
                 listaInvestigacion.add(investigacion);
             }
             data.close();
