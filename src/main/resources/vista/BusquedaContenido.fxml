@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #082F32;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.proyecto.BusquedaContenidoController">
+<AnchorPane prefHeight="538.0" prefWidth="600.0" style="-fx-background-color: #082F32;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.proyecto.BusquedaContenidoController">
     <children>
-        <SplitPane dividerPositions="0.2945945945945946" layoutX="42.0" layoutY="33.0" orientation="VERTICAL" prefHeight="335.0" prefWidth="516.0">
+        <SplitPane dividerPositions="0.2945945945945946" layoutX="42.0" layoutY="28.0" orientation="VERTICAL" prefHeight="482.0" prefWidth="516.0">
             <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="247.0" prefWidth="516.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="377.0" prefWidth="515.0">
                     <children>
                         <HBox layoutX="11.0" layoutY="65.0" prefHeight="33.0" prefWidth="529.0">
                             <children>
@@ -37,15 +37,21 @@
                         </Label>
                     </children>
                 </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="170.0" prefWidth="549.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="257.0" prefWidth="545.0">
                     <children>
-                        <Label layoutX="14.0" layoutY="4.0" prefHeight="18.0" prefWidth="99.0" text="Encontrado en: ">
+                        <Label layoutX="14.0" layoutY="4.0" prefHeight="18.0" prefWidth="233.0" text="Busqueda por titulo, tema y cantegoría:">
                      <font>
                         <Font name="System Bold Italic" size="12.0" />
                      </font></Label>
                   <Label fx:id="labelEncontrado" layoutX="122.0" layoutY="6.0" />
-                  <TableView fx:id="tbResultados" layoutX="14.0" layoutY="30.0" prefHeight="111.0" prefWidth="486.0" />
-                  <Button fx:id="btnRegresar" alignment="CENTER" layoutX="215.0" layoutY="193.0" mnemonicParsing="false" onAction="#Regresar" prefWidth="85.0" style="-fx-font-weight: bold; -fx-background-color: #e84f31; -fx-border-radius: 7px;" text="Regresar" textAlignment="CENTER" textFill="WHITE" />
+                  <TableView fx:id="tbResultados" layoutX="14.0" layoutY="30.0" prefHeight="102.0" prefWidth="486.0" />
+                  <Button fx:id="btnRegresar" alignment="CENTER" layoutX="214.0" layoutY="287.0" mnemonicParsing="false" onAction="#Regresar" prefWidth="85.0" style="-fx-font-weight: bold; -fx-background-color: #e84f31; -fx-border-radius: 7px;" text="Regresar" textAlignment="CENTER" textFill="WHITE" />
+                  <TableView fx:id="tbBusquedaContenido" layoutX="14.0" layoutY="159.0" prefHeight="111.0" prefWidth="486.0" />
+                  <Label layoutX="14.0" layoutY="140.0" prefHeight="18.0" prefWidth="233.0" text="Busqueda por contenido:">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Label>
                     </children></AnchorPane>
             </items>
         </SplitPane>

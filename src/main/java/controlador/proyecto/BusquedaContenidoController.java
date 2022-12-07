@@ -36,6 +36,9 @@ public class BusquedaContenidoController implements Initializable {
     @FXML
     private Button btnRegresar;
 
+    @FXML
+    private TableView<Investigacion> tbBusquedaContenido;
+
 
     @FXML
     void Regresar(ActionEvent event) throws IOException {
@@ -44,8 +47,6 @@ public class BusquedaContenidoController implements Initializable {
         window.setScene(new Scene(root));
 
     }
-
-
 
     public BusquedaContenidoController() {
         investigacionDao= new InvestigacionDao();
@@ -62,6 +63,7 @@ public class BusquedaContenidoController implements Initializable {
             alert.showAndWait();
         }else{
             RealizarBusqueda(palabra);
+            RealizarBusquedaxContenido(palabra);
         }
         txtPalabraBuscar.setText("");
     }
@@ -87,6 +89,31 @@ public class BusquedaContenidoController implements Initializable {
 
         tbResultados.setItems(data);
         tbResultados.getColumns().addAll(idCol,tituloCol,categoriaCol,temaCol);
+
+    }
+    public void RealizarBusquedaxContenido(String palabra) throws SQLException {
+        tbBusquedaContenido.getItems().clear();
+        tbBusquedaContenido.getColumns().clear();
+
+        List<Investigacion> investigacionesConte=this.investigacionDao.BusquedaxContenido(palabra);
+        ObservableList<Investigacion> data= FXCollections.observableArrayList(investigacionesConte);
+        TableColumn idCol=new TableColumn("Id Investigación");
+        idCol.setCellValueFactory(new PropertyValueFactory("idInvestigacion"));
+
+        TableColumn tituloCol=new TableColumn("Título");
+        tituloCol.setCellValueFactory(new PropertyValueFactory("tituloInvestigacion"));
+
+        TableColumn subtituloCol=new TableColumn("Subtitulo");
+        subtituloCol.setCellValueFactory(new PropertyValueFactory("subTitulo1"));
+
+        TableColumn contenido1Col=new TableColumn("Contenido 1");
+        contenido1Col.setCellValueFactory(new PropertyValueFactory("contenido1"));
+
+        TableColumn contenido2Col=new TableColumn("Contenido 2");
+        contenido2Col.setCellValueFactory(new PropertyValueFactory("contenido2"));
+
+        tbBusquedaContenido.setItems(data);
+        tbBusquedaContenido.getColumns().addAll(idCol,tituloCol,subtituloCol,contenido1Col,contenido2Col);
 
     }
 
