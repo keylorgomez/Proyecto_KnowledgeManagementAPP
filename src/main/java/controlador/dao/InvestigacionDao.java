@@ -416,63 +416,34 @@ public class InvestigacionDao {
         return idUsuario;
     }
 
-    public String busqueda(String palabra) throws SQLException {
-        Connection connection = this.obtenerConexion.getConnection();
-        String SQLTitulo = "SELECT * from investigacion WHERE titulo = " + "'" + palabra + "'"+"or categoria="+ "'" + palabra+"'"+ "or tema= "+ "'" + palabra+ "'";
-        PreparedStatement sentencia2 = connection.prepareStatement(SQLTitulo);
-        ResultSet rs = sentencia2.executeQuery();
 
-        String investigacionEncontrado= "";
-        if (rs.next()) {
-            int idInvestigacion= rs.getInt("idInvestigacion");
-            String titulo = rs.getString("titulo");
-            String categoria= rs.getString("categoria");
-            String tema= rs.getString("tema");
-            investigacionEncontrado= "Investigacion con el id: " + idInvestigacion+'\n'+
-                    "Titulo: "+titulo+'\n'+
-                    "Categoria: "+categoria+'\n'+
-                    "Tema: "+tema;
+    public List<Investigacion> BusquedaInvest(String palabra){
+        List<Investigacion> listaInvestigacion=new ArrayList<>();
+        try {
+            String SQL="SELECT idInvestigacion, titulo, categoria, tema from investigacion WHERE titulo = " + "'" + palabra + "'"+"or categoria="+ "'" + palabra+"'"+ "or tema= "+ "'" + palabra+ "'";
+            Connection connection=this.obtenerConexion.getConnection();
+            PreparedStatement sentencia=connection.prepareStatement(SQL);
+            ResultSet data=sentencia.executeQuery();
+            while (data.next()==true){
+                Investigacion investigacion= new Investigacion();
+                investigacion.setIdInvestigacion(data.getInt(1));
+                investigacion.setTituloInvestigacion(data.getString(2));
+                investigacion.setCategoriaInvestigacion(data.getString(3));
+                investigacion.setTema(data.getString(4));
 
 
-
-
+                listaInvestigacion.add(investigacion);
+            }
+            data.close();
+            sentencia.close();
+        }catch (Exception e){
+            System.err.println("Ocurrió un error al listar las investigaciones");
+            System.err.println("Mensaje del error: "+e.getMessage());
+            System.err.println("Detalle del error: ");
+            e.printStackTrace();
         }
-        return investigacionEncontrado;
+        return listaInvestigacion;
     }
 
-    public String busquedaCategoria(String palabra) throws SQLException {
-        Connection connection = this.obtenerConexion.getConnection();
-        String SQLCategoria = "SELECT idInvestigacion, titulo, categoria FROM investigacion WHERE categoria = " + "'" + palabra + "'";
-        PreparedStatement sentencia2 = connection.prepareStatement(SQLCategoria);
-        ResultSet rs = sentencia2.executeQuery();
-
-        String categoriaEncontrado= "";
-        if (rs.next()) {
-            int idInvestigacion= rs.getInt("idInvestigacion");
-            String titulo = rs.getString("titulo");
-            String categoria= rs.getString("categoria");
-            categoriaEncontrado= "Investigacion: " + idInvestigacion+", "+titulo+" ,categoria"+categoria;
-
-        }
-        return categoriaEncontrado;
-    }
-
-    public String busquedaTema(String palabra) throws SQLException {
-        Connection connection = this.obtenerConexion.getConnection();
-        String SQLTema = "SELECT idInvestigacion, titulo, categoria, tema FROM investigacion WHERE tema = " + "'" + palabra + "'";
-        PreparedStatement sentencia2 = connection.prepareStatement(SQLTema);
-        ResultSet rs = sentencia2.executeQuery();
-
-        String temaEncontrado= "";
-        if (rs.next()) {
-            int idInvestigacion= rs.getInt("idInvestigacion");
-            String titulo = rs.getString("titulo");
-            String categoria= rs.getString("categoria");
-            String tema= rs.getString("tema");
-            temaEncontrado= "Investigacion: " + idInvestigacion+", "+titulo+" ,categoria"+categoria+" ,tema: "+tema;
-
-        }
-        return temaEncontrado;
-    }
 }
 

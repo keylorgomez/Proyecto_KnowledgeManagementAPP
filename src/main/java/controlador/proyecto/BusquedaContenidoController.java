@@ -1,25 +1,29 @@
 package controlador.proyecto;
 
 import controlador.dao.InvestigacionDao;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import modelo.Investigacion;
 import modelo.Proyecto;
 import vista.Inicio;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
-public class BusquedaContenidoController {
+public class BusquedaContenidoController implements Initializable {
     private InvestigacionDao investigacionDao;
     @FXML
     private Button btnBuscarPalabra;
@@ -27,6 +31,21 @@ public class BusquedaContenidoController {
     @FXML
     private TextField txtPalabraBuscar;
     @FXML private Label labelEncontrado;
+    @FXML
+    private TableView<Investigacion> tbResultados;
+    @FXML
+    private Button btnRegresar;
+
+
+    @FXML
+    void Regresar(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("MenuInicial.fxml")));
+        Stage window = (Stage) btnRegresar.getScene().getWindow();
+        window.setScene(new Scene(root));
+
+    }
+
+
 
     public BusquedaContenidoController() {
         investigacionDao= new InvestigacionDao();
@@ -42,16 +61,44 @@ public class BusquedaContenidoController {
             alert.setContentText("Error, no hay palabra ingresada para hacer búsqueda");
             alert.showAndWait();
         }else{
-            labelEncontrado.setText(investigacionDao.busqueda(palabra));
+            RealizarBusqueda(palabra);
         }
         txtPalabraBuscar.setText("");
     }
 
 
+    public void RealizarBusqueda(String palabra){
+        tbResultados.getItems().clear();
+        tbResultados.getColumns().clear();
+
+        List<Investigacion> investigaciones=this.investigacionDao.BusquedaInvest(palabra);
+        ObservableList<Investigacion> data= FXCollections.observableArrayList(investigaciones);
+        TableColumn idCol=new TableColumn("Id Investigación");
+        idCol.setCellValueFactory(new PropertyValueFactory("idInvestigacion"));
+
+        TableColumn tituloCol=new TableColumn("Título");
+        tituloCol.setCellValueFactory(new PropertyValueFactory("tituloInvestigacion"));
+
+        TableColumn categoriaCol=new TableColumn("Categoría");
+        categoriaCol.setCellValueFactory(new PropertyValueFactory("CategoriaInvestigacion"));
+
+        TableColumn temaCol=new TableColumn("Tema");
+        temaCol.setCellValueFactory(new PropertyValueFactory("tema"));
+
+        tbResultados.setItems(data);
+        tbResultados.getColumns().addAll(idCol,tituloCol,categoriaCol,temaCol);
+
+    }
+
 
     @FXML
     void BuscarPalabra(ActionEvent event) throws SQLException {
 
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        this.investigacionDao=new InvestigacionDao();
     }
 }
 
