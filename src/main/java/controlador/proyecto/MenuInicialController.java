@@ -53,6 +53,13 @@ public class MenuInicialController implements Initializable {
         window.setScene(new Scene(root));
 
     }
+    @FXML
+    void Busqueda(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(Inicio.class.getResource("BusquedaContenido.fxml")));
+        Stage window = (Stage) btnBusquedaContenido.getScene().getWindow();
+        window.setScene(new Scene(root));
+
+    }
 
     @FXML
     void IrCambiosPresentados(ActionEvent event) throws IOException {

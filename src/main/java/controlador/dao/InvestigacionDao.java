@@ -415,4 +415,64 @@ public class InvestigacionDao {
         }
         return idUsuario;
     }
+
+    public String busqueda(String palabra) throws SQLException {
+        Connection connection = this.obtenerConexion.getConnection();
+        String SQLTitulo = "SELECT * from investigacion WHERE titulo = " + "'" + palabra + "'"+"or categoria="+ "'" + palabra+"'"+ "or tema= "+ "'" + palabra+ "'";
+        PreparedStatement sentencia2 = connection.prepareStatement(SQLTitulo);
+        ResultSet rs = sentencia2.executeQuery();
+
+        String investigacionEncontrado= "";
+        if (rs.next()) {
+            int idInvestigacion= rs.getInt("idInvestigacion");
+            String titulo = rs.getString("titulo");
+            String categoria= rs.getString("categoria");
+            String tema= rs.getString("tema");
+            investigacionEncontrado= "Investigacion con el id: " + idInvestigacion+'\n'+
+                    "Titulo: "+titulo+'\n'+
+                    "Categoria: "+categoria+'\n'+
+                    "Tema: "+tema;
+
+
+
+
+        }
+        return investigacionEncontrado;
+    }
+
+    public String busquedaCategoria(String palabra) throws SQLException {
+        Connection connection = this.obtenerConexion.getConnection();
+        String SQLCategoria = "SELECT idInvestigacion, titulo, categoria FROM investigacion WHERE categoria = " + "'" + palabra + "'";
+        PreparedStatement sentencia2 = connection.prepareStatement(SQLCategoria);
+        ResultSet rs = sentencia2.executeQuery();
+
+        String categoriaEncontrado= "";
+        if (rs.next()) {
+            int idInvestigacion= rs.getInt("idInvestigacion");
+            String titulo = rs.getString("titulo");
+            String categoria= rs.getString("categoria");
+            categoriaEncontrado= "Investigacion: " + idInvestigacion+", "+titulo+" ,categoria"+categoria;
+
+        }
+        return categoriaEncontrado;
+    }
+
+    public String busquedaTema(String palabra) throws SQLException {
+        Connection connection = this.obtenerConexion.getConnection();
+        String SQLTema = "SELECT idInvestigacion, titulo, categoria, tema FROM investigacion WHERE tema = " + "'" + palabra + "'";
+        PreparedStatement sentencia2 = connection.prepareStatement(SQLTema);
+        ResultSet rs = sentencia2.executeQuery();
+
+        String temaEncontrado= "";
+        if (rs.next()) {
+            int idInvestigacion= rs.getInt("idInvestigacion");
+            String titulo = rs.getString("titulo");
+            String categoria= rs.getString("categoria");
+            String tema= rs.getString("tema");
+            temaEncontrado= "Investigacion: " + idInvestigacion+", "+titulo+" ,categoria"+categoria+" ,tema: "+tema;
+
+        }
+        return temaEncontrado;
+    }
 }
+
