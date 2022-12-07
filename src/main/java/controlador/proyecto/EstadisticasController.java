@@ -69,49 +69,46 @@ public class EstadisticasController implements Initializable {
     public void CargarEstadisticas() throws SQLException {
 
         int idMasInvest=investigacionDao.UsuarioMasInvest();
-        Usuario usuarioMasInvest=usuarioDao.Usuario(idMasInvest);
-        String usuarioMasInvestigaciones="";
-        usuarioMasInvestigaciones=usuarioMasInvest.getNombre()+" "+usuarioMasInvest.getApellido();
-        if (usuarioMasInvestigaciones.isEmpty()){
+        if (idMasInvest==0){
             txtMasInvestigaciones.setText("Sin resultados");
-        }else {
+        }else{
+            Usuario usuarioMasInvest=usuarioDao.Usuario(idMasInvest);
+            String usuarioMasInvestigaciones="";
+            usuarioMasInvestigaciones=usuarioMasInvest.getNombre()+" "+usuarioMasInvest.getApellido();
             txtMasInvestigaciones.setText(usuarioMasInvestigaciones);
         }
 
 
         int idLiderAceptada=investigacionDao.LiderMasAceptadas();
-        Usuario usuarioLider=usuarioDao.Usuario(idLiderAceptada);
-        String usuarioLiderAceptadas="";
-        usuarioLiderAceptadas=usuarioLider.getNombre()+" "+usuarioLider.getApellido();
-        if (usuarioLiderAceptadas.isEmpty()){
+        if (idLiderAceptada==0){
             txtLiderAceptados.setText("Sin resultados");
         }else{
+            Usuario usuarioLider=usuarioDao.Usuario(idLiderAceptada);
+            String usuarioLiderAceptadas="";
+            usuarioLiderAceptadas=usuarioLider.getNombre()+" "+usuarioLider.getApellido();
             txtLiderAceptados.setText(usuarioLiderAceptadas);
         }
 
 
         int idInvestMasGrande=investigacionDao.InvestExtensa();
-        Usuario usuarioInvestMasGrande=usuarioDao.Usuario(idInvestMasGrande);
-        String usuarioInvestigacionMasGrande="";
-        usuarioInvestigacionMasGrande=usuarioInvestMasGrande.getNombre()+" "+usuarioInvestMasGrande.getApellido();
-        if (usuarioInvestigacionMasGrande.isEmpty()){
+        if (idInvestMasGrande==0){
             txtInvestigacionMasGrande.setText("Sin resultados");
         }else{
+            Usuario usuarioInvestMasGrande=usuarioDao.Usuario(idInvestMasGrande);
+            String usuarioInvestigacionMasGrande="";
+            usuarioInvestigacionMasGrande=usuarioInvestMasGrande.getNombre()+" "+usuarioInvestMasGrande.getApellido();
             txtInvestigacionMasGrande.setText(usuarioInvestigacionMasGrande);
         }
 
-
         int idMasMedia= mediaDao.UsuarioMasMedia();
-        Usuario usuarioMasMedia=usuarioDao.Usuario(idMasMedia);
-        String usuarioMasMediaa="";
-        usuarioMasMediaa=usuarioMasMedia.getNombre()+" "+usuarioMasMedia.getApellido();
-        if (usuarioMasMediaa.isEmpty()){
+        if (idMasMedia==0){
             txtMasMedia.setText("Sin resultados");
-        }else {
+        }else{
+            Usuario usuarioMasMedia=usuarioDao.Usuario(idMasMedia);
+            String usuarioMasMediaa="";
+            usuarioMasMediaa=usuarioMasMedia.getNombre()+" "+usuarioMasMedia.getApellido();
             txtMasMedia.setText(usuarioMasMediaa);
         }
-
-
 
     }
 }
